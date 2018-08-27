@@ -169,13 +169,14 @@ public class LotteryMatrix {
         posWin++;
         if (posWin == count) {
             posWin = 0;
+            usedWinNum = new int[1];
         }
         return nmbr;
     }
 
     private static int generateNumber(int[] array) {
         ArrayList<Integer> list = new ArrayList<>(array.length);
-        int count =1;
+        int count =0;
         for (int anArray : array) {
 
             if (anArray==0){
@@ -186,9 +187,7 @@ public class LotteryMatrix {
             list.add(anArray);
         }
         int index = new Random().nextInt(array.length);
-        while (index==0){
-            index= new Random().nextInt(array.length);
-        }
+
 
         return list.get(index);
     }
