@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.security.InvalidParameterException;
-import java.security.PublicKey;
 import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
@@ -95,6 +94,15 @@ public class ElementHandler {
     }
     public static WebElement getClasCssElement (String target){
         return webDriver.findElement(By.cssSelector(Helpers.getClassCss(target)));
+    }
+    public static WebElement getDialogColumnEl(int number) {
+        return ElementHandler.getidXElement("dialog-column-checkboxes")
+                .findElement(By.cssSelector("label:nth-child(" + number + ") > span:nth-child(2)"));
+    }
+
+    public static WebElement getAdditionalColumnEl(int number) {
+        return ElementHandler.getidXElement("dialog-column-checkboxes-additional")
+                .findElement(By.cssSelector("label:nth-child(" + number + ") > span:nth-child(2)"));
     }
 
 

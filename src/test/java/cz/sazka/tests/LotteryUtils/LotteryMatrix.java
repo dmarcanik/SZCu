@@ -1,4 +1,4 @@
-package cz.sazka.tests.Utils;
+package cz.sazka.tests.LotteryUtils;
 
 import com.google.common.primitives.Ints;
 
@@ -169,7 +169,7 @@ public class LotteryMatrix {
         posWin++;
         if (posWin == count) {
             posWin = 0;
-            usedWinNum = new int[1];
+            usedWinNum = new int[0];
         }
         return nmbr;
     }
