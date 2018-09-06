@@ -1,10 +1,13 @@
 package cz.sazka.tests.Steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cz.sazka.tests.DataProviders.ConfigFileReader;
 import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,17 +24,22 @@ public class PreconditionsSteps {
     public void imLoggedInAsWithPassword(String username, String password) throws Throwable {
         configFileReader = new ConfigFileReader();
         webDriver.navigate().to(configFileReader.getStandaloneUrl());
-        ElementHandler.waitPageToBeLoaded("unauthenticated");
-        this.waitToBeClickable(By.xpath(Helpers.getIdPath("neo-login")));
-        ElementHandler.getidXElement("neo-login").click();
-        this.waitToBeClickable(By.xpath(Helpers.getIdPath("user")));
-        this.writeToInput("user", username);
-        this.writeToInput("password", password);
-        ElementHandler.getidXElement("submit").click();
-        ElementHandler.waitUntilLoggedIn();
-        acceptConsent();
+        ElementHandler.waitPageToBeLoaded();
+        loginUser(username,password);
 
 
+
+
+
+    }
+    private boolean consentPresented(){
+        try {
+            webDriver.findElement(By.xpath(Helpers.getConsentPagePath()));
+            return true;
+
+        }catch (NoSuchElementException ignored){
+            return false;
+        }
 
     }
 
@@ -61,6 +69,29 @@ public class PreconditionsSteps {
         }
     }
 
+    @Then("^Login user \"([^\"]*)\" with password \"([^\"]*)\" $")
+    public void loginUser(String username, String password)throws Throwable{
+        ElementHandler.waitPageToBeLoaded();
+        this.waitToBeClickable(By.xpath(Helpers.getIdPath("neo-login")));
+        ElementHandler.getidXElement("neo-login").click();
+        this.waitToBeClickable(By.xpath(Helpers.getIdPath("user")));
+        this.writeToInput("user", username);
+        this.writeToInput("password", password);
+        ElementHandler.getidXElement("submit").click();
+        ElementHandler.waitUntilLoggedIn();
+        if (consentPresented()){
+            acceptConsent();
+        }
+
+    }
 
 
+    @Then("^Logout user$")
+    public void logoutUser() throws Throwable {
+        ElementHandler.waitElementLoadedEl(ElementHandler.getidXElement("myProfile"));
+        ElementHandler.getidXElement("myProfile").click();
+        ElementHandler.waitElementLoadedEl(ElementHandler.getClassXElement("btn-logout"));
+        ElementHandler.getClassXElement("btn-logout").click();
+        ElementHandler.waitPageToBeLoaded();
+    }
 }

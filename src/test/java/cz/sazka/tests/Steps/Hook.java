@@ -55,7 +55,7 @@ public class Hook {
     }
 
     @After
-    public void tearDownTest(Scenario scenario) {
+    public void tearDownTest(Scenario scenario) throws Throwable {
 
         if (scenario.isFailed()) {
 
@@ -74,7 +74,6 @@ public class Hook {
             }
 
         } else {
-            webdriver.manage().deleteAllCookies();
             log.info("Test " + scenario.getName() + " PASSED");
 
         }

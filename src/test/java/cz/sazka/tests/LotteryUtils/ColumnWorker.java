@@ -29,7 +29,7 @@ public class ColumnWorker {
             throw new InvalidParameterException(error);
         }
 
-        for (int currentColumn = 0; currentColumn <= numberOfColumns; currentColumn++) {
+        for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
             WebElement element = ElementHandler.getElementArray(Helpers.getDataColumnIndex()).get(currentColumn);
             element.click();
             for (int currentNumber = 0; currentNumber < numberCount; currentNumber++) {

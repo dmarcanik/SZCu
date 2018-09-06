@@ -61,6 +61,12 @@ public class Helpers {
         result.add("//*[@data-ctrlref=\"{}\"]".replace("{}", path));
         return result;
     }
+    public static List<String> GetLoadingCsss() {
+        ArrayList<String> result = new ArrayList<>();
+        result.add("[class*=\"authenticated\"]");
+        result.add("[class*=\"unauthenticated\"]");
+        return result;
+    }
 
     public static String getUserHash(String userId, String tab) {
         return "{\"r\":\"users\",\"filter\":{\"filterID\":3},\"d\":{\"r\":\"user\",\"id\":" + userId + ",\"tab\":\"tab" + tab + "\"}}";

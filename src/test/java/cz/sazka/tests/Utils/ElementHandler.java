@@ -8,12 +8,14 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.security.InvalidParameterException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
@@ -48,22 +50,25 @@ public class ElementHandler {
         new  WebDriverWait(webDriver,10)
                 .until((ExpectedConditions.elementToBeClickable(element)));
         element.click();
-        waitPageToBeLoaded("authenticated");
+        waitPageToBeLoaded();
 
 
     }
 
-    public static void waitPageToBeLoaded(String value){
-        new WebDriverWait(webDriver,10)
-                .until((ExpectedConditions.attributeContains(webDriver.findElement(By.tagName("body")),"class",value)));
 
-    }
 
     public static void waitUntilLoggedIn(){
         WebDriverWait wait = new WebDriverWait(webDriver, 15);
         wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(webDriver.findElement(By.tagName("body")),"class","unauthenticated")));
         wait.until(ExpectedConditions.attributeContains(webDriver.findElement(By.tagName("body")),"class","authenticated"));
 
+    }
+    public static void waitPageToBeLoaded(){
+        List<String> tagSelectors = Helpers.GetLoadingCsss();
+        List<ExpectedCondition<WebElement>> expected = tagSelectors.stream().map(selector -> ExpectedConditions.elementToBeClickable(By.cssSelector(selector))).collect(Collectors.toList());
+        ExpectedCondition[] expectedConditions = expected.toArray(new ExpectedCondition[expected.size()]);
+        new WebDriverWait(webDriver, 15)
+                .until(ExpectedConditions.or(expectedConditions));
     }
 
 
@@ -74,7 +79,7 @@ public class ElementHandler {
                 .until(ExpectedConditions.elementToBeClickable(getidXElement(target)));
     }
     public static void waitElementLoadedEl(WebElement element){
-        new WebDriverWait(webDriver, 15)
+        new WebDriverWait(webDriver, 30)
                 .until(ExpectedConditions.elementToBeClickable(element));
     }
     public static List<WebElement> getElementArray (String target){
@@ -95,6 +100,7 @@ public class ElementHandler {
     public static WebElement getClasCssElement (String target){
         return webDriver.findElement(By.cssSelector(Helpers.getClassCss(target)));
     }
+
     public static WebElement getDialogColumnEl(int number) {
         return ElementHandler.getidXElement("dialog-column-checkboxes")
                 .findElement(By.cssSelector("label:nth-child(" + number + ") > span:nth-child(2)"));
