@@ -32,6 +32,9 @@ public class Helpers {
     public static String getDataColumnIndex (){
         return "//*[@data-columnindex]";
     }
+    public static String getLoaderPath(){
+        return "//*[class=\"loader active\"]";
+    }
 
 
 
@@ -66,40 +69,5 @@ public class Helpers {
         result.add("[class*=\"authenticated\"]");
         result.add("[class*=\"unauthenticated\"]");
         return result;
-    }
-
-    public static String getUserHash(String userId, String tab) {
-        return "{\"r\":\"users\",\"filter\":{\"filterID\":3},\"d\":{\"r\":\"user\",\"id\":" + userId + ",\"tab\":\"tab" + tab + "\"}}";
-    }
-
-    public static String getPrinterHash(String printerId, String tab) {
-        return "{\"r\":\"printers\",\"d\":{\"r\":\"printer\",\"id\":" + printerId + ",\"tab\":\"" + tab + "\"},\"fid\":-16}";
-
-    }
-
-    public static String getPrinterGroupHash(String groupId) {
-        return "{\"r\":\"printers\",\"fid\":" + groupId + "}";
-    }
-
-    public static String getUserGroupHash(String groupId) {
-        return "{\"r\":\"users\",\"filter\":{\"filterID\":" + groupId + "}}";
-    }
-
-    public static String getDiscoveryHAsh(String discoveryId, String tab) {
-        return "{\"r\":\"printerDiscovery\",\"d\":{\"r\":\"range\",\"id\":" + discoveryId + ",\"tab\":\"" + tab + "\"}}";
-
-    }
-
-    public static String getQueueHash(String queueId, String tab) {
-        return "{\"r\":\"queues\",\"d\":{\"r\":\"queue\",\"id\":" + queueId + ",\"tab\":\"tab" + tab + "\"}}";
-    }
-
-
-    public static String getUserFilterHash(String filter) {
-        return "{\"r\":\"users\",\"filter\":{\"filterID\":" + filter + "}}";
-    }
-
-    public static String getPrinterFilterHash(String filter) {
-        return "{\"r\":\"printers\",\"fid\":" + filter + "}";
     }
 }

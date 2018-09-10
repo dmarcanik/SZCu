@@ -32,16 +32,7 @@ public class PreconditionsSteps {
 
 
     }
-    private boolean consentPresented(){
-        try {
-            webDriver.findElement(By.xpath(Helpers.getConsentPagePath()));
-            return true;
 
-        }catch (NoSuchElementException ignored){
-            return false;
-        }
-
-    }
 
 
 
@@ -78,8 +69,8 @@ public class PreconditionsSteps {
         this.writeToInput("user", username);
         this.writeToInput("password", password);
         ElementHandler.getidXElement("submit").click();
-        ElementHandler.waitUntilLoggedIn();
-        if (consentPresented()){
+        ElementHandler.waitPageToBeLoaded();
+        if (ElementHandler.consentPresented()){
             acceptConsent();
         }
 

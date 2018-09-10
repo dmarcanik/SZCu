@@ -6,6 +6,7 @@ import cz.sazka.tests.Steps.Hook;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -55,24 +56,43 @@ public class ElementHandler {
 
     }
 
-
-
-    public static void waitUntilLoggedIn(){
-        WebDriverWait wait = new WebDriverWait(webDriver, 15);
-        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(webDriver.findElement(By.tagName("body")),"class","unauthenticated")));
-        wait.until(ExpectedConditions.attributeContains(webDriver.findElement(By.tagName("body")),"class","authenticated"));
-
-    }
     public static void waitPageToBeLoaded(){
         List<String> tagSelectors = Helpers.GetLoadingCsss();
         List<ExpectedCondition<WebElement>> expected = tagSelectors.stream().map(selector -> ExpectedConditions.elementToBeClickable(By.cssSelector(selector))).collect(Collectors.toList());
         ExpectedCondition[] expectedConditions = expected.toArray(new ExpectedCondition[expected.size()]);
         new WebDriverWait(webDriver, 15)
                 .until(ExpectedConditions.or(expectedConditions));
+        if (loaderActive()){
+            waitLoadingComplete();
+        }
+
+
+    }
+    public static boolean loaderActive(){
+        try {
+            webDriver.findElement(By.xpath(Helpers.getLoaderPath()));
+            return true;
+        }catch (NoSuchElementException ignored){
+            return false;
+        }
+    }
+
+    public static boolean consentPresented(){
+        try {
+            webDriver.findElement(By.xpath(Helpers.getConsentPagePath()));
+            return true;
+
+        }catch (NoSuchElementException ignored){
+            return false;
+        }
+
     }
 
 
-
+    public static void waitLoadingComplete (){
+        new WebDriverWait(webDriver, 15)
+                .until(ExpectedConditions.not(ExpectedConditions.attributeContains(webDriver.findElement(By.tagName("div")),"class","loading")));
+    }
 
     public static void waitElementLoaded(String target){
         new WebDriverWait(webDriver, 15)
@@ -151,8 +171,5 @@ public class ElementHandler {
                 ExpectedConditions.attributeContains(By.tagName("Body"), "class", "ajax")));
         fluentWait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(By.xpath("//*[@id=\"wsfDisableUiOverlay\"]"),"class","load")));
     }
-    public static void waitLoadingComplete (WebElement element){
-        new WebDriverWait(webDriver, 15)
-                .until(ExpectedConditions.not(ExpectedConditions.attributeContains(element.findElement(By.tagName("div")),"class","loading")));
-    }
+
 }

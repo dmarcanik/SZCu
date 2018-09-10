@@ -164,58 +164,7 @@ public class ClickStep {
     }
 
 
-    @And("^I Open autocomplete box \"([^\"]*)\" and add new$")
-    public void openAutocompleteBoxAndAdd(String target) {
-        try {
-            WebElement element = ElementHandler.getPropnameElement(target).findElement(By.cssSelector("[class=\"wsfACBtn\"]"));
-            element.click();
-            ElementHandler.waitLoadingComplete(element);
-            webDriver.findElement(By.xpath("//*[@data-id=\"0\"]")).click();
 
-        } catch (NoSuchElementException e) {
-            log.error("Element containing " + target + " not found \n :", e);
-            throw e;
-        }
-
-    }
-
-    @And("^I Open autocomplete box \"([^\"]*)\" and select \"(user|usergroup|printer|printergroup|authserver)\" \"([^\"]*)\"$")
-    public void openAutocompleteBoxAndSelect(String target, String type, String value) {
-        try {
-
-            WebElement element = ElementHandler.getPropnameElement(target).findElement(By.cssSelector("[class=\"wsfACBtn\"]"));
-            element.click();
-            ElementHandler.waitLoadingComplete(ElementHandler.getPropnameElement(target));
-            switch (type) {
-                case "user":
-                    String userId = UserHandler.getUserID(value);
-                    webDriver.findElement(By.xpath("//*[@data-id=\"" + userId + "\"]")).click();
-                    break;
-                case "usergroup":
-                    String userGroupid = UserGroupHandler.getUserGroupId(value);
-                    webDriver.findElement(By.xpath("//*[@data-id=\"" + userGroupid + "\"]")).click();
-                    break;
-                case "printer":
-                    String printerId = PrinterHandler.getPrinterId(value);
-                    webDriver.findElement(By.xpath("//*[@data-id=\"" + printerId + "\"]")).click();
-                    break;
-                case "printergroup":
-                    String printerGroupId = PrinterGroupHandler.getPrinterGroupId(value);
-                    webDriver.findElement(By.xpath("//*[@data-id=\"" + printerGroupId + "\"]")).click();
-                    break;
-                case "authserver":
-                    String authServerId = SettingsHandler.getAuthServerId(value);
-                    webDriver.findElement(By.xpath("//*[@data-id=\"" + authServerId + "\"]")).click();
-                    break;
-
-            }
-
-        } catch (NoSuchElementException e) {
-            log.error("Element containing " + target + " or " + value + " not found \n :", e);
-            throw e;
-        }
-
-    }
 
     @When("^I click on Dashboard link \"([^\"]*)\"$")
     public void clikOnLink(String value) {
