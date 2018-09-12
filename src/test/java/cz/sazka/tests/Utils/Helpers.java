@@ -70,4 +70,10 @@ public class Helpers {
         result.add("[class*=\"unauthenticated\"]");
         return result;
     }
+    public static String getLoggedInCss(){
+        return "[class*=\"authenticated\"]";
+    }
+    public static String getLoggedOutCss(){
+        return "[class*=\"unauthenticated\"]";
+    }
 }

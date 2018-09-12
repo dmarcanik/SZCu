@@ -68,7 +68,7 @@ public class ElementHandler {
 
 
     }
-    public static boolean loaderActive(){
+    private static boolean loaderActive(){
         try {
             webDriver.findElement(By.xpath(Helpers.getLoaderPath()));
             return true;
@@ -87,9 +87,21 @@ public class ElementHandler {
         }
 
     }
+    public static boolean userLoggedIn(){
+        try {
+            webDriver.findElement(By.xpath(Helpers.getLoggedInCss()));
+            return true;
+
+        }catch (NoSuchElementException ignored){
+            return false;
+        }
+
+    }
 
 
-    public static void waitLoadingComplete (){
+
+
+    private static void waitLoadingComplete (){
         new WebDriverWait(webDriver, 15)
                 .until(ExpectedConditions.not(ExpectedConditions.attributeContains(webDriver.findElement(By.tagName("div")),"class","loading")));
     }

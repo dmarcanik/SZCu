@@ -25,11 +25,10 @@ public class PreconditionsSteps {
         configFileReader = new ConfigFileReader();
         webDriver.navigate().to(configFileReader.getStandaloneUrl());
         ElementHandler.waitPageToBeLoaded();
+        if (ElementHandler.userLoggedIn()){
+            logoutUser();
+        }
         loginUser(username,password);
-
-
-
-
 
     }
 
