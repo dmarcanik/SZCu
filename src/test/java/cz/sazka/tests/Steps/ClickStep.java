@@ -45,7 +45,7 @@ public class ClickStep {
 
 
 
-    @And("^I click on button \"([^\"]*)\" where \"([^\"]*)\" is \"([^\"]*)\"$")
+   /* @And("^I click on button \"([^\"]*)\" where \"([^\"]*)\" is \"([^\"]*)\"$")
     public void click(String type, String attr, String value) throws NoSuchElementException {
         List<WebElement> newlist = ElementHandler.findCmds(type);
 
@@ -63,9 +63,9 @@ public class ClickStep {
                 break;
             }
         }
-    }
+    }*/
 
-    @And("^I click on checkbox \"([^\"]*)\"$")
+  /*  @And("^I click on checkbox \"([^\"]*)\"$")
     public void clickCheckbox(String target) {
         try {
             ElementHandler.getPropnameElement(target).click();
@@ -75,10 +75,10 @@ public class ClickStep {
         }
 
 
-    }
+    }*/
 
 
-    @And("^I click on combo box \"([^\"]*)\" and select \"([^\"]*)\"$")
+   /* @And("^I click on combo box \"([^\"]*)\" and select \"([^\"]*)\"$")
     public void clickComboBox(String target, String value) {
         try {
             List<String> tagSelectors = Helpers.getPaths(target);
@@ -97,10 +97,10 @@ public class ClickStep {
             throw e;
         }
 
-    }
+    }*/
 
 
-    @And("^I Open dropdown menu and click on \"([^\"]*)\"$")
+    /*@And("^I Open dropdown menu and click on \"([^\"]*)\"$")
     public void openDropdownMenuAndClickOn(String target) {
         try {
             List<WebElement> webElements = webDriver.findElements(By.xpath("//*[@data-ctrltype=\"Wsf_Forms_CtrlButtonDropDown\"]"));
@@ -114,7 +114,7 @@ public class ClickStep {
             }
 
             ElementHandler.getCmdIdElement(target).click();
-            ElementHandler.waitAjaxComplete();
+            ElementHandler.waitPageToBeLoaded();
         } catch (NoSuchElementException e) {
             log.error("Element containing " + target + " not found \n :", e);
             throw e;
@@ -162,11 +162,11 @@ public class ClickStep {
 
 
     }
+*/
 
 
 
-
-    @When("^I click on Dashboard link \"([^\"]*)\"$")
+   /* @When("^I click on Dashboard link \"([^\"]*)\"$")
     public void clikOnLink(String value) {
 
         List<WebElement> newlist = webDriver.findElements(By.xpath("//*[@class=\"wsfCtrl wizardStep wizardStep\"]"));
@@ -188,6 +188,6 @@ public class ClickStep {
         }
 
 
-    }
+    }*/
 
 }

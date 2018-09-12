@@ -68,6 +68,13 @@ public class ElementHandler {
 
 
     }
+    public static void acceptConsent (){
+        WebElement element = ElementHandler.getConsentElement();
+        if (element.isDisplayed()){
+            element.findElement(By.cssSelector("[class=agree]")).click();
+
+        }
+    }
     private static boolean loaderActive(){
         try {
             webDriver.findElement(By.xpath(Helpers.getLoaderPath()));
@@ -90,6 +97,16 @@ public class ElementHandler {
     public static boolean userLoggedIn(){
         try {
             webDriver.findElement(By.xpath(Helpers.getLoggedInCss()));
+            return true;
+
+        }catch (NoSuchElementException ignored){
+            return false;
+        }
+
+    }
+    public static boolean userLoggedOut(){
+        try {
+            webDriver.findElement(By.xpath(Helpers.getLoggedOutCss()));
             return true;
 
         }catch (NoSuchElementException ignored){
@@ -144,44 +161,10 @@ public class ElementHandler {
     }
 
 
-
-
-
     public static WebElement getConsentElement (){
         return webDriver.findElement(By.xpath(Helpers.getConsentPagePath()));
     }
 
 
-
-
-
-
-    public static WebElement getCorrectElement(List<String> xpaths){
-        WebElement correctElement = null;
-        for (String item:xpaths) {
-            boolean isActive = webDriver.findElements(By.xpath(item)).size()>0;
-
-            if (isActive){
-                correctElement= webDriver.findElement(By.xpath(item));
-                break;
-            }
-        }
-        return correctElement;
-    }
-
-
-    public static WebElement getPropnameElement(String target) {
-        return webDriver.findElement(By.xpath(Helpers.getPropnamePath(target)));
-    }
-
-    public static WebElement getCmdIdElement(String target) {
-        return webDriver.findElement(By.xpath(Helpers.getCmdIdPath(target)));
-    }
-    public static void waitAjaxComplete() {
-        FluentWait<WebDriver> fluentWait = new WebDriverWait(webDriver, 10);
-        fluentWait.until(ExpectedConditions.not(
-                ExpectedConditions.attributeContains(By.tagName("Body"), "class", "ajax")));
-        fluentWait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(By.xpath("//*[@id=\"wsfDisableUiOverlay\"]"),"class","load")));
-    }
 
 }

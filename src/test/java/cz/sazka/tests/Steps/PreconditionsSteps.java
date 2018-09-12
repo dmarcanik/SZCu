@@ -1,6 +1,7 @@
 package cz.sazka.tests.Steps;
 
 import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cz.sazka.tests.DataProviders.ConfigFileReader;
@@ -46,31 +47,25 @@ public class PreconditionsSteps {
         ElementHandler.getidXElement(name).sendKeys(value);
     }
 
-    private void waitToBeClickable(By by) {
+    private void waitToBeClickable(WebElement element) {
         new WebDriverWait(webDriver, 10)
-                .until((ExpectedConditions.elementToBeClickable(by)));
+                .until((ExpectedConditions.elementToBeClickable(element)));
     }
 
-    private void acceptConsent (){
-        WebElement element = ElementHandler.getConsentElement();
-        if (element.isDisplayed()){
-            element.findElement(By.cssSelector("[class=agree]")).click();
 
-        }
-    }
 
-    @Then("^Login user \"([^\"]*)\" with password \"([^\"]*)\" $")
+    @And("^Login user \"([^\"]*)\" with password \"([^\"]*)\" $")
     public void loginUser(String username, String password)throws Throwable{
         ElementHandler.waitPageToBeLoaded();
-        this.waitToBeClickable(By.xpath(Helpers.getIdPath("neo-login")));
+        this.waitToBeClickable(ElementHandler.getidXElement("neo-login"));
         ElementHandler.getidXElement("neo-login").click();
-        this.waitToBeClickable(By.xpath(Helpers.getIdPath("user")));
+        this.waitToBeClickable(ElementHandler.getidXElement("user"));
         this.writeToInput("user", username);
         this.writeToInput("password", password);
         ElementHandler.getidXElement("submit").click();
         ElementHandler.waitPageToBeLoaded();
         if (ElementHandler.consentPresented()){
-            acceptConsent();
+            ElementHandler.acceptConsent();
         }
 
     }
