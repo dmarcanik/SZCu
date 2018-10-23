@@ -19,7 +19,7 @@ public class WagerChecker {
     private static WebDriver webDriver = Hook.getDriver();
     private static Logger log = LogManager.getRootLogger();
 
-    public static void checkWagers() {
+    public static void checkGeneratedWagers() {
         List<WebElement> lotteryWagerList = ElementHandler.getElementArray(Helpers.getDataTest(WagerStorage.getLotteryKind()));
         ElementHandler.waitElementLoadedEl(lotteryWagerList.get(0));
         ElementHandler.clickCmd(lotteryWagerList.get(0).findElement(By.cssSelector("[class=\"" + WagerStorage.getLotteryKind() + " table-cell game\"]")));
@@ -27,7 +27,8 @@ public class WagerChecker {
             ElementHandler.waitElementLoaded("row-" + rowNum);
             WebElement element = ElementHandler.getidXElement("row-" + rowNum);
             List<WebElement> elementList = element.findElements(By.cssSelector("td > span"));
-            for (WebElement elem : elementList) {
+            for (int i = 0; i != WagerStorage.getNumCountListValue(rowNum - 1); i++) {
+                WebElement elem = elementList.get(i);
                 String num = elem.getText();
                 int columnNum = Integer.parseInt(num);
                 Assert.assertTrue(WagerStorage.getNumberStorage(rowNum - 1).contains(columnNum));

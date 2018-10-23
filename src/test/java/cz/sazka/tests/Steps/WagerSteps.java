@@ -69,7 +69,7 @@ public class WagerSteps {
     public void wagerIsInMojeSazky() throws Throwable {
         new ClickStep().click(Helpers.locatorMap("myWagers"));
         ElementHandler.waitElementLoaded(Helpers.locatorMap("wagerList"));
-        WagerChecker.checkWagers();
+        WagerChecker.checkGeneratedWagers();
     }
 
 

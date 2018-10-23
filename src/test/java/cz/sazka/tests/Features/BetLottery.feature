@@ -29,6 +29,7 @@ Feature: Test
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved
+    Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Eurojackpot wager 4 columns 5 winning
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard

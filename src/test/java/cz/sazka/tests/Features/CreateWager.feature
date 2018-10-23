@@ -22,4 +22,5 @@ Feature: Place wager
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved
+    Then wager is correctly displayed in Moje sázky
 

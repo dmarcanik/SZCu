@@ -27,7 +27,7 @@ public class WagerCreator {
     }
 
 
-    public static void generateWager(int columnCount, int numberCount, int winningNumberCount, String loteryKind, int exNumberCount, String addFeature, int deposit, boolean kingsGame) {
+    public static void generateWager(int columnCount, int numberCount, int winningNumberCount, String loteryKind, int addNumberCount, String addFeature, int deposit, boolean kingsGame) {
         WagerStorage.cleanStorage();
         if (ElementHandler.getIdCssElement(Helpers.locatorMap("close")).isDisplayed()){
             new ClickStep().click(Helpers.locatorMap("close"));
@@ -38,12 +38,17 @@ public class WagerCreator {
 
             throw new InvalidParameterException(error);
         }
+        ArrayList<Integer> addNumCountList = new ArrayList<>();
+        ArrayList<Integer> numCountList = new ArrayList<>();
+
 
         for (int currentColumn = 0; currentColumn < columnCount; currentColumn++) {
             ElementHandler.waitElementLoadedBy(ElementHandler.getIdXpathBy(Helpers.locatorMap("add")));
             new ClickStep().click(Helpers.locatorMap("add"));
             ArrayList<Integer> numList = new ArrayList<>();
             ArrayList<Integer> addNumList = new ArrayList<>();
+            numCountList.add(currentColumn,numberCount);
+            addNumCountList.add(currentColumn,addNumberCount);
             if (loteryKind.equals("stastnych10")) {
                 setS10Features(numberCount, deposit, kingsGame);
             }
@@ -81,6 +86,7 @@ public class WagerCreator {
                             ElementHandler.waitElementLoadedEl(webElement);
                             webElement.click();
                             numList.add(currentNumber,winNumber);
+                            break;
 
 
                     }
@@ -95,6 +101,7 @@ public class WagerCreator {
                             webElement = ElementHandler.getDialogColumnEl(losNumber);
                             webElement.click();
                             numList.add(currentNumber, losNumber);
+
                             break;
                         case "eurojackpot":
                             losNumber = LotteryMatrix.getRandomLosNumber(new int[50], LotteryMatrix
@@ -117,6 +124,7 @@ public class WagerCreator {
                             webElement = ElementHandler.getDialogColumnEl(losNumber);
                             webElement.click();
                             numList.add(currentNumber,losNumber);
+                            break;
                     }
 
                 }
@@ -125,7 +133,7 @@ public class WagerCreator {
             }
             WagerStorage.storeNumbers(currentColumn, numList);
             if (extraWaged = addFeature.equals("win")) {
-                for (int currentExNumber = 0; currentExNumber < exNumberCount; currentExNumber++) {
+                for (int currentExNumber = 0; currentExNumber < addNumberCount; currentExNumber++) {
                     int winExNumber;
                     WebElement webElement;
                     switch (loteryKind) {
@@ -151,7 +159,7 @@ public class WagerCreator {
 
 
             } else if (extraWaged = addFeature.equals("lose")) {
-                for (int currentExNumber = 0; currentExNumber < exNumberCount; currentExNumber++) {
+                for (int currentExNumber = 0; currentExNumber < addNumberCount; currentExNumber++) {
                     int winExNumber;
                     WebElement webElement;
                     switch (loteryKind) {
@@ -174,13 +182,15 @@ public class WagerCreator {
                 }
                 extraWaged = true;
             }
-            WagerStorage.storeExColNumber(currentColumn, addNumList);
+            WagerStorage.storeAddNumbers(currentColumn, addNumList);
 
             new ClickStep().click(Helpers.locatorMap("save"));
 
         }
+        WagerStorage.storeNumCountList(numCountList);
+        WagerStorage.storeAddNumCountList(addNumCountList);
         WagerStorage.storeColumnCount(columnCount);
-        WagerStorage.storeExNumberCount(exNumberCount);
+        WagerStorage.storeAddNumberCount(addNumberCount);
         WagerStorage.storenumberCount(numberCount);
         WagerStorage.storeLotteryKind(loteryKind);
 
@@ -198,6 +208,7 @@ public class WagerCreator {
 
     public static void createWager(String lottery, DataTable data) {
         new ClickStep().click("dialog-column-close");
+        WagerStorage.parseDataToStorage(data, lottery);
         WagerCreator.cleanAllColumns();
         for (Map<String, String> columnData : data.asMaps(String.class, String.class)) {
 
