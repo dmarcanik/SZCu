@@ -44,6 +44,7 @@ public class Hook {
                 public void run() {
                     try {
                         webdriver.close();
+                        killBrowserProcess();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -57,8 +58,10 @@ public class Hook {
     @After
     public void tearDownTest(Scenario scenario) throws Throwable {
 
-        if (scenario.isFailed()) {
-
+       if (scenario.isFailed()) {
+           Thread.sleep(20000);
+       }
+/*
             File scrFile = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);
 
             try {
@@ -73,10 +76,9 @@ public class Hook {
 
             }
 
-        } else {
+        } else {*/
             log.info("Test " + scenario.getName() + " PASSED");
-
-        }
+        //}
 
     }
     private void initBrowser() throws IOException {
@@ -94,6 +96,10 @@ public class Hook {
         webdriver = new FirefoxDriver(options);
         webdriver.manage().window().maximize();
         browseropened = true;
+    }
+
+    private void killBrowserProcess() throws IOException {
+        Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe /T");
     }
 
 

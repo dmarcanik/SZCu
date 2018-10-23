@@ -22,6 +22,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static cz.sazka.tests.Utils.ElementHandler.findCmd;
+import static cz.sazka.tests.Utils.ElementHandler.getidXElement;
+
 public class ClickStep {
 
     private static Logger log = LogManager.getRootLogger();
@@ -30,10 +33,11 @@ public class ClickStep {
     @And("^I click on button \"([^\"]*)\"$")
     public void click(String target) {
         try {
-            new WebDriverWait(webDriver, 15)
-                    .until(ExpectedConditions.elementToBeClickable(ElementHandler.getidXElement(target)));
+            log.info("Clicking on button " + target);
+            ElementHandler.webDriverWait().until(ExpectedConditions.elementToBeClickable(ElementHandler.getIdXpathBy(target)));
             WebElement element = ElementHandler.findCmd(target);
             ElementHandler.clickCmd(element);
+            log.info(target + " button clicked");
 
         } catch (NoSuchElementException e) {
             log.error("Element containing " + target + " not found \n :", e);
@@ -65,39 +69,61 @@ public class ClickStep {
         }
     }*/
 
-  /*  @And("^I click on checkbox \"([^\"]*)\"$")
+    @And("^I click on checkbox \"([^\"]*)\"$")
     public void clickCheckbox(String target) {
         try {
-            ElementHandler.getPropnameElement(target).click();
+            log.info("Clicking on checkbox " + target);
+            ElementHandler.waitElementLoadedBy(ElementHandler.getForCssBy(target));
+            WebElement element = ElementHandler.getForCssElement(target);
+
+            if (!element.isSelected()) {
+                element.click();
+                log.info(target + " checkbox clicked");
+            }
+
         } catch (NoSuchElementException e) {
             log.error("Element containing " + target + " not found \n :", e);
             throw e;
         }
 
 
-    }*/
+    }
 
 
-   /* @And("^I click on combo box \"([^\"]*)\" and select \"([^\"]*)\"$")
+    @And("^I click on combo box \"([^\"]*)\" and select \"([^\"]*)\"$")
     public void clickComboBox(String target, String value) {
         try {
-            List<String> tagSelectors = Helpers.getPaths(target);
+            click(target);
+            WebElement correctElement = null;
+            WebElement element = ElementHandler.getXpathElement("//*[@aria-hidden=\"false\"]");
 
-            List<ExpectedCondition<WebElement>> expected = tagSelectors.stream().map(p -> ExpectedConditions.elementToBeClickable(By.xpath(p))).collect(Collectors.toList());
-            ExpectedCondition[] args = expected.toArray(new ExpectedCondition[expected.size()]);
+            List<WebElement> elementList = element.findElements(By.cssSelector("[data-val]"));
+            for (WebElement elem : elementList) {
+                if (elem.getAttribute("data-val").equals(value)) {
+                    correctElement = elem;
+                }
 
-            new WebDriverWait(webDriver, 15)
-                    .until(ExpectedConditions.or(args));
-            ElementHandler.getCorrectElement(tagSelectors).click();
-            Select select = new Select(ElementHandler.getCorrectElement(tagSelectors));
-            select.selectByValue(value);
+
+            }
+            assert correctElement != null;
+            log.info("Choosing element " + target);
+            correctElement.click();
+            log.info(target + " element chosen");
+
 
         } catch (NoSuchElementException e) {
             log.error("Element containing " + target + " not found \n :", e);
             throw e;
+        } catch (NullPointerException ex) {
+            log.error("CorrectElement " + value + " not found");
         }
 
-    }*/
+    }
+
+     /* //List<String> tagSelectors = Helpers.getPaths(target);
+
+            List<ExpectedCondition<WebElement>> expected = tagSelectors.stream().map(p -> ExpectedConditions.elementToBeClickable(By.xpath(p))).collect(Collectors.toList());
+            ExpectedCondition[] args = expected.toArray(new ExpectedCondition[expected.size()]);*/
 
 
     /*@And("^I Open dropdown menu and click on \"([^\"]*)\"$")

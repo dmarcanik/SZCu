@@ -2,6 +2,7 @@ package cz.sazka.tests.Steps;
 
 
 import cucumber.api.java.en.When;
+import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,8 +26,7 @@ public class NavigateSteps {
             url = java.net.URLDecoder.decode(url, "UTF-8");
             String newEndpoint = url.replaceAll("(?<=cz).*$", "/" + section + "/" + game);
             webDriver.navigate().to(newEndpoint);
-            new WebDriverWait(webDriver, 15)
-                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath(Helpers.getLoteryPagePath(section,game))));
+            ElementHandler.waitPageToBeLoaded();
         } catch (NoSuchElementException e) {
             log.error("ERROR: \n", e);
             throw e;
