@@ -9,6 +9,7 @@ public class WagerStorage {
     private static int numberCount;
     private static int addNumberCount;
     private static String lotteryKind;
+    private static boolean addNumbers = false;
 
     private static ArrayList<ArrayList<Integer>> numberStorage = new ArrayList<>();
     private static ArrayList<ArrayList<Integer>> AddNumberStorage = new ArrayList<>();
@@ -39,6 +40,12 @@ public class WagerStorage {
     public static void storeAddNumCountList (ArrayList<Integer> list){
         addNumCountList = list;
     }
+    public static void enableAddNumbers(){
+        addNumbers = true;
+    }
+    public static boolean addNumbbersEnabled() {
+        return addNumbers;
+    }
     public static int getAddNumCountListValue(int index){
         return addNumCountList.get(index);
     }
@@ -67,10 +74,7 @@ public class WagerStorage {
         return AddNumberStorage.get(index);
     }
 
-    public static void cleanStorage(){
-        numberStorage.clear();
-        numberStorage.clear();
-    }
+
     public static void parseDataToStorage (DataTable data, String lotteryKind){
 
     }

@@ -10,14 +10,14 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Random;
 
-public class LotteryMatrix {
+class LotteryMatrix {
     private static int[] usedWinNum = new int[1];
     private static int[] usedLosNum = new int[1];
     private static int posWin = 0;
     private static int posLos = 0;
 
 
-    public static int[] getSportkaWinNumbers() {
+    static int[] getSportkaWinNumbers() {
         int[] winArrayFr = {1, 10, 18, 30, 32, 48};
         int[] winArrayWe = {1, 10, 18, 30, 32, 48};
         int[] winArraySu = {2, 20, 28, 20, 30, 28, 49};
@@ -48,13 +48,13 @@ public class LotteryMatrix {
         return winNumbers;
     }
 
-    public static int[] getEuroJWinNumbers(){
+     static int[] getEuroJWinNumbers(){
         return new int[] {1,10,20,30,50};
     }
-    public static int[] getEuroJExWinNumbers(){
+     static int[] getEuroJExWinNumbers(){
         return new int[] {1,10};
     }
-    public static int[] getEuroMExWinNumber(){
+     static int[] getEuroMExWinNumber(){
         int[] winArrayTu = {5};
         int[] winArraySa = {1};
         int[] winNumbers = new int[0];
@@ -83,7 +83,7 @@ public class LotteryMatrix {
         }
         return winNumbers;
     }
-    public static int[] getS10WinNumbers(){
+     static int[] getS10WinNumbers(){
         int[] winArrayAm = {1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,77,78,79,80};
         int[] winArrayPm = {1,2,3,4,9,10,19,20,29,30,39,40,49,50,59,60,69,70,79,80};
         int[] winNumbers;
@@ -97,7 +97,7 @@ public class LotteryMatrix {
     }
 
 
-    public static int[] getEuroMWinNumbers(){
+     static int[] getEuroMWinNumbers(){
         int[] winArrayTu = {1,10,18,20,28,30,35};
         int[] winArraySa = {1,5,19,20,25,29,35};
         int[] winNumbers = new int[0];
@@ -142,7 +142,7 @@ public class LotteryMatrix {
     }
 
 
-    public static int getRandomLosNumber(int[] losNumbers, int[] winNumbers, int count) {
+     static int getRandomLosNumber(int[] losNumbers, int[] winNumbers, int count) {
         int nmbr = generateNumber(losNumbers);
         usedLosNum = Arrays.copyOf(usedLosNum, count);
 
@@ -158,7 +158,7 @@ public class LotteryMatrix {
         return nmbr;
     }
 
-    public static int getRandomWinNum(int[] array, int count) {
+     static int getRandomWinNum(int[] array, int count) {
         int nmbr = generateNumber(array);
         usedWinNum = Arrays.copyOf(usedWinNum, array.length);
 

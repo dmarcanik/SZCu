@@ -52,7 +52,7 @@ public class ElementHandler {
     }
 
     public static WebDriverWait webDriverWait (){
-        return new WebDriverWait(webDriver,20);
+        return new WebDriverWait(webDriver,30);
     }
 
     public static void waitPageToBeLoaded(){
@@ -88,6 +88,10 @@ public class ElementHandler {
             element.findElement(By.cssSelector("[class=agree]")).click();
 
         }
+    }
+
+    public static List<WebElement> getWebElementList (String target){
+        return getElementArray(target);
     }
 
 

@@ -23,7 +23,7 @@ public class WagerSteps {
     private static WebDriver webDriver = Hook.getDriver();
 
 
-    @And("^I create \"([^\"]*)\" column \"(sportka|euromiliony|stastnych10|eurojackpot)\" wager with \"([^\"]*)\" numbers, \"([^\"]*)\" winning and \"([^\"]*)\" extra numbers set to \"(win|lose|none)\"$")
+    @And("^I create \"([^\"]*)\" column \"(sportka|euromilliony|stastnych10|eurojackpot)\" wager with \"([^\"]*)\" numbers, \"([^\"]*)\" winning and \"([^\"]*)\" extra numbers set to \"(win|lose|none)\"$")
     public void iCreateColumnTicketWithNumbersAndWinning(int columnCount, String loteryKind, int numberCount, int winNumberCount, int exNumberCount, String addFeature) throws Throwable {
         WagerCreator.cleanAllColumns();
         WagerCreator.generateWager(columnCount, numberCount, winNumberCount, loteryKind, exNumberCount, addFeature, 0, false);
@@ -40,13 +40,15 @@ public class WagerSteps {
     @And(("^I create \"([^\"]*)\" column eurojackpot wager with \"([^\"]*)\" winning numbers and extra numbers set to \"(win|lose|none)\"$"))
     public void iCreateEurojackpotWager(int columnCount, int winningNumbrs, String addFeature) {
         WagerCreator.cleanAllColumns();
+        WagerStorage.enableAddNumbers();
         WagerCreator.generateWager(columnCount, 5, winningNumbrs, "eurojackpot", 2, addFeature, 0, false);
     }
 
-    @And(("^I create \"([^\"]*)\" column euromiliony wager with \"([^\"]*)\" winning numbers and extra number set to \"(win|lose|none)\"$"))
+    @And(("^I create \"([^\"]*)\" column euromilliony wager with \"([^\"]*)\" winning numbers and extra number set to \"(win|lose|none)\"$"))
     public void iCreateEuroMilionyWager(int columnCount, int winningNumbrs, String addFeature) {
         WagerCreator.cleanAllColumns();
-        WagerCreator.generateWager(columnCount, 7, winningNumbrs, "euromiliony", 1, addFeature, 0, false);
+        WagerStorage.enableAddNumbers();
+        WagerCreator.generateWager(columnCount, 7, winningNumbrs, "euromilliony", 1, addFeature, 0, false);
     }
 
     @And(("^I create \"([^\"]*)\" column stastnych 10 wager with \"([^\"]*)\" numbers, \"([^\"]*)\" winning and vklad set to \"([^\"]*)\" královska hra \"(ano|ne)\"$"))

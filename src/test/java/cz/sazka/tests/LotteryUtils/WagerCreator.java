@@ -9,6 +9,7 @@ import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.html.HTMLBRElement;
@@ -28,8 +29,8 @@ public class WagerCreator {
 
 
     public static void generateWager(int columnCount, int numberCount, int winningNumberCount, String loteryKind, int addNumberCount, String addFeature, int deposit, boolean kingsGame) {
-        WagerStorage.cleanStorage();
-        if (ElementHandler.getIdCssElement(Helpers.locatorMap("close")).isDisplayed()){
+
+        if (ElementHandler.getIdCssElement(Helpers.locatorMap("close")).isDisplayed()) {
             new ClickStep().click(Helpers.locatorMap("close"));
         }
         if (ElementHandler.getElementArray(Helpers.getDataColumnIndex()).size() == 0) {
@@ -47,138 +48,48 @@ public class WagerCreator {
             new ClickStep().click(Helpers.locatorMap("add"));
             ArrayList<Integer> numList = new ArrayList<>();
             ArrayList<Integer> addNumList = new ArrayList<>();
-            numCountList.add(currentColumn,numberCount);
-            addNumCountList.add(currentColumn,addNumberCount);
+            numCountList.add(currentColumn, numberCount);
+            addNumCountList.add(currentColumn, addNumberCount);
             if (loteryKind.equals("stastnych10")) {
                 setS10Features(numberCount, deposit, kingsGame);
             }
             for (int currentNumber = 0; currentNumber < numberCount; currentNumber++) {
 
                 if (currentNumber < winningNumberCount) {
-                    int winNumber;
+                    int winNumber = LotteryNumGenerator.getLotteryWinNum(loteryKind, winningNumberCount);
                     WebElement webElement;
-                    switch (loteryKind) {
-                        case "sportka":
-                            winNumber = LotteryMatrix.getRandomWinNum(LotteryMatrix.getSportkaWinNumbers(), winningNumberCount);
-                            webElement = ElementHandler.getDialogColumnEl(winNumber);
-                            ElementHandler.waitElementLoadedEl(webElement);
-                            webElement.click();
-                            numList.add(currentNumber, winNumber);
-                            break;
-                        case "eurojackpot":
-                            winNumber = LotteryMatrix.getRandomWinNum(LotteryMatrix.getEuroJWinNumbers(), winningNumberCount);
-                            webElement = ElementHandler.getDialogColumnEl(winNumber);
-                            ElementHandler.waitElementLoadedEl(webElement);
-                            webElement.click();
-                            numList.add(currentNumber, winNumber);
-                            break;
-                        case "euromiliony":
-                            winNumber = LotteryMatrix.getRandomWinNum(LotteryMatrix.getEuroMWinNumbers(), winningNumberCount);
-                            webElement = ElementHandler.getDialogColumnEl(winNumber);
-                            ElementHandler.waitElementLoadedEl(webElement);
-                            webElement.click();
-                            numList.add(currentNumber, winNumber);
-                            break;
-
-                        case "stastnych10":
-                            winNumber = LotteryMatrix.getRandomWinNum(LotteryMatrix.getS10WinNumbers(), winningNumberCount);
-                            webElement = ElementHandler.getDialogColumnEl(winNumber);
-                            ElementHandler.waitElementLoadedEl(webElement);
-                            webElement.click();
-                            numList.add(currentNumber,winNumber);
-                            break;
-
-
-                    }
+                    webElement = ElementHandler.getDialogColumnEl(winNumber);
+                    ElementHandler.waitElementLoadedEl(webElement);
+                    webElement.click();
+                    numList.add(currentNumber, winNumber);
                 }
-                if (currentNumber >= winningNumberCount) {
-                    int losNumber;
+                 else {
+                    int losNumber = LotteryNumGenerator.getLotteryLosNum(loteryKind, winningNumberCount, numberCount);
                     WebElement webElement;
-                    switch (loteryKind) {
-                        case "sportka":
-                            losNumber = LotteryMatrix.getRandomLosNumber(new int[49], LotteryMatrix
-                                    .getSportkaWinNumbers(), numberCount - winningNumberCount);
-                            webElement = ElementHandler.getDialogColumnEl(losNumber);
-                            webElement.click();
-                            numList.add(currentNumber, losNumber);
-
-                            break;
-                        case "eurojackpot":
-                            losNumber = LotteryMatrix.getRandomLosNumber(new int[50], LotteryMatrix
-                                    .getEuroJWinNumbers(), numberCount - winningNumberCount);
-                            webElement = ElementHandler.getDialogColumnEl(losNumber);
-                            webElement.click();
-                            numList.add(currentNumber, losNumber);
-                            break;
-
-                        case "euromiliony":
-                            losNumber = LotteryMatrix.getRandomLosNumber(new int[35], LotteryMatrix
-                                    .getEuroMWinNumbers(), numberCount - winningNumberCount);
-                            webElement = ElementHandler.getDialogColumnEl(losNumber);
-                            webElement.click();
-                            numList.add(currentNumber, losNumber);
-                            break;
-
-                        case "stastnych10":
-                            losNumber = LotteryMatrix.getRandomLosNumber(new int[80], LotteryMatrix.getS10WinNumbers(),numberCount - winningNumberCount);
-                            webElement = ElementHandler.getDialogColumnEl(losNumber);
-                            webElement.click();
-                            numList.add(currentNumber,losNumber);
-                            break;
-                    }
-
+                    webElement = ElementHandler.getDialogColumnEl(losNumber);
+                    webElement.click();
+                    numList.add(currentNumber, losNumber);
                 }
-
-
             }
             WagerStorage.storeNumbers(currentColumn, numList);
             if (extraWaged = addFeature.equals("win")) {
                 for (int currentExNumber = 0; currentExNumber < addNumberCount; currentExNumber++) {
-                    int winExNumber;
-                    WebElement webElement;
-                    switch (loteryKind) {
-                        case "eurojackpot":
-                            winExNumber = LotteryMatrix.getRandomWinNum(LotteryMatrix.getEuroJExWinNumbers(), 2);
-                            webElement = ElementHandler.getAdditionalColumnEl(winExNumber);
-                            ElementHandler.waitElementLoadedEl(webElement);
-                            webElement.click();
-                            addNumList.add(currentExNumber, winExNumber);
-                            break;
-                        case "euromiliony":
-                            winExNumber = LotteryMatrix.getRandomWinNum(LotteryMatrix.getEuroMExWinNumber(), 1);
-                            webElement = ElementHandler.getAdditionalColumnEl(winExNumber);
-                            ElementHandler.waitElementLoadedEl(webElement);
-                            webElement.click();
-                            addNumList.add(currentExNumber, winExNumber);
-                            break;
-                    }
-
-
+                    int winAddNumber = LotteryNumGenerator.getLotteryAddWinNum(loteryKind);
+                    WebElement webElement = ElementHandler.getAdditionalColumnEl(winAddNumber);
+                    ElementHandler.waitElementLoadedEl(webElement);
+                    webElement.click();
+                    addNumList.add(currentExNumber, winAddNumber);
                 }
                 extraWaged = true;
 
 
             } else if (extraWaged = addFeature.equals("lose")) {
                 for (int currentExNumber = 0; currentExNumber < addNumberCount; currentExNumber++) {
-                    int winExNumber;
-                    WebElement webElement;
-                    switch (loteryKind) {
-                        case "eurojackpot":
-                            winExNumber = LotteryMatrix.getRandomLosNumber(new int[10], LotteryMatrix.getEuroJExWinNumbers(), 2);
-                            webElement = ElementHandler.getAdditionalColumnEl(winExNumber);
-                            ElementHandler.waitElementLoadedEl(webElement);
-                            webElement.click();
-                            addNumList.add(currentExNumber, winExNumber);
-                            break;
-                        case "euromiliony":
-                            winExNumber = LotteryMatrix.getRandomLosNumber(new int[5], LotteryMatrix.getEuroMExWinNumber(), 1);
-                            webElement = ElementHandler.getAdditionalColumnEl(winExNumber);
-                            ElementHandler.waitElementLoadedEl(webElement);
-                            webElement.click();
-                            addNumList.add(currentExNumber, winExNumber);
-                            break;
-
-                    }
+                    int losAddNumber = LotteryNumGenerator.getLotteryAddLosNum(loteryKind);
+                    WebElement webElement = ElementHandler.getAdditionalColumnEl(losAddNumber);
+                    ElementHandler.waitElementLoadedEl(webElement);
+                    webElement.click();
+                    addNumList.add(currentExNumber, losAddNumber);
                 }
                 extraWaged = true;
             }
@@ -195,6 +106,9 @@ public class WagerCreator {
         WagerStorage.storeLotteryKind(loteryKind);
 
     }
+
+
+
 
     public static void setS10Features(int numberCount, int deposit, boolean kingsGame) {
         String numCountString = String.valueOf(numberCount);
