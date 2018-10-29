@@ -21,32 +21,35 @@ public class WagerChecker {
 
     public static void checkGeneratedWagers() {
         try {
-            ElementHandler.waitElementLoadedBy(By.xpath(Helpers.getDataTest(WagerStorage.getLotteryKind())));
+            ElementHandler.waitElementLoadedBy(By.cssSelector(Helpers.getDataTest(WagerStorage.getLotteryKind())));
             List<WebElement> wagerElems = ElementHandler.getElementArray(Helpers.getDataTest(WagerStorage.getLotteryKind()));
             ElementHandler.waitPageToBeLoaded();
             ElementHandler.clickCmd(wagerElems.get(0).findElement(By.cssSelector("[class=\"" + WagerStorage.getLotteryKind() + " table-cell game\"]")));
             ElementHandler.waitElementLoadedBy(By.cssSelector("[id=\"dialog-wager\"]"));
-            WebElement dialogWager = ElementHandler.getidXElement("dialog-wager");
+            WebElement dialogWager = ElementHandler.getIdCssElement("dialog-wager");
             for (int rowNum = 1; rowNum <= WagerStorage.getColumnCount(); rowNum++) {
-                WebElement currentRow = dialogWager.findElement(By.cssSelector("[id=\"row-" + rowNum+"\"]"));
+                WebElement currentRow = dialogWager.findElement(By.cssSelector("[id=\"row-" + rowNum + "\"]"));
                 List<WebElement> numElems = currentRow.findElements(By.cssSelector("td > span"));
 
                 for (int i = 0; i != WagerStorage.getNumCountListValue(rowNum - 1); i++) {
                     WebElement elem = numElems.get(i);
                     Assert.assertTrue(WagerStorage.getNumberStorage(rowNum - 1).contains(stringToInt(elem.getText())));
-                    log.info("Waged numbers in " + rowNum + ". column :" + WagerStorage.getNumberStorage(rowNum - 1) + " contains previously generated number: " + elem.getText());
+
 
                 }
+                log.info("Numbers in " + rowNum + " .row match currently waged numbers in  " + rowNum + ". row");
 
                 if (WagerStorage.addNumbbersEnabled()) {
-                    List<WebElement> currentRowAddNumElems = ElementHandler.getElementArray("//*[@class=\"additional-numbers\"]");
-                    List<WebElement> addNumElems = currentRowAddNumElems.get(rowNum-1).findElements(By.cssSelector("td > span"));
+                    List<WebElement> currentRowAddNumElems = ElementHandler.getElementArray("[class=\"additional-numbers\"]");
+                    List<WebElement> addNumElems = currentRowAddNumElems.get(rowNum - 1).findElements(By.cssSelector("td > span"));
                     int i = 0;
                     for (WebElement addnumElem : addNumElems) {
                         Assert.assertTrue(WagerStorage.getExNumberStorage(i).contains(stringToInt(addnumElem.getText())));
+
                         i++;
 
                     }
+                    log.info("Additional numbers in " + rowNum + " .row match currently waged additional numbers in  " + rowNum + ". row");
                 }
 
             }
@@ -58,7 +61,8 @@ public class WagerChecker {
 
 
     }
-    private static int stringToInt (String target){
+
+    private static int stringToInt(String target) {
         return Integer.parseInt(target);
     }
 

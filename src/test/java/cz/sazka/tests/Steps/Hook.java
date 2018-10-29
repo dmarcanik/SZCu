@@ -28,6 +28,8 @@ public class Hook {
     private static Logger log = LogManager.getRootLogger();
     private static WebDriver webdriver;
     private static ConfigFileReader configFileReader;
+    private static boolean dev = true;
+
 
     public static WebDriver getDriver() {
 
@@ -58,9 +60,6 @@ public class Hook {
     @After
     public void tearDownTest(Scenario scenario) throws Throwable {
 
-       if (scenario.isFailed()) {
-           Thread.sleep(20000);
-       }
 /*
             File scrFile = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);
 
@@ -82,16 +81,15 @@ public class Hook {
 
     }
     private void initBrowser() throws IOException {
-
-        File pathToBinary = new File("C:\\Users\\Marcanik\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
         configFileReader = new ConfigFileReader();
         System.setProperty("webdriver.gecko.driver", configFileReader.getDriverPath());
-        FirefoxBinary firefoxBinary = new FirefoxBinary(pathToBinary);
         DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
         FirefoxOptions options = new FirefoxOptions();
+        if (dev){
+            desiredCapabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, geFirefoxPath(options));
+        }
         Proxy proxy = new Proxy();
         proxy.setProxyAutoconfigUrl("https://pac.sazka.cz/proxy.pac");
-        desiredCapabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options.setBinary(firefoxBinary));
         desiredCapabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS,options.setProxy(proxy));
         webdriver = new FirefoxDriver(options);
         webdriver.manage().window().maximize();
@@ -100,6 +98,12 @@ public class Hook {
 
     private void killBrowserProcess() throws IOException {
         Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe /T");
+    }
+    private FirefoxOptions geFirefoxPath( FirefoxOptions options){
+        File pathToBinary = new File("C:\\Users\\Marcanik\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
+        FirefoxBinary firefoxBinary = new FirefoxBinary(pathToBinary);
+        return options.setBinary(firefoxBinary);
+
     }
 
 

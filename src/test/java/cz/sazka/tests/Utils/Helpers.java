@@ -13,28 +13,16 @@ import java.util.List;
 public class Helpers {
     private static Logger log = LogManager.getRootLogger();
 
-    public static String getIdPath(String path) {
-        String oldxpath = "//*[@id=\"{}\"]";
-        return oldxpath.replace("{}", path);
+     static String getIdCss(String path) {
+        return "[id=\"" + path + "\"]";
     }
 
-    public static String getClassPath(String path) {
-        String oldxpath = "//*[@class=\"{}\"]";
-        return oldxpath.replace("{}", path);
-    }
-
-    public static String getIdCss(String path) {
-        String oldcss = "[id=\"{}\"]";
-        return oldcss.replace("{}", path);
-    }
-
-    public static String getForCss(String path) {
+     static String getForCss(String path) {
         return "[for=\"" + path + "\"]";
     }
 
-    public static String getClassCss(String path) {
-        String oldcss = "[class=\"{}\"]";
-        return oldcss.replace("{}", path);
+     static String getClassCss(String target) {
+        return "[class=\"" + target + "\"]";
     }
 
     public static String getClassCssContains(String path) {
@@ -43,23 +31,20 @@ public class Helpers {
     }
 
     public static String getDataColumnIndex() {
-        return "//*[@data-columnindex]";
+        return "[data-columnindex]";
     }
 
     public static String getDataTest(String target) {
-        return "//*[@data-test=\"" + target + "\"]";
+        return "[data-test=\"" + target + "\"]";
     }
 
     public static String getLoaderCss() {
         return "[class*=\"loader active\"]";
     }
 
-    public static String getLoteryPagePath(String section, String game) {
-        return "//*[@href=\"" + "/" + section + "/" + game + "/uvod" + "\"]";
-    }
 
-    public static String getConsentPagePath() {
-        return "//*[@class=\"consents-bar active layout-bottom\"]";
+    public static String getConsentPageCss() {
+        return "[class=\"consents-bar active layout-bottom\"]";
     }
 
     public static List<String> GetLoadingCsss() {

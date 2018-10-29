@@ -44,7 +44,7 @@ public class WagerCreator {
 
 
         for (int currentColumn = 0; currentColumn < columnCount; currentColumn++) {
-            ElementHandler.waitElementLoadedBy(ElementHandler.getIdXpathBy(Helpers.locatorMap("add")));
+            ElementHandler.waitElementLoadedBy(ElementHandler.getIdBy(Helpers.locatorMap("add")));
             new ClickStep().click(Helpers.locatorMap("add"));
             ArrayList<Integer> numList = new ArrayList<>();
             ArrayList<Integer> addNumList = new ArrayList<>();
@@ -73,23 +73,23 @@ public class WagerCreator {
             }
             WagerStorage.storeNumbers(currentColumn, numList);
             if (extraWaged = addFeature.equals("win")) {
-                for (int currentExNumber = 0; currentExNumber < addNumberCount; currentExNumber++) {
+                for (int currentAddNumber = 0; currentAddNumber < addNumberCount; currentAddNumber++) {
                     int winAddNumber = LotteryNumGenerator.getLotteryAddWinNum(loteryKind);
                     WebElement webElement = ElementHandler.getAdditionalColumnEl(winAddNumber);
                     ElementHandler.waitElementLoadedEl(webElement);
                     webElement.click();
-                    addNumList.add(currentExNumber, winAddNumber);
+                    addNumList.add(currentAddNumber, winAddNumber);
                 }
                 extraWaged = true;
 
 
             } else if (extraWaged = addFeature.equals("lose")) {
-                for (int currentExNumber = 0; currentExNumber < addNumberCount; currentExNumber++) {
+                for (int currentAddNumber = 0; currentAddNumber < addNumberCount; currentAddNumber++) {
                     int losAddNumber = LotteryNumGenerator.getLotteryAddLosNum(loteryKind);
                     WebElement webElement = ElementHandler.getAdditionalColumnEl(losAddNumber);
                     ElementHandler.waitElementLoadedEl(webElement);
                     webElement.click();
-                    addNumList.add(currentExNumber, losAddNumber);
+                    addNumList.add(currentAddNumber, losAddNumber);
                 }
                 extraWaged = true;
             }
@@ -122,36 +122,54 @@ public class WagerCreator {
 
     public static void createWager(String lottery, DataTable data) {
         new ClickStep().click("dialog-column-close");
-        WagerStorage.parseDataToStorage(data, lottery);
         WagerCreator.cleanAllColumns();
+        ArrayList<Integer> numList = new ArrayList<>();
+        ArrayList<Integer> addNumList = new ArrayList<>();
+        ArrayList<Integer> addNumCountList = new ArrayList<>();
+        ArrayList<Integer> numCountList = new ArrayList<>();
+        int currentColumn = 0;
         for (Map<String, String> columnData : data.asMaps(String.class, String.class)) {
 
             new ClickStep().click("btn-game-column-add");
             String numbers = columnData.get("numbers");
             String[] splittedNumbers = numbers.split(",");
+            int currentNumber = 0;
             for (String splittedNumber : splittedNumbers) {
                 int num = Integer.parseInt(splittedNumber);
-                log.info("waging" + lottery + "  number " + num);
+                numList.add(currentNumber, num);
+                log.info("waging " + lottery + "  number " + num);
                 ElementHandler.waitElementLoadedEl(ElementHandler.getDialogColumnEl(num));
                 ElementHandler.getDialogColumnEl(num).click();
-
+                currentNumber++;
 
             }
+            numCountList.add(currentColumn, currentNumber);
+
 
             if (columnData.get("additional") != null) {
                 String additional = columnData.get("additional");
                 String[] splittedAdditional = additional.split(",");
+                int currentAddNumber =0;
                 for (String splittedAddNum : splittedAdditional) {
                     int addNum = Integer.parseInt(splittedAddNum);
-                    log.info("waging" + lottery + " additional number " + addNum);
+                    addNumList.add(currentAddNumber, addNum);
+                    log.info("waging " + lottery + " additional number " + addNum);
                     ElementHandler.waitElementLoadedEl(ElementHandler.getAdditionalColumnEl(addNum));
                     ElementHandler.getAdditionalColumnEl(addNum).click();
 
                 }
+                addNumCountList.add(currentColumn, currentAddNumber);
 
             }
             new ClickStep().click("dialog-column-save");
+            WagerStorage.storeNumbers(currentColumn,numList);
+            WagerStorage.storeAddNumbers(currentColumn,addNumList);
+            WagerStorage.storeNumCountList(numCountList);
+            WagerStorage.storeAddNumCountList(addNumCountList);
+            WagerStorage.storeLotteryKind(lottery);
+            currentColumn++;
         }
+        WagerStorage.storeColumnCount(currentColumn);
     }
 
 
@@ -167,7 +185,7 @@ public class WagerCreator {
             if (element.getAttribute("class").contains("active")) {
                 element.click();
                 ElementHandler.waitElementLoaded(Helpers.locatorMap("delete"));
-                ElementHandler.clickCmd(ElementHandler.getidXElement(Helpers.locatorMap("delete")));
+                ElementHandler.clickCmd(ElementHandler.getCssElement(Helpers.locatorMap("delete")));
             }
 
         }

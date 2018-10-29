@@ -42,8 +42,8 @@ public class PreconditionsSteps {
      * @param value Value to send
      */
     private void writeToInput(String name, String value) throws InterruptedException {
-        ElementHandler.getidXElement(name).clear();
-        ElementHandler.getidXElement(name).sendKeys(value);
+        ElementHandler.getIdCssElement(name).clear();
+        ElementHandler.getIdCssElement(name).sendKeys(value);
     }
 
     public static void waitForPresence(By by) {
@@ -54,9 +54,9 @@ public class PreconditionsSteps {
     @And("^Login user \"([^\"]*)\" with password \"([^\"]*)\" $")
     public void loginUser(String username, String password) throws Throwable {
         ElementHandler.waitPageToBeLoaded();
-        waitForPresence(ElementHandler.getIdXpathBy(Helpers.locatorMap("login")));
+        waitForPresence(ElementHandler.getIdBy(Helpers.locatorMap("login")));
         new ClickStep().click(Helpers.locatorMap("login"));
-        waitForPresence(ElementHandler.getIdXpathBy(Helpers.locatorMap("user")));
+        waitForPresence(ElementHandler.getIdBy(Helpers.locatorMap("user")));
         new ClickStep().click(Helpers.locatorMap("user"));
         writeToInput(Helpers.locatorMap("user"), username);
         writeToInput(Helpers.locatorMap("password"), password);
@@ -73,7 +73,7 @@ public class PreconditionsSteps {
     public void logoutUser() throws Throwable {
         int count = 1;
         ElementHandler.waitPageToBeLoaded();
-        waitForPresence(ElementHandler.getIdXpathBy(Helpers.locatorMap("myProfile")));
+        waitForPresence(ElementHandler.getIdBy(Helpers.locatorMap("myProfile")));
         new ClickStep().click(Helpers.locatorMap("myProfile"));
         while (!(ElementHandler.isLoggoutActive())&& count< 3) {
             System.out.println("myProfile not active retrying attempt " + count);
@@ -81,10 +81,10 @@ public class PreconditionsSteps {
             count++;
             Thread.sleep(2000);
         }
-        waitForPresence(ElementHandler.getclassBy(Helpers.locatorMap("logout")));
-        ElementHandler.getClassXElement(Helpers.locatorMap("logout")).click();
-        waitForPresence(ElementHandler.getclassBy(Helpers.locatorMap("ok")));
-        ElementHandler.getClassXElement(Helpers.locatorMap("ok")).click();
+        waitForPresence(ElementHandler.getclassCssBy(Helpers.locatorMap("logout")));
+        ElementHandler.getClasCssElement(Helpers.locatorMap("logout")).click();
+        waitForPresence(ElementHandler.getclassCssBy(Helpers.locatorMap("ok")));
+        ElementHandler.getClasCssElement(Helpers.locatorMap("ok")).click();
         ElementHandler.waitToBeLoggedOut();
     }
 

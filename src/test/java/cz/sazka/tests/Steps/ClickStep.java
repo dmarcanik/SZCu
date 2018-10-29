@@ -1,29 +1,17 @@
 package cz.sazka.tests.Steps;
 
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.When;
-import cz.sazka.tests.Db.*;
 import cz.sazka.tests.Utils.ElementHandler;
-import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static cz.sazka.tests.Utils.ElementHandler.findCmd;
-import static cz.sazka.tests.Utils.ElementHandler.getidXElement;
 
 public class ClickStep {
 
@@ -33,8 +21,9 @@ public class ClickStep {
     @And("^I click on button \"([^\"]*)\"$")
     public void click(String target) {
         try {
+
             log.info("Clicking on button " + target);
-            ElementHandler.webDriverWait().until(ExpectedConditions.elementToBeClickable(ElementHandler.getIdXpathBy(target)));
+            ElementHandler.webDriverWait().until(ExpectedConditions.elementToBeClickable(ElementHandler.getIdBy(target)));
             WebElement element = ElementHandler.findCmd(target);
             ElementHandler.clickCmd(element);
             log.info(target + " button clicked");
@@ -95,14 +84,13 @@ public class ClickStep {
         try {
             click(target);
             WebElement correctElement = null;
-            WebElement element = ElementHandler.getXpathElement("//*[@aria-hidden=\"false\"]");
+            WebElement element = ElementHandler.getCssElement("[aria-hidden=\"false\"]");
 
             List<WebElement> elementList = element.findElements(By.cssSelector("[data-val]"));
             for (WebElement elem : elementList) {
                 if (elem.getAttribute("data-val").equals(value)) {
                     correctElement = elem;
                 }
-
 
             }
             assert correctElement != null;

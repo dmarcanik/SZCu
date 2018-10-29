@@ -4,7 +4,7 @@ Feature: Place wager
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create "euromiliony" wager with declared numbers
+    And I create "euromilliony" wager with declared numbers
       |numbers|additional|
       |1,2,3,4,5,6,7|1|
       |8,9,10,11,12,13,14|2|
@@ -13,4 +13,5 @@ Feature: Place wager
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved
+    Then wager is correctly displayed in Moje sázky
 

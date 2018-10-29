@@ -64,7 +64,7 @@ public class WagerSteps {
 
     @Then("^wager is saved$")
     public void wagerIsSaved() throws Throwable {
-        PreconditionsSteps.waitForPresence(ElementHandler.getIdXpathBy(Helpers.locatorMap("wagerSaved")));
+        PreconditionsSteps.waitForPresence(ElementHandler.getIdBy(Helpers.locatorMap("wagerSaved")));
     }
 
     @Then("^wager is correctly displayed in Moje sázky$")
@@ -75,9 +75,13 @@ public class WagerSteps {
     }
 
 
-    @And("^I create \"(sportka|euromiliony|stastnych10|eurojackpot)\" wager with declared numbers$")
+    @And("^I create \"(sportka|euromilliony|stastnych10|eurojackpot)\" wager with declared numbers$")
     public void iCreateWagerWithNumbers(String lottery, DataTable data) throws Throwable {
+        if (lottery.contains("euromilliony")||lottery.contains("eurojackpot")){
+            WagerStorage.enableAddNumbers();
+        }
         WagerCreator.createWager(lottery, data);
+
     }
 
 

@@ -26,11 +26,10 @@ public class ElementHandler {
         return cmds.get(0);
     }
 
-    public static List<WebElement> findCmds(String target) {
-        FluentWait<WebDriver> fluentWait = new WebDriverWait(webDriver, 10);
-        fluentWait.until(presenceOfElementLocated(By.xpath(Helpers.getIdPath(target))));
+    private static List<WebElement> findCmds(String target) {
+        waitElementLoadedBy(getIdBy(target));
 
-        List<WebElement> elements = webDriver.findElements(By.xpath(Helpers.getIdPath(target)));
+        List<WebElement> elements = webDriver.findElements(By.cssSelector(Helpers.getIdCss(target)));
 
         if (elements.size() == 0) {
             String error = "CMD " + target + " not found. Check spelling and watch for capital letters";
@@ -66,15 +65,15 @@ public class ElementHandler {
         waitTobeLoaded();
     }
 
-    public static void waitTobeLoaded(){
-        webDriverWait().until(ExpectedConditions.presenceOfElementLocated(By.xpath(Helpers.getIdPath(Helpers.locatorMap("loadingScreen")))));
+    private static void waitTobeLoaded(){
+        webDriverWait().until(ExpectedConditions.presenceOfElementLocated(getIdBy(Helpers.locatorMap("loadingScreen"))));
     }
     public static void waitToBeLoggedIn(){
-        webDriverWait().until(ExpectedConditions.presenceOfElementLocated((By.cssSelector(Helpers.getLoggedInCss()))));
+        webDriverWait().until(ExpectedConditions.presenceOfElementLocated(getBy(Helpers.getLoggedInCss())));
     }
     public static void waitToBeLoggedOut(){
-        webDriverWait().until(ExpectedConditions.elementToBeClickable((By.cssSelector(Helpers.getLoggedOutCss()))));
-        webDriverWait().until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Helpers.getClassPath("mwc-modal-backdrop mwc-fade mwc-in"))));
+        webDriverWait().until(ExpectedConditions.elementToBeClickable((getBy(Helpers.getLoggedOutCss()))));
+        webDriverWait().until(ExpectedConditions.invisibilityOfElementLocated(getBy(Helpers.getClassCss("mwc-modal-backdrop mwc-fade mwc-in"))));
 
         waitPageToBeLoaded();
     }
@@ -83,21 +82,18 @@ public class ElementHandler {
     }
 
     public static void acceptConsent (){
-        WebElement element = ElementHandler.getConsentElement();
+        WebElement element = ElementHandler.getConsentCssElement();
         if (element.isDisplayed()){
             element.findElement(By.cssSelector("[class=agree]")).click();
 
         }
     }
 
-    public static List<WebElement> getWebElementList (String target){
-        return getElementArray(target);
-    }
 
 
     public static boolean isLoggoutActive(){
         try {
-            ElementHandler.getClassXElement(Helpers.locatorMap("logout"));
+            ElementHandler.getClasCssElement(Helpers.locatorMap("logout"));
             return true;
 
         }catch (NoSuchElementException ignored){
@@ -106,7 +102,7 @@ public class ElementHandler {
     }
     private static boolean loaderActive(){
         try {
-            webDriver.findElement(By.cssSelector(Helpers.getLoaderCss()));
+            webDriver.findElement(getBy(Helpers.getLoaderCss()));
             return true;
         }catch (NoSuchElementException ignored){
             return false;
@@ -115,7 +111,7 @@ public class ElementHandler {
 
     public static boolean consentPresented(){
         try {
-            webDriver.findElement(By.xpath(Helpers.getConsentPagePath()));
+            webDriver.findElement(getBy(Helpers.getConsentPageCss()));
             return true;
 
         }catch (NoSuchElementException ignored){
@@ -125,7 +121,7 @@ public class ElementHandler {
     }
     public static boolean userLoggedIn(){
         try {
-            webDriver.findElement(By.cssSelector(Helpers.getLoggedInCss()));
+            webDriver.findElement(getBy(Helpers.getLoggedInCss()));
             return true;
 
         }catch (NoSuchElementException ignored){
@@ -142,66 +138,64 @@ public class ElementHandler {
     }
 
     public static void waitElementLoaded(String target){
-        webDriverWait().until(ExpectedConditions.elementToBeClickable(getIdXpathBy(target)));
+        webDriverWait().until(ExpectedConditions.elementToBeClickable(getIdBy(target)));
     }
     public static void waitElementLoadedEl(WebElement element){
         webDriverWait().until(ExpectedConditions.elementToBeClickable(element));
     }
     public static List<WebElement> getElementArray (String target){
-        return webDriver.findElements(By.xpath(target));
-    }
-
-    public static WebElement getXpathElement (String target){
-        return webDriver.findElement(By.xpath(target));
+        return webDriver.findElements(getBy(target));
     }
 
 
-
-    public static WebElement getidXElement (String target){
-        return webDriver.findElement(By.xpath(Helpers.getIdPath(target)));
-    }
-    public static By getIdXpathBy (String target){
-        return By.xpath(Helpers.getIdPath(target));
+    public static WebElement getCssElement (String target){
+        return webDriver.findElement(getBy(target));
     }
 
-    public static WebElement getClassXElement (String target){
-        return webDriver.findElement(By.xpath(Helpers.getClassPath(target)));
-    }
     public static WebElement getForCssElement(String path){
-        return webDriver.findElement(By.cssSelector(Helpers.getForCss(path)));
+        return webDriver.findElement(getBy(Helpers.getForCss(path)));
     }
-    public static By getclassBy (String target){
-        return By.xpath(Helpers.getClassPath(target));
-    }
+
     public static By getclassCssBy (String target){
-        return By.xpath(Helpers.getClassCss(target));
+        return getBy(Helpers.getClassCss(target));
     }
     public static By getForCssBy (String target){
-        return By.cssSelector(Helpers.getForCss(target));
+        return getBy(Helpers.getForCss(target));
     }
+
+
 
 
 
     public static WebElement getIdCssElement (String target){
-        return webDriver.findElement(By.cssSelector(Helpers.getIdCss(target)));
+        return webDriver.findElement(getBy(Helpers.getIdCss(target)));
     }
+    public static By getIdBy (String target){
+        return By.cssSelector(Helpers.getIdCss(target));
+    }
+    private static By getBy(String target){
+        return By.cssSelector(target);
+    }
+
     public static WebElement getClasCssElement (String target){
         return webDriver.findElement(By.cssSelector(Helpers.getClassCss(target)));
     }
 
     public static WebElement getDialogColumnEl(int number) {
-        return ElementHandler.getidXElement(Helpers.locatorMap("columnBox"))
-                .findElement(By.cssSelector("label:nth-child(" + number + ") > span:nth-child(2)"));
+        return ElementHandler.getIdCssElement(Helpers.locatorMap("columnBox"))
+                .findElement(getBydialogColumn(number));
+    }
+    private static By getBydialogColumn(int number){
+        return getBy("label:nth-child(" + number + ") > span:nth-child(2)");
     }
 
     public static WebElement getAdditionalColumnEl(int number) {
-        return ElementHandler.getidXElement(Helpers.locatorMap("columnBoxAdd"))
-                .findElement(By.cssSelector("label:nth-child(" + number + ") > span:nth-child(2)"));
+        return ElementHandler.getIdCssElement(Helpers.locatorMap("columnBoxAdd"))
+                .findElement(getBy("label:nth-child(" + number + ") > span:nth-child(2)"));
     }
 
-
-    public static WebElement getConsentElement (){
-        return webDriver.findElement(By.xpath(Helpers.getConsentPagePath()));
+    private static WebElement getConsentCssElement (){
+        return webDriver.findElement(getBy(Helpers.getConsentPageCss()));
     }
 
 
