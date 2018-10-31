@@ -86,7 +86,7 @@ public class Hook {
         DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
         FirefoxOptions options = new FirefoxOptions();
         if (dev){
-            desiredCapabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, geFirefoxPath(options));
+            desiredCapabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, getFirefoxBinPath(options));
         }
         Proxy proxy = new Proxy();
         proxy.setProxyAutoconfigUrl("https://pac.sazka.cz/proxy.pac");
@@ -99,7 +99,7 @@ public class Hook {
     private void killBrowserProcess() throws IOException {
         Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe /T");
     }
-    private FirefoxOptions geFirefoxPath( FirefoxOptions options){
+    private FirefoxOptions getFirefoxBinPath( FirefoxOptions options){
         File pathToBinary = new File("C:\\Users\\Marcanik\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
         FirefoxBinary firefoxBinary = new FirefoxBinary(pathToBinary);
         return options.setBinary(firefoxBinary);
