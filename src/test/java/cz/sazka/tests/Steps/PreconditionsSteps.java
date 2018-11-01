@@ -25,7 +25,7 @@ public class PreconditionsSteps {
     @Given("^Im logged in as \"([^\"]*)\" with password \"([^\"]*)\" and situated on Dashboard$")
     public void imLoggedInAsWithPassword(String username, String password) throws Throwable {
         configFileReader = new ConfigFileReader();
-        webDriver.navigate().to(configFileReader.getStandaloneUrl());
+        webDriver.navigate().to(configFileReader.getUrl());
         ElementHandler.waitPageToBeLoaded();
         if (ElementHandler.userLoggedIn()) {
             logoutUser();
@@ -91,7 +91,7 @@ public class PreconditionsSteps {
     @Given("^Im not logged as any user and I am situated on Dashboard$")
     public void imNotLoggedAsAnyUserAndIAmSituatedOnDashboard() throws Throwable {
         configFileReader = new ConfigFileReader();
-        webDriver.navigate().to(configFileReader.getStandaloneUrl());
+        webDriver.navigate().to(configFileReader.getUrl());
         ElementHandler.waitPageToBeLoaded();
         if (ElementHandler.consentPresented()) {
             ElementHandler.acceptConsent();

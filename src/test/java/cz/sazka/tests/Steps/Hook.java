@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Proxy.ProxyType;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -76,22 +77,29 @@ public class Hook {
             }
 
         } else {*/
-            log.info("Test " + scenario.getName() + " PASSED");
+        log.info("Test " + scenario.getName() + " PASSED");
         //}
 
     }
+
     private void initBrowser() throws IOException {
         configFileReader = new ConfigFileReader();
         System.setProperty("webdriver.gecko.driver", configFileReader.getDriverPath());
         DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
-        FirefoxOptions options = new FirefoxOptions();
-        if (dev){
+
+        if (dev) {
+            FirefoxOptions options = new FirefoxOptions();
             desiredCapabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, getFirefoxBinPath(options));
+            Proxy proxy = new Proxy();
+            proxy.setProxyAutoconfigUrl("https://pac.sazka.cz/proxy.pac");
+            desiredCapabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options.setProxy(proxy));
+            webdriver = new FirefoxDriver(options);
         }
-        Proxy proxy = new Proxy();
-        proxy.setProxyAutoconfigUrl("https://pac.sazka.cz/proxy.pac");
-        desiredCapabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS,options.setProxy(proxy));
-        webdriver = new FirefoxDriver(options);
+        else {
+            webdriver = new FirefoxDriver();
+
+        }
+
         webdriver.manage().window().maximize();
         browseropened = true;
     }
@@ -99,13 +107,13 @@ public class Hook {
     private void killBrowserProcess() throws IOException {
         Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe /T");
     }
-    private FirefoxOptions getFirefoxBinPath( FirefoxOptions options){
+
+    private FirefoxOptions getFirefoxBinPath(FirefoxOptions options) {
         File pathToBinary = new File("C:\\Users\\Marcanik\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
         FirefoxBinary firefoxBinary = new FirefoxBinary(pathToBinary);
         return options.setBinary(firefoxBinary);
 
     }
-
 
 
     private String timesStamp() {

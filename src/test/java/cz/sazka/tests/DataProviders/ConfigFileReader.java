@@ -48,16 +48,8 @@ public class ConfigFileReader {
         } else throw new RuntimeException("ERROR: Driver not found in configuration file file may be empty");
     }
 
-    public String getBrowserPath(){
-        String driverPath = properties.getProperty("browserpath");
-        if (driverPath != null){
-            return driverPath;
 
-        }else throw new RuntimeException("ERROR: Driver not found in configuration file file may be empty");
-
-    }
-
-    public String getStandaloneUrl() throws URISyntaxException {
+    public String getUrl() throws URISyntaxException {
         String url = properties.getProperty("url");
         if (url != null) {
             URI uri = new URI(url);

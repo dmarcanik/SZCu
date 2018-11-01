@@ -10,12 +10,14 @@ import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.html.HTMLBRElement;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class WagerCreator {
@@ -62,8 +64,7 @@ public class WagerCreator {
                     ElementHandler.waitElementLoadedEl(webElement);
                     webElement.click();
                     numList.add(currentNumber, winNumber);
-                }
-                 else {
+                } else {
                     int losNumber = LotteryNumGenerator.getLotteryLosNum(loteryKind, winningNumberCount, numberCount);
                     WebElement webElement;
                     webElement = ElementHandler.getDialogColumnEl(losNumber);
@@ -108,8 +109,6 @@ public class WagerCreator {
     }
 
 
-
-
     public static void setS10Features(int numberCount, int deposit, boolean kingsGame) {
         String numCountString = String.valueOf(numberCount);
         String depositString = String.valueOf(deposit);
@@ -133,6 +132,11 @@ public class WagerCreator {
             new ClickStep().click("btn-game-column-add");
             String numbers = columnData.get("numbers");
             String[] splittedNumbers = numbers.split(",");
+            if (columnData.get("vklad") != null) {
+                int deposit = Integer.parseInt(columnData.get("vklad"));
+                boolean kingsGame = columnData.get("kralovskahra").contains("ano");
+                setS10Features(splittedNumbers.length, deposit, kingsGame);
+            }
             int currentNumber = 0;
             for (String splittedNumber : splittedNumbers) {
                 int num = Integer.parseInt(splittedNumber);
@@ -149,7 +153,7 @@ public class WagerCreator {
             if (columnData.get("additional") != null) {
                 String additional = columnData.get("additional");
                 String[] splittedAdditional = additional.split(",");
-                int currentAddNumber =0;
+                int currentAddNumber = 0;
                 for (String splittedAddNum : splittedAdditional) {
                     int addNum = Integer.parseInt(splittedAddNum);
                     addNumList.add(currentAddNumber, addNum);
@@ -161,15 +165,37 @@ public class WagerCreator {
                 addNumCountList.add(currentColumn, currentAddNumber);
 
             }
+
             new ClickStep().click("dialog-column-save");
-            WagerStorage.storeNumbers(currentColumn,numList);
-            WagerStorage.storeAddNumbers(currentColumn,addNumList);
+            WagerStorage.storeNumbers(currentColumn, numList);
+            WagerStorage.storeAddNumbers(currentColumn, addNumList);
             WagerStorage.storeNumCountList(numCountList);
             WagerStorage.storeAddNumCountList(addNumCountList);
             WagerStorage.storeLotteryKind(lottery);
             currentColumn++;
         }
         WagerStorage.storeColumnCount(currentColumn);
+    }
+
+    public static void selectDrawDate(String draws, String lottery) {
+        WebElement element = ElementHandler.getIdCssElement("date-picker-wrapper");
+        List<WebElement> elementList = element.findElements(By.cssSelector("[for]"));
+        for (WebElement button : elementList) {
+            if (!button.getCssValue("background-color").contains("rgb(255, 255, 255)")) {
+                button.click();
+            }
+        }
+        int[] drawNums = DrawInfo.getAllDrawNums(draws);
+        for (int drawNum : drawNums) {
+            if (lottery.equals("stastnych10")) {
+                element.findElement(By.cssSelector("[data-hour=\"" + drawNum + "\"]")).click();
+            } else {
+                element.findElement(By.cssSelector("[data-dayofweek=\"" + drawNum + "\"]")).click();
+            }
+
+        }
+
+
     }
 
 

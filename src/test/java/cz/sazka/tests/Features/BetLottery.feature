@@ -6,7 +6,7 @@ Feature: Test
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create "1" column "euromilliony" wager with "7" numbers, "2" winning and "1" extra numbers set to "lose"
+    And I generate "1" column "euromilliony" wager with "7" numbers, "2" winning and "1" extra numbers set to "lose"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved
@@ -18,7 +18,7 @@ Feature: Test
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create "1" column "euromilliony" wager with "7" numbers, "0" winning and "1" extra numbers set to "lose"
+    And I generate "1" column "euromilliony" wager with "7" numbers, "0" winning and "1" extra numbers set to "lose"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved
@@ -29,7 +29,7 @@ Feature: Test
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create "4" column "eurojackpot" wager with "5" numbers, "2" winning and "2" extra numbers set to "win"
+    And I generate "4" column "eurojackpot" wager with "5" numbers, "2" winning and "2" extra numbers set to "win"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved
@@ -41,7 +41,7 @@ Feature: Test
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create "2" column "eurojackpot" wager with "5" numbers, "0" winning and "2" extra numbers set to "win"
+    And I generate "2" column "eurojackpot" wager with "5" numbers, "0" winning and "2" extra numbers set to "win"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved
@@ -54,7 +54,7 @@ Feature: Test
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create "4" column "sportka" wager with "6" numbers, "6" winning and "0" extra numbers set to "none"
+    And I generate "4" column "sportka" wager with "6" numbers, "6" winning and "0" extra numbers set to "none"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved
@@ -66,7 +66,7 @@ Feature: Test
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create "4" column "eurojackpot" wager with "5" numbers, "2" winning and "2" extra numbers set to "win"
+    And I generate "4" column "eurojackpot" wager with "5" numbers, "2" winning and "2" extra numbers set to "win"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved
@@ -79,7 +79,7 @@ Feature: Test
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create "2" column "eurojackpot" wager with "5" numbers, "0" winning and "2" extra numbers set to "win"
+    And I generate "2" column "eurojackpot" wager with "5" numbers, "0" winning and "2" extra numbers set to "win"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved
@@ -92,7 +92,7 @@ Feature: Test
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create "4" column "sportka" wager with "6" numbers, "6" winning and "0" extra numbers set to "none"
+    And I generate "4" column "sportka" wager with "6" numbers, "6" winning and "0" extra numbers set to "none"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved
@@ -104,7 +104,7 @@ Feature: Test
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create "4" column "eurojackpot" wager with "5" numbers, "2" winning and "2" extra numbers set to "win"
+    And I generate "4" column "eurojackpot" wager with "5" numbers, "2" winning and "2" extra numbers set to "win"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved
