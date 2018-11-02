@@ -3,7 +3,11 @@ package cz.sazka.tests.LotteryUtils;
 import org.junit.Assert;
 
  class LotteryNumGenerator {
-
+     /**
+      * @return winning number for desired lottery.
+      * @param lotteryKind lottery name.
+      * @param winningNumberCount count of winning numbers.
+      */
      static int getLotteryWinNum(String lotteryKind, int winningNumberCount) {
         int winNumber = 0;
         switch (lotteryKind) {
@@ -26,6 +30,12 @@ import org.junit.Assert;
         return winNumber;
     }
 
+     /**
+      * @return lose number for desired lottery.
+      * @param lotteryKind lottery name.
+      * @param winningNumberCount count of winning numbers.
+      * @param numberCount count of numbers in current column.
+      */
      static int getLotteryLosNum(String lotteryKind, int winningNumberCount, int numberCount) {
         int losNumber = 0;
         switch (lotteryKind) {
@@ -51,6 +61,10 @@ import org.junit.Assert;
         return losNumber;
     }
 
+     /**
+      * @return winning additional number.
+      * @param loteryKind lottery name.
+      */
      static int getLotteryAddWinNum(String loteryKind) {
         int winAddNumber = 0;
         switch (loteryKind) {
@@ -65,6 +79,10 @@ import org.junit.Assert;
         return winAddNumber;
     }
 
+     /**
+      * @return lose additional number.
+      * @param loteryKind lottery name.
+      */
      static int getLotteryAddLosNum(String loteryKind) {
         int losAddNumber = 0;
         switch (loteryKind) {

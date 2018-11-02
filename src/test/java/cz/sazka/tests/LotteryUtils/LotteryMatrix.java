@@ -16,7 +16,9 @@ class LotteryMatrix {
     private static int posWin = 0;
     private static int posLos = 0;
 
-
+    /**
+     * @return Winning numbers for Sportka according day, when this method is called.
+     */
     static int[] getSportkaWinNumbers() {
         int[] winArrayFr = {1, 10, 18, 30, 32, 48};
         int[] winArrayWe = {1, 10, 18, 30, 32, 48};
@@ -48,12 +50,21 @@ class LotteryMatrix {
         return winNumbers;
     }
 
+    /**
+     * @return Eurojackpot winning numbers (not necessary to check what day is EJ have only one set of winning numbers for every draw).
+     */
      static int[] getEuroJWinNumbers(){
         return new int[] {1,10,20,30,50};
     }
+    /**
+     * @return Eurojackpot additional winning numbers (not necessary to check what day is EJ have only one set of winning numbers for every draw).
+     */
      static int[] getEuroJExWinNumbers(){
         return new int[] {1,10};
     }
+    /**
+     * @return Euromiliony winning additional numbers according day, when this method is called.
+     */
      static int[] getEuroMExWinNumber(){
         int[] winArrayTu = {5};
         int[] winArraySa = {1};
@@ -83,6 +94,9 @@ class LotteryMatrix {
         }
         return winNumbers;
     }
+    /**
+     * @return Stastnych 10 winning numbers according time, when this method is called.
+     */
      static int[] getS10WinNumbers(){
         int[] winArrayAm = {1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,77,78,79,80};
         int[] winArrayPm = {1,2,3,4,9,10,19,20,29,30,39,40,49,50,59,60,69,70,79,80};
@@ -96,7 +110,9 @@ class LotteryMatrix {
         return winNumbers;
     }
 
-
+    /**
+     * @return Euromiliony winning numbers according day, when this method is called.
+     */
      static int[] getEuroMWinNumbers(){
         int[] winArrayTu = {1,10,18,20,28,30,35};
         int[] winArraySa = {1,5,19,20,25,29,35};
@@ -128,7 +144,9 @@ class LotteryMatrix {
 
     }
 
-
+    /**
+     * @return what hour is now.
+     */
     private static int getHour(){
        LocalTime localTime = LocalTime.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh");
@@ -136,12 +154,20 @@ class LotteryMatrix {
         return Integer.parseInt(timeS);
     }
 
+    /**
+     * @return what day is today.
+     */
     private static int getCalendarDay(){
         Calendar calendar = Calendar.getInstance();
         return calendar.get(Calendar.DAY_OF_WEEK);
     }
 
-
+    /**
+     * @return Random lose number except winning numbers and lose numbers returned in current value
+     * @param losNumbers array of lose numbers.
+     * @param winNumbers array of win numbers.
+     * @param count how many numbers will be generated (when counter hits maximum numbers are cleaned and started over).
+     */
      static int getRandomLosNumber(int[] losNumbers, int[] winNumbers, int count) {
         int nmbr = generateNumber(losNumbers);
         usedLosNum = Arrays.copyOf(usedLosNum, count);
@@ -157,7 +183,11 @@ class LotteryMatrix {
         }
         return nmbr;
     }
-
+    /**
+     * @return Random win number except winning numbers and lose numbers returned in current value
+     * @param array array of win numbers.
+     * @param count how many numbers will be generated (when counter hits maximum numbers are cleaned and started over).
+     */
      static int getRandomWinNum(int[] array, int count) {
         int nmbr = generateNumber(array);
         usedWinNum = Arrays.copyOf(usedWinNum, array.length);
@@ -174,6 +204,11 @@ class LotteryMatrix {
         return nmbr;
     }
 
+    /**
+     * Randomly generates numbers from given array.
+     * @param array set of numbers from should be generated.
+     * @return generated number from list.
+     */
     private static int generateNumber(int[] array) {
         ArrayList<Integer> list = new ArrayList<>(array.length);
         int count =0;
@@ -192,6 +227,12 @@ class LotteryMatrix {
         return list.get(index);
     }
 
+    /**
+     * Checks whether generated number is contained in given array of numbers.
+     * @param array array of numbers
+     * @param key generated number.
+     * @return true/false
+     */
     private static boolean contains(final int[] array, final int key) {
         return Ints.contains(array, key);
     }

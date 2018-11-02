@@ -23,8 +23,13 @@ public class WagerCreator {
     private static WebDriver webDriver = Hook.getDriver();
 
 
-
-    public static void setWagerFeatures(int numberCount, int deposit, boolean kingsGame) {
+    /**
+     * Set features bellow in opened wager according delivered params.
+     * @param numberCount count of numbers in current column.
+     * @param deposit value of deposit in current column.
+     * @param kingsGame keyword which defines if should be kralovska hra activated or not in each column.
+     */
+    static void setWagerFeatures(int numberCount, int deposit, boolean kingsGame) {
         String numCountString = String.valueOf(numberCount);
         String depositString = String.valueOf(deposit);
         new ClickStep().clickComboBox("drpInputsCountSelectBoxItArrow", numCountString);
@@ -34,6 +39,11 @@ public class WagerCreator {
         }
     }
 
+    /**
+     * Creates wager for desired lottery from datatable passed from keyword.
+     * @param lottery lottery name
+     * @param data defines numbers, additional numbers and other valid parameters for particular lottery.
+     */
     public static void createWager(String lottery, DataTable data) {
         new ClickStep().click(Helpers.locatorMap("close"));
         WagerCreator.cleanAllColumns();
@@ -95,7 +105,12 @@ public class WagerCreator {
         WagerStorage.storeColumnCount(currentColumn);
     }
 
-
+    /**
+     * Checks which draw dates are selected and unselect them all.
+     * Select desired draw dates according params:
+     * @param draws draw name.
+     * @param lottery lottery name.
+     */
     public static void selectDrawDate(String draws, String lottery) {
         WebElement element = ElementHandler.getIdCssElement("date-picker-wrapper");
         List<WebElement> elementList = element.findElements(By.cssSelector("[for]"));
@@ -117,7 +132,9 @@ public class WagerCreator {
 
     }
 
-
+    /**
+     * Deletes every pre-filled column in opened wager.
+     */
     public static void cleanAllColumns() {
 
         if (ElementHandler.getElementArray(Helpers.getDataColumnIndex()).size() == 0) {

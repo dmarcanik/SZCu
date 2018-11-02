@@ -21,7 +21,10 @@ public class ConfigFileReader {
         return hostname;
     }
 
-
+    /**
+     * Creates configFileReader object which loads paths from configuration file placed in Configs folder.
+     *
+     */
     public ConfigFileReader() throws IOException {
         BufferedReader reader;
         try {
@@ -41,6 +44,9 @@ public class ConfigFileReader {
         }
     }
 
+    /**
+     * @return driverpath to browser driver.
+     */
     public String getDriverPath() {
         String driverPath = properties.getProperty("driverpath");
         if (driverPath != null) {
@@ -48,7 +54,9 @@ public class ConfigFileReader {
         } else throw new RuntimeException("ERROR: Driver not found in configuration file file may be empty");
     }
 
-
+    /**
+     * @return Url to web environment.
+     */
     public String getUrl() throws URISyntaxException {
         String url = properties.getProperty("url");
         if (url != null) {

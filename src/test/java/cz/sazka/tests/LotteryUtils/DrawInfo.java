@@ -2,10 +2,13 @@ package cz.sazka.tests.LotteryUtils;
 
 import org.junit.Assert;
 
-public class DrawInfo {
+class DrawInfo {
 
-
-    public static int getdrawNum(String keyword) {
+    /**
+     * @return value for particular day or part of day according keyword.
+     * @param keyword desired day or part of day.
+     */
+  private static int getdrawNum(String keyword) {
         int num = 7;
         switch (keyword) {
             case "pondeli":
@@ -40,7 +43,12 @@ public class DrawInfo {
         return num;
     }
 
-    public static int[] getAllDrawNums(String draws) {
+    /**
+     * Split draw string to particular days or part of day, saves to array and pick that many values as many days/part of day.
+     * @param draws string definiton of drawdate/drawhour.
+     * @return values for each desired day or part of day.
+     */
+     static int[] getAllDrawNums(String draws) {
         String drawnames[] = draws.split(",");
         int[] drawNumbers = new int[drawnames.length];
         int i = 0;

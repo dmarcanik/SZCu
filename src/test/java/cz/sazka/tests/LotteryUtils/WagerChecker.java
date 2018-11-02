@@ -19,6 +19,9 @@ public class WagerChecker {
     private static WebDriver webDriver = Hook.getDriver();
     private static Logger log = LogManager.getRootLogger();
 
+    /**
+     * Parsing data from last performed bet according data saved in WagerStorage.class and check if those data are in currently active bets.
+     */
     public static void checkGeneratedWagers() {
         try {
             ElementHandler.waitElementLoadedBy(By.cssSelector(Helpers.getDataTest(WagerStorage.getLotteryKind())));
@@ -44,7 +47,7 @@ public class WagerChecker {
                     List<WebElement> addNumElems = currentRowAddNumElems.get(rowNum - 1).findElements(By.cssSelector("td > span"));
                     int i = 0;
                     for (WebElement addnumElem : addNumElems) {
-                        Assert.assertTrue(WagerStorage.getExNumberStorage(i).contains(stringToInt(addnumElem.getText())));
+                        Assert.assertTrue(WagerStorage.getAddNumberStorage(i).contains(stringToInt(addnumElem.getText())));
 
                         i++;
 
