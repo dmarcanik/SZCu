@@ -17,7 +17,11 @@ public class NavigateSteps {
     private static Logger log = LogManager.getRootLogger();
     private static WebDriver webDriver = Hook.getDriver();
 
-
+    /**
+     * This method navigates to certain part of web.
+     * @param section defines section which should be navigated to.
+     * @param game section game (e.g. Eurojacktpot, Sportka) section which should be navigated to.
+     */
     @When("^I Navigate to section \"([^\"]*)\"(?:and game \"([^\"]*)\")$")
     public static void navigateTo(String section, String game) throws Throwable {
 

@@ -51,4 +51,5 @@ public class DrawInfo {
         }
         return drawNumbers;
     }
+
 }

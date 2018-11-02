@@ -22,6 +22,9 @@ public class PreconditionsSteps {
     private static WebDriver webDriver = Hook.getDriver();
     private static ConfigFileReader configFileReader;
 
+    /**
+     *Checks whether user is loogged in is, then logs him out and then login user added in keywords.
+     */
     @Given("^Im logged in as \"([^\"]*)\" with password \"([^\"]*)\" and situated on Dashboard$")
     public void imLoggedInAsWithPassword(String username, String password) throws Throwable {
         configFileReader = new ConfigFileReader();
@@ -88,6 +91,9 @@ public class PreconditionsSteps {
         ElementHandler.waitToBeLoggedOut();
     }
 
+    /**
+     *Just navigate to dashboard without logging user.
+     */
     @Given("^Im not logged as any user and I am situated on Dashboard$")
     public void imNotLoggedAsAnyUserAndIAmSituatedOnDashboard() throws Throwable {
         configFileReader = new ConfigFileReader();

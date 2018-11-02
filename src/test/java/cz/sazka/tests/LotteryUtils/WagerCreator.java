@@ -9,11 +9,9 @@ import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.w3c.dom.html.HTMLBRElement;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ public class WagerCreator {
 
 
 
-    public static void setS10Features(int numberCount, int deposit, boolean kingsGame) {
+    public static void setWagerFeatures(int numberCount, int deposit, boolean kingsGame) {
         String numCountString = String.valueOf(numberCount);
         String depositString = String.valueOf(deposit);
         new ClickStep().clickComboBox("drpInputsCountSelectBoxItArrow", numCountString);
@@ -55,7 +53,7 @@ public class WagerCreator {
                 if(columnData.get("kralovskahra")!=null){
                     kingsGame = columnData.get("kralovskahra").contains("ano");
                 }
-                setS10Features(splittedNumbers.length, deposit, kingsGame);
+                setWagerFeatures(splittedNumbers.length, deposit, kingsGame);
             }
             int currentNumber = 0;
             for (String splittedNumber : splittedNumbers) {
