@@ -23,90 +23,7 @@ import java.util.Map;
 public class WagerCreator {
     private static Logger log = LogManager.getRootLogger();
     private static WebDriver webDriver = Hook.getDriver();
-    private static boolean extraWaged;
 
-    public WagerCreator() {
-        extraWaged = false;
-    }
-
-
-    public static void generateWager(int columnCount, int numberCount, int winningNumberCount, String loteryKind, int addNumberCount, String addFeature, int deposit, boolean kingsGame) {
-
-        if (ElementHandler.getIdCssElement(Helpers.locatorMap("close")).isDisplayed()) {
-            new ClickStep().click(Helpers.locatorMap("close"));
-        }
-        if (ElementHandler.getElementArray(Helpers.getDataColumnIndex()).size() == 0) {
-            String error = "game-columns not found";
-            log.error(error);
-
-            throw new InvalidParameterException(error);
-        }
-        ArrayList<Integer> addNumCountList = new ArrayList<>();
-        ArrayList<Integer> numCountList = new ArrayList<>();
-
-
-        for (int currentColumn = 0; currentColumn < columnCount; currentColumn++) {
-            ElementHandler.waitElementLoadedBy(ElementHandler.getIdBy(Helpers.locatorMap("add")));
-            new ClickStep().click(Helpers.locatorMap("add"));
-            ArrayList<Integer> numList = new ArrayList<>();
-            ArrayList<Integer> addNumList = new ArrayList<>();
-            numCountList.add(currentColumn, numberCount);
-            addNumCountList.add(currentColumn, addNumberCount);
-            if (loteryKind.equals("stastnych10")) {
-                setS10Features(numberCount, deposit, kingsGame);
-            }
-            for (int currentNumber = 0; currentNumber < numberCount; currentNumber++) {
-
-                if (currentNumber < winningNumberCount) {
-                    int winNumber = LotteryNumGenerator.getLotteryWinNum(loteryKind, winningNumberCount);
-                    WebElement webElement;
-                    webElement = ElementHandler.getDialogColumnEl(winNumber);
-                    ElementHandler.waitElementLoadedEl(webElement);
-                    webElement.click();
-                    numList.add(currentNumber, winNumber);
-                } else {
-                    int losNumber = LotteryNumGenerator.getLotteryLosNum(loteryKind, winningNumberCount, numberCount);
-                    WebElement webElement;
-                    webElement = ElementHandler.getDialogColumnEl(losNumber);
-                    webElement.click();
-                    numList.add(currentNumber, losNumber);
-                }
-            }
-            WagerStorage.storeNumbers(currentColumn, numList);
-            if (extraWaged = addFeature.equals("win")) {
-                for (int currentAddNumber = 0; currentAddNumber < addNumberCount; currentAddNumber++) {
-                    int winAddNumber = LotteryNumGenerator.getLotteryAddWinNum(loteryKind);
-                    WebElement webElement = ElementHandler.getAdditionalColumnEl(winAddNumber);
-                    ElementHandler.waitElementLoadedEl(webElement);
-                    webElement.click();
-                    addNumList.add(currentAddNumber, winAddNumber);
-                }
-                extraWaged = true;
-
-
-            } else if (extraWaged = addFeature.equals("lose")) {
-                for (int currentAddNumber = 0; currentAddNumber < addNumberCount; currentAddNumber++) {
-                    int losAddNumber = LotteryNumGenerator.getLotteryAddLosNum(loteryKind);
-                    WebElement webElement = ElementHandler.getAdditionalColumnEl(losAddNumber);
-                    ElementHandler.waitElementLoadedEl(webElement);
-                    webElement.click();
-                    addNumList.add(currentAddNumber, losAddNumber);
-                }
-                extraWaged = true;
-            }
-            WagerStorage.storeAddNumbers(currentColumn, addNumList);
-
-            new ClickStep().click(Helpers.locatorMap("save"));
-
-        }
-        WagerStorage.storeNumCountList(numCountList);
-        WagerStorage.storeAddNumCountList(addNumCountList);
-        WagerStorage.storeColumnCount(columnCount);
-        WagerStorage.storeAddNumberCount(addNumberCount);
-        WagerStorage.storenumberCount(numberCount);
-        WagerStorage.storeLotteryKind(loteryKind);
-
-    }
 
 
     public static void setS10Features(int numberCount, int deposit, boolean kingsGame) {
@@ -120,7 +37,7 @@ public class WagerCreator {
     }
 
     public static void createWager(String lottery, DataTable data) {
-        new ClickStep().click("dialog-column-close");
+        new ClickStep().click(Helpers.locatorMap("close"));
         WagerCreator.cleanAllColumns();
         ArrayList<Integer> numList = new ArrayList<>();
         ArrayList<Integer> addNumList = new ArrayList<>();
@@ -129,12 +46,15 @@ public class WagerCreator {
         int currentColumn = 0;
         for (Map<String, String> columnData : data.asMaps(String.class, String.class)) {
 
-            new ClickStep().click("btn-game-column-add");
+            new ClickStep().click(Helpers.locatorMap("add"));
             String numbers = columnData.get("numbers");
             String[] splittedNumbers = numbers.split(",");
             if (columnData.get("vklad") != null) {
+                boolean kingsGame = false;
                 int deposit = Integer.parseInt(columnData.get("vklad"));
-                boolean kingsGame = columnData.get("kralovskahra").contains("ano");
+                if(columnData.get("kralovskahra")!=null){
+                    kingsGame = columnData.get("kralovskahra").contains("ano");
+                }
                 setS10Features(splittedNumbers.length, deposit, kingsGame);
             }
             int currentNumber = 0;
@@ -166,7 +86,7 @@ public class WagerCreator {
 
             }
 
-            new ClickStep().click("dialog-column-save");
+            new ClickStep().click(Helpers.locatorMap("save"));
             WagerStorage.storeNumbers(currentColumn, numList);
             WagerStorage.storeAddNumbers(currentColumn, addNumList);
             WagerStorage.storeNumCountList(numCountList);
@@ -176,6 +96,7 @@ public class WagerCreator {
         }
         WagerStorage.storeColumnCount(currentColumn);
     }
+
 
     public static void selectDrawDate(String draws, String lottery) {
         WebElement element = ElementHandler.getIdCssElement("date-picker-wrapper");

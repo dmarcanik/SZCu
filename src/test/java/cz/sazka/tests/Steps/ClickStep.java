@@ -18,6 +18,12 @@ public class ClickStep {
     private static Logger log = LogManager.getRootLogger();
     private static WebDriver webDriver = Hook.getDriver();
 
+    /**
+     * Waiting to id element to be clickable
+     * Clicking on element with id.
+     * @param target passed from testcase.
+     * @throws NoSuchElementException when element is not found and make test fail.
+     */
     @And("^I click on button \"([^\"]*)\"$")
     public void click(String target) {
         try {
@@ -35,29 +41,12 @@ public class ClickStep {
 
     }
 
-
-
-
-   /* @And("^I click on button \"([^\"]*)\" where \"([^\"]*)\" is \"([^\"]*)\"$")
-    public void click(String type, String attr, String value) throws NoSuchElementException {
-        List<WebElement> newlist = ElementHandler.findCmds(type);
-
-        for (WebElement elementlist : newlist) {
-            String params = elementlist.getAttribute("data-cmdparams");
-
-            if (params == null) {
-                continue;
-            }
-
-            JSONObject obj = new JSONObject(params);
-
-            if (obj.has(attr) && obj.get(attr).equals(value)) {
-                ElementHandler.clickCmd(elementlist);
-                break;
-            }
-        }
-    }*/
-
+    /**
+     * Waiting to id element to be clickable
+     * Clicking on checkbox with id parameter.
+     * @param target passed from testcase.
+     * @throws NoSuchElementException when element is not found and make test fail.
+     */
     @And("^I click on checkbox \"([^\"]*)\"$")
     public void clickCheckbox(String target) {
         try {
@@ -78,7 +67,12 @@ public class ClickStep {
 
     }
 
-
+    /**
+     * Waiting to id element to be clickable
+     * Clicking on combo box with id parameter and selecting desired value.
+     * @param target passed from testcase.
+     * @throws NoSuchElementException when element is not found and make test fail.
+     */
     @And("^I click on combo box \"([^\"]*)\" and select \"([^\"]*)\"$")
     public void clickComboBox(String target, String value) {
         try {
@@ -107,6 +101,28 @@ public class ClickStep {
         }
 
     }
+
+
+
+     /* @And("^I click on button \"([^\"]*)\" where \"([^\"]*)\" is \"([^\"]*)\"$")
+    public void click(String type, String attr, String value) throws NoSuchElementException {
+        List<WebElement> newlist = ElementHandler.findCmds(type);
+
+        for (WebElement elementlist : newlist) {
+            String params = elementlist.getAttribute("data-cmdparams");
+
+            if (params == null) {
+                continue;
+            }
+
+            JSONObject obj = new JSONObject(params);
+
+            if (obj.has(attr) && obj.get(attr).equals(value)) {
+                ElementHandler.clickCmd(elementlist);
+                break;
+            }
+        }
+    }*/
 
      /* //List<String> tagSelectors = Helpers.getPaths(target);
 
@@ -177,31 +193,5 @@ public class ClickStep {
 
     }
 */
-
-
-
-   /* @When("^I click on Dashboard link \"([^\"]*)\"$")
-    public void clikOnLink(String value) {
-
-        List<WebElement> newlist = webDriver.findElements(By.xpath("//*[@class=\"wsfCtrl wizardStep wizardStep\"]"));
-
-        for (WebElement elementlist : newlist) {
-            String params = elementlist.getAttribute("href");
-            System.out.println(params);
-
-            if (params == null) {
-                continue;
-            }
-
-            JSONObject obj = new JSONObject(params);
-
-            if (obj.has("r") && obj.get("r").equals(value)) {
-                ElementHandler.clickCmd(elementlist);
-                break;
-            }
-        }
-
-
-    }*/
 
 }

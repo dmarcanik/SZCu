@@ -46,3 +46,17 @@ Feature: Place wager
     Then wager is saved
     Then wager is correctly displayed in Moje sázky
 
+  Scenario: Place Keno wager
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    And I click on button "btn-game-manual"
+    And I create Keno wager
+      | numbers        | vklad |
+      | 1,2,3,4,5      | 30   |
+      | 8,9,10,11,12   | 20    |
+    And I click on button "btn-game-send"
+    And I click on button "btn-confirm-yes"
+    Then wager is saved
+    Then wager is correctly displayed in Moje sázky
+
+
