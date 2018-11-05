@@ -12,18 +12,18 @@ import org.junit.Assert;
         int winNumber = 0;
         switch (lotteryKind) {
             case "sportka":
-                winNumber = LotteryMatrix.getRandomWinNum(LotteryMatrix.getSportkaWinNumbers(), winningNumberCount);
+                winNumber = LotteryNumMatrix.getRandomWinNum(LotteryInfo.getSportkaWinNumbers(), winningNumberCount);
                 break;
             case "eurojackpot":
-                winNumber = LotteryMatrix.getRandomWinNum(LotteryMatrix.getEuroJWinNumbers(), winningNumberCount);
+                winNumber = LotteryNumMatrix.getRandomWinNum(LotteryInfo.getEuroJWinNumbers(), winningNumberCount);
                 break;
 
             case "euromilliony":
-                winNumber = LotteryMatrix.getRandomWinNum(LotteryMatrix.getEuroMWinNumbers(), winningNumberCount);
+                winNumber = LotteryNumMatrix.getRandomWinNum(LotteryInfo.getEuroMWinNumbers(), winningNumberCount);
                 break;
 
             case "stastnych10":
-                winNumber = LotteryMatrix.getRandomWinNum(LotteryMatrix.getS10WinNumbers(), winningNumberCount);
+                winNumber = LotteryNumMatrix.getRandomWinNum(LotteryInfo.getS10WinNumbers(), winningNumberCount);
                 break;
         }
         Assert.assertNotEquals(0, winNumber);
@@ -40,21 +40,21 @@ import org.junit.Assert;
         int losNumber = 0;
         switch (lotteryKind) {
             case "sportka":
-                losNumber = LotteryMatrix.getRandomLosNumber(new int[49], LotteryMatrix
+                losNumber = LotteryNumMatrix.getRandomLosNumber(new int[49], LotteryInfo
                         .getSportkaWinNumbers(), numberCount - winningNumberCount);
                 break;
             case "eurojackpot":
-                losNumber = LotteryMatrix.getRandomLosNumber(new int[50], LotteryMatrix
+                losNumber = LotteryNumMatrix.getRandomLosNumber(new int[50], LotteryInfo
                         .getEuroJWinNumbers(), numberCount - winningNumberCount);
                 break;
 
             case "euromilliony":
-                losNumber = LotteryMatrix.getRandomLosNumber(new int[35], LotteryMatrix
+                losNumber = LotteryNumMatrix.getRandomLosNumber(new int[35], LotteryInfo
                         .getEuroMWinNumbers(), numberCount - winningNumberCount);
                 break;
 
             case "stastnych10":
-                losNumber = LotteryMatrix.getRandomLosNumber(new int[80], LotteryMatrix.getS10WinNumbers(), numberCount - winningNumberCount);
+                losNumber = LotteryNumMatrix.getRandomLosNumber(new int[80], LotteryInfo.getS10WinNumbers(), numberCount - winningNumberCount);
                 break;
         }
         Assert.assertNotEquals(0, losNumber);
@@ -69,10 +69,10 @@ import org.junit.Assert;
         int winAddNumber = 0;
         switch (loteryKind) {
             case "eurojackpot":
-                winAddNumber = LotteryMatrix.getRandomWinNum(LotteryMatrix.getEuroJExWinNumbers(), 2);
+                winAddNumber = LotteryNumMatrix.getRandomWinNum(LotteryInfo.getEuroJExWinNumbers(), 2);
                 break;
             case "euromilliony":
-                winAddNumber = LotteryMatrix.getRandomWinNum(LotteryMatrix.getEuroMExWinNumber(), 1);
+                winAddNumber = LotteryNumMatrix.getRandomWinNum(LotteryInfo.getEuroMExWinNumber(), 1);
                 break;
         }
         Assert.assertNotEquals(0, winAddNumber);
@@ -87,10 +87,10 @@ import org.junit.Assert;
         int losAddNumber = 0;
         switch (loteryKind) {
             case "eurojackpot":
-                losAddNumber = LotteryMatrix.getRandomLosNumber(new int[10], LotteryMatrix.getEuroJExWinNumbers(), 2);
+                losAddNumber = LotteryNumMatrix.getRandomLosNumber(new int[10], LotteryInfo.getEuroJExWinNumbers(), 2);
                 break;
             case "euromilliony":
-                losAddNumber = LotteryMatrix.getRandomLosNumber(new int[5], LotteryMatrix.getEuroMExWinNumber(), 1);
+                losAddNumber = LotteryNumMatrix.getRandomLosNumber(new int[5], LotteryInfo.getEuroMExWinNumber(), 1);
                 break;
         }
         Assert.assertNotEquals(0, losAddNumber);

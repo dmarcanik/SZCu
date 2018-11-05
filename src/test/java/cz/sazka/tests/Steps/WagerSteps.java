@@ -136,7 +136,7 @@ public class WagerSteps {
      * @param draw keyword of draw which should be selected during draw creation.
      * @param dataTable defines numbers, additional numbers and other valid parameters for particular lottery.
      */
-    @And("^I create Stastnych 10 wager with vklad set to \"([^\"]*)\" královska hra \"(ano|ne)\" draw set to \"(poledne|vecer|poledne,vecer)\"$")
+    @And("^I create Stastnych 10 wager with draw set to \"(poledne|vecer|poledne,vecer)\"$")
     public void iCreateStastnych10Wager(String draw, DataTable dataTable){
         WagerCreator.createWager("stastnych10",dataTable);
         WagerCreator.selectDrawDate(draw, "stastnych10");

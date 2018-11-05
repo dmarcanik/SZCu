@@ -36,7 +36,7 @@ Feature: Place wager
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
     And I click on button "btn-game-manual"
-    And I create Stastnych 10 wager with vklad set to "100" královska hra "ano" draw set to "poledne,vecer"
+    And I create Stastnych 10 wager with draw set to "poledne,vecer"
       | numbers        | vklad | kralovskahra |
       | 1,2,3,4,5      | 100   | ano          |
       | 8,9,10,11,12   | 20    | ne           |
