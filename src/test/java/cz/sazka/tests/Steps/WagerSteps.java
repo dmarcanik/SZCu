@@ -3,6 +3,7 @@ package cz.sazka.tests.Steps;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cz.sazka.tests.LotteryUtils.LotteryNumGenerator;
 import cz.sazka.tests.LotteryUtils.WagerChecker;
 import cz.sazka.tests.LotteryUtils.WagerCreator;
 import cz.sazka.tests.LotteryUtils.WagerGenerator;
@@ -11,6 +12,7 @@ import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 
@@ -30,6 +32,7 @@ public class WagerSteps {
     public void iCreateSportkaWager(int columnCount, int winningNumbrs) {
         WagerCreator.cleanAllColumns();
         WagerGenerator.generateWager(columnCount, 6, winningNumbrs, "sportka", 0, "none", 0, false);
+        WagerStorage.storeDrawCount(1);
 
     }
     /**
@@ -44,6 +47,7 @@ public class WagerSteps {
         WagerCreator.cleanAllColumns();
         WagerStorage.enableAddNumbers();
         WagerGenerator.generateWager(columnCount, 5, winningNumbrs, "eurojackpot", 2, addFeature, 0, false);
+        WagerStorage.storeDrawCount(1);
     }
     /**
      * Clean all pre-filled columns in currently opened wager.
@@ -57,6 +61,7 @@ public class WagerSteps {
         WagerCreator.cleanAllColumns();
         WagerStorage.enableAddNumbers();
         WagerGenerator.generateWager(columnCount, 7, winningNumbrs, "euromilliony", 1, addFeature, 0, false);
+        WagerStorage.storeDrawCount(1);
     }
     /**
      * Clean all pre-filled columns in currently opened wager.
@@ -75,15 +80,22 @@ public class WagerSteps {
             kingsGame = true;
         }
         WagerGenerator.generateWager(columnCount, numberCount, winningNumbrs, "stastnych10", 0, "none", deposit, kingsGame);
+        WagerStorage.storeDrawCount(1);
     }
 
     /**
      * Clean all pre-filled columns in currently opened wager.
      * Wait until wager is saved.
      */
-    @Then("^wager is saved$")
+    @Then("^wager is saved with correct price$")
     public void wagerIsSaved() throws Throwable {
+        String currentLotery = WagerStorage.getLotteryKind();
+        int priceForWager = LotteryNumGenerator.getLotteryPrice(currentLotery);
+        String priceForWagerString = String.valueOf(priceForWager) + " Kč";
         PreconditionsSteps.waitForPresence(ElementHandler.getIdBy(Helpers.locatorMap("wagerSaved")));
+        String realPriceString = ElementHandler.getIdCssElement(Helpers.locatorMap("wagerSaved")).getText();
+        Assert.assertEquals(priceForWagerString,realPriceString);
+
     }
 
     /**
@@ -125,7 +137,7 @@ public class WagerSteps {
      * @param draw keyword of draw which should be selected during draw creation.
      * @param dataTable defines numbers, additional numbers and other valid parameters for particular lottery.
      */
-    @And("^I create Euromiliony wager with draw set to \"(sobota)\"$")
+    @And("^I create Euromiliony wager with draw set to \"(sobota|utery)\"$")
     public void iCreateEuroMilionyWager(String draw, DataTable dataTable){
         WagerCreator.createWager("euromilliony",dataTable);
         WagerCreator.selectDrawDate(draw, "euromiliony");
@@ -141,6 +153,7 @@ public class WagerSteps {
         WagerCreator.createWager("stastnych10",dataTable);
         WagerCreator.selectDrawDate(draw, "stastnych10");
 
+
     }/**
      * Creates wager according data table defined in keywords.
      * @param dataTable defines numbers, additional numbers and other valid parameters for particular lottery.
@@ -148,6 +161,7 @@ public class WagerSteps {
     @And("^I create Keno wager$")
     public void iCreateKenoWager( DataTable dataTable){
         WagerCreator.createWager("keno",dataTable);
+        WagerStorage.storeDrawCount(1);
 
 
     }

@@ -51,6 +51,7 @@ public class WagerCreator {
         ArrayList<Integer> addNumList = new ArrayList<>();
         ArrayList<Integer> addNumCountList = new ArrayList<>();
         ArrayList<Integer> numCountList = new ArrayList<>();
+        ArrayList<Integer> depositList = new ArrayList<>();
         int currentColumn = 0;
         for (Map<String, String> columnData : data.asMaps(String.class, String.class)) {
 
@@ -64,6 +65,10 @@ public class WagerCreator {
                     kingsGame = columnData.get("kralovskahra").contains("ano");
                 }
                 setWagerFeatures(splittedNumbers.length, deposit, kingsGame);
+                depositList.add(currentColumn, deposit);
+            }
+            else {
+                depositList.add(currentColumn,LotteryInfo.getLotteryColumnPrice(lottery));
             }
             int currentNumber = 0;
             for (String splittedNumber : splittedNumbers) {
@@ -100,6 +105,7 @@ public class WagerCreator {
             WagerStorage.storeNumCountList(numCountList);
             WagerStorage.storeAddNumCountList(addNumCountList);
             WagerStorage.storeLotteryKind(lottery);
+            WagerStorage.storeDeposit(depositList);
             currentColumn++;
         }
         WagerStorage.storeColumnCount(currentColumn);
@@ -120,6 +126,8 @@ public class WagerCreator {
             }
         }
         int[] drawNums = DrawInfo.getAllDrawNums(draws);
+        int drawCount = drawNums.length;
+        WagerStorage.storeDrawCount(drawCount);
         for (int drawNum : drawNums) {
             if (lottery.equals("stastnych10")) {
                 element.findElement(By.cssSelector("[data-hour=\"" + drawNum + "\"]")).click();

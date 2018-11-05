@@ -1,14 +1,17 @@
 package cz.sazka.tests.LotteryUtils;
 
+import cz.sazka.tests.Storage.WagerStorage;
 import org.junit.Assert;
 
- class LotteryNumGenerator {
-     /**
-      * @return winning number for desired lottery.
-      * @param lotteryKind lottery name.
-      * @param winningNumberCount count of winning numbers.
-      */
-     static int getLotteryWinNum(String lotteryKind, int winningNumberCount) {
+import java.util.ArrayList;
+
+public class LotteryNumGenerator {
+    /**
+     * @param lotteryKind        lottery name.
+     * @param winningNumberCount count of winning numbers.
+     * @return winning number for desired lottery.
+     */
+    static int getLotteryWinNum(String lotteryKind, int winningNumberCount) {
         int winNumber = 0;
         switch (lotteryKind) {
             case "sportka":
@@ -30,13 +33,13 @@ import org.junit.Assert;
         return winNumber;
     }
 
-     /**
-      * @return lose number for desired lottery.
-      * @param lotteryKind lottery name.
-      * @param winningNumberCount count of winning numbers.
-      * @param numberCount count of numbers in current column.
-      */
-     static int getLotteryLosNum(String lotteryKind, int winningNumberCount, int numberCount) {
+    /**
+     * @param lotteryKind        lottery name.
+     * @param winningNumberCount count of winning numbers.
+     * @param numberCount        count of numbers in current column.
+     * @return lose number for desired lottery.
+     */
+    static int getLotteryLosNum(String lotteryKind, int winningNumberCount, int numberCount) {
         int losNumber = 0;
         switch (lotteryKind) {
             case "sportka":
@@ -61,11 +64,11 @@ import org.junit.Assert;
         return losNumber;
     }
 
-     /**
-      * @return winning additional number.
-      * @param loteryKind lottery name.
-      */
-     static int getLotteryAddWinNum(String loteryKind) {
+    /**
+     * @param loteryKind lottery name.
+     * @return winning additional number.
+     */
+    static int getLotteryAddWinNum(String loteryKind) {
         int winAddNumber = 0;
         switch (loteryKind) {
             case "eurojackpot":
@@ -79,11 +82,11 @@ import org.junit.Assert;
         return winAddNumber;
     }
 
-     /**
-      * @return lose additional number.
-      * @param loteryKind lottery name.
-      */
-     static int getLotteryAddLosNum(String loteryKind) {
+    /**
+     * @param loteryKind lottery name.
+     * @return lose additional number.
+     */
+    static int getLotteryAddLosNum(String loteryKind) {
         int losAddNumber = 0;
         switch (loteryKind) {
             case "eurojackpot":
@@ -96,4 +99,34 @@ import org.junit.Assert;
         Assert.assertNotEquals(0, losAddNumber);
         return losAddNumber;
     }
+
+    /**
+     * @param lotteryKind lottery name
+     * @return final price for desired lottery
+     */
+    public static int getLotteryPrice(String lotteryKind) {
+        int finalPrice = 0;
+        ArrayList<Integer> depositList = WagerStorage.getDepositList();
+        int chancePrice = LotteryInfo.getLotteryChancePrice(lotteryKind);
+        int columnCount = WagerStorage.getColumnCount();
+        int drawCount = 1;
+        switch (lotteryKind) {
+            case "sportka":
+                finalPrice = LotteryNumMatrix.countColumnPrice(depositList, columnCount, chancePrice, drawCount);
+                break;
+            case "eurojackpot":
+                finalPrice = LotteryNumMatrix.countColumnPrice(depositList, columnCount, chancePrice, drawCount);
+                break;
+            case "euromilliony":
+                finalPrice = LotteryNumMatrix.countColumnPrice(depositList, columnCount, chancePrice, drawCount);
+                break;
+            case "stastnych10":
+                finalPrice = LotteryNumMatrix.countColumnPrice(depositList, columnCount, chancePrice, drawCount);
+                break;
+            case "keno" : finalPrice = LotteryNumMatrix.countColumnPrice(depositList,columnCount,chancePrice,drawCount);
+        }
+        Assert.assertNotEquals(0, finalPrice);
+        return finalPrice;
+    }
+
 }

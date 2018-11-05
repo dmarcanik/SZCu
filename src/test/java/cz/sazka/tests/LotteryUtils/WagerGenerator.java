@@ -45,6 +45,7 @@ public class WagerGenerator {
         }
         ArrayList<Integer> addNumCountList = new ArrayList<>();
         ArrayList<Integer> numCountList = new ArrayList<>();
+        ArrayList<Integer> depositList = new ArrayList<>();
 
 
         for (int currentColumn = 0; currentColumn < columnCount; currentColumn++) {
@@ -56,6 +57,10 @@ public class WagerGenerator {
             addNumCountList.add(currentColumn, addNumberCount);
             if (loteryKind.equals("stastnych10")) {
                 WagerCreator.setWagerFeatures(numberCount, deposit, kingsGame);
+                depositList.add(currentColumn, deposit);
+            }
+            else {
+                depositList.add(currentColumn,LotteryInfo.getLotteryColumnPrice(loteryKind));
             }
             for (int currentNumber = 0; currentNumber < numberCount; currentNumber++) {
 
@@ -107,6 +112,7 @@ public class WagerGenerator {
         WagerStorage.storeAddNumberCount(addNumberCount);
         WagerStorage.storenumberCount(numberCount);
         WagerStorage.storeLotteryKind(loteryKind);
+        WagerStorage.storeDeposit(depositList);
 
     }
 }
