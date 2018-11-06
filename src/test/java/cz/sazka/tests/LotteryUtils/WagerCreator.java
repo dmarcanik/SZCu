@@ -46,6 +46,7 @@ public class WagerCreator {
      */
     public static void createWager(String lottery, DataTable data) {
         new ClickStep().click(Helpers.locatorMap("close"));
+        ElementHandler.getClasCssElement("col-md-4 want-chance").click();
         WagerCreator.cleanAllColumns();
         ArrayList<Integer> numList = new ArrayList<>();
         ArrayList<Integer> addNumList = new ArrayList<>();
