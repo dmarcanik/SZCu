@@ -29,10 +29,10 @@ public class WagerSteps {
      * @param columnCount   number of columns.
      * @param winningNumbrs number of winning numbers, that should be generated.
      */
-    @And(("^I generate \"([^\"]*)\" column sportka wager with \"([^\"]*)\" winning numbers$"))
-    public void iCreateSportkaWager(int columnCount, int winningNumbrs) {
+    @And(("^I generate \"([^\"]*)\" column sportka wager with \"([^\"]*)\" winning numbers and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$"))
+    public void iCreateSportkaWager(int columnCount, int winningNumbrs, String chance) {
         WagerCreator.cleanAllColumns();
-        WagerGenerator.generateWager(columnCount, 6, winningNumbrs, "sportka", 0, "none", 0, false);
+        WagerGenerator.generateWager(columnCount, 6, winningNumbrs, "sportka", 0, "none", 0, false, chance);
         WagerStorage.storeDrawCount(1);
 
     }
@@ -45,11 +45,11 @@ public class WagerSteps {
      * @param winningNumbrs number of winning numbers, that should be generated.
      * @param addFeature    keyword which defines which aditional numbers should be generated.
      */
-    @And(("^I generate \"([^\"]*)\" column eurojackpot wager with \"([^\"]*)\" winning numbers and extra numbers set to \"(win|lose|none)\"$"))
-    public void iCreateEurojackpotWager(int columnCount, int winningNumbrs, String addFeature) {
+    @And(("^I generate \"([^\"]*)\" column eurojackpot wager with \"([^\"]*)\" winning numbers and extra numbers set to \"(win|lose|none)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$"))
+    public void iCreateEurojackpotWager(int columnCount, int winningNumbrs, String addFeature, String chance) {
         WagerCreator.cleanAllColumns();
         WagerStorage.enableAddNumbers();
-        WagerGenerator.generateWager(columnCount, 5, winningNumbrs, "eurojackpot", 2, addFeature, 0, false);
+        WagerGenerator.generateWager(columnCount, 5, winningNumbrs, "eurojackpot", 2, addFeature, 0, false, chance);
         WagerStorage.storeDrawCount(1);
     }
 
@@ -61,11 +61,11 @@ public class WagerSteps {
      * @param winningNumbrs number of winning numbers, that should be generated.
      * @param addFeature    keyword which defines which aditional numbers should be generated.
      */
-    @And(("^I generate \"([^\"]*)\" column euromilliony wager with \"([^\"]*)\" winning numbers and extra number set to \"(win|lose|none)\"$"))
-    public void iCreateEuroMilionyWager(int columnCount, int winningNumbrs, String addFeature) {
+    @And(("^I generate \"([^\"]*)\" column euromilliony wager with \"([^\"]*)\" winning numbers and extra number set to \"(win|lose|none)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$"))
+    public void iCreateEuroMilionyWager(int columnCount, int winningNumbrs, String addFeature, String chance) {
         WagerCreator.cleanAllColumns();
         WagerStorage.enableAddNumbers();
-        WagerGenerator.generateWager(columnCount, 7, winningNumbrs, "euromilliony", 1, addFeature, 0, false);
+        WagerGenerator.generateWager(columnCount, 7, winningNumbrs, "euromilliony", 1, addFeature, 0, false, chance);
         WagerStorage.storeDrawCount(1);
     }
 
@@ -79,21 +79,21 @@ public class WagerSteps {
      * @param deposit       value of deposit in each column.
      * @param kralovskaHra  keyword which defines if should be kralovska hra activated or not in each column.
      */
-    @And(("^I generate \"([^\"]*)\" column stastnych 10 wager with \"([^\"]*)\" numbers, \"([^\"]*)\" winning and vklad set to \"([^\"]*)\" královska hra \"(ano|ne)\"$"))
-    public void iCreateStastnych10Wager(int columnCount, int numberCount, int winningNumbrs, int deposit, String kralovskaHra) {
+    @And(("^I generate \"([^\"]*)\" column stastnych 10 wager with \"([^\"]*)\" numbers, \"([^\"]*)\" winning and vklad set to \"([^\"]*)\" královska hra \"(ano|ne)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$"))
+    public void iCreateStastnych10Wager(int columnCount, int numberCount, int winningNumbrs, int deposit, String kralovskaHra, String chance) {
         WagerCreator.cleanAllColumns();
         boolean kingsGame = false;
         if (kralovskaHra.equals("ano")) {
             kingsGame = true;
         }
-        WagerGenerator.generateWager(columnCount, numberCount, winningNumbrs, "stastnych10", 0, "none", deposit, kingsGame);
+        WagerGenerator.generateWager(columnCount, numberCount, winningNumbrs, "stastnych10", 0, "none", deposit, kingsGame, chance);
         WagerStorage.storeDrawCount(1);
     }
 
     @And(("^I generate \"([^\"]*)\" column Keno wager with \"([^\"]*)\" numbers, \"([^\"]*)\" winning and vklad set to \"([^\"]*)\"$"))
     public void icreateKenoWager(int columnCount, int numberCount, int winningNumbrs, int deposit) {
         WagerCreator.cleanAllColumns();
-        WagerGenerator.generateWager(columnCount, numberCount, winningNumbrs, "keno", 0, "none", deposit, false);
+        WagerGenerator.generateWager(columnCount, numberCount, winningNumbrs, "keno", 0, "none", deposit, false, "none");
         WagerStorage.storeDrawCount(1);
     }
 

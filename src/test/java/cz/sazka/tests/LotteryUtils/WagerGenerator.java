@@ -32,7 +32,8 @@ public class WagerGenerator {
      * During wager creation are saved waged data.
      */
 
-    public static void generateWager(int columnCount, int numberCount, int winningNumberCount, String loteryKind, int addNumberCount, String addFeature, int deposit, boolean kingsGame) {
+    public static void generateWager(int columnCount, int numberCount, int winningNumberCount, String loteryKind,
+                                     int addNumberCount, String addFeature, int deposit, boolean kingsGame, String chance) {
 
         if (ElementHandler.getIdCssElement(Helpers.locatorMap("close")).isDisplayed()) {
             new ClickStep().click(Helpers.locatorMap("close"));
@@ -43,6 +44,7 @@ public class WagerGenerator {
 
             throw new InvalidParameterException(error);
         }
+        WagerCreator.setChance(loteryKind,chance);
         ArrayList<Integer> addNumCountList = new ArrayList<>();
         ArrayList<Integer> numCountList = new ArrayList<>();
         ArrayList<Integer> depositList = new ArrayList<>();

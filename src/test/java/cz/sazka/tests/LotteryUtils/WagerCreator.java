@@ -148,7 +148,7 @@ public class WagerCreator {
 
 
     }
-    private static void setChance(String lotteryKind, String sance){
+    public static void setChance(String lotteryKind, String sance){
         if (sance.equals("none")){
             enableChance(false);
         }

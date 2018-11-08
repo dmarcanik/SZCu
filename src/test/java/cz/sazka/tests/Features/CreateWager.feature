@@ -5,7 +5,7 @@ Feature: Place wager
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create Euromiliony wager with draw set to "utery"
+    And I create Euromiliony wager with draw set to "sobota" and Šance set to "X,0"
       | numbers              | additional |
       | 1,2,3,4,5,6,7        | 1          |
       | 8,9,10,11,12,13,14   | 2          |
@@ -21,7 +21,7 @@ Feature: Place wager
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create Eurojackpot wager with draw set to "patek"
+    And I create Eurojackpot wager with draw set to "patek" and Šance set to "X,0"
       | numbers        | additional |
       | 1,2,3,4,5      | 1,2        |
       | 8,9,10,11,12   | 2,3        |
@@ -36,7 +36,7 @@ Feature: Place wager
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
     And I click on button "btn-game-manual"
-    And I create Stastnych 10 wager with draw set to "poledne,vecer"
+    And I create Stastnych 10 wager with draw set to "poledne,vecer" and Šance set to "none"
       | numbers        | vklad | kralovskahra |
       | 1,2,3,4,5      | 100   | ne           |
       | 8,9,10,11,12   | 20    | ne           |
@@ -64,7 +64,7 @@ Feature: Place wager
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I create sportka wager with draw set to "streda,nedele"
+    And I create sportka wager with draw set to "streda,nedele" and Šance set to "X,0"
       | numbers           |
       | 1,2,3,4,5,6       |
       | 8,9,10,11,12,13   |
