@@ -55,7 +55,7 @@ public class WagerGenerator {
             ArrayList<Integer> addNumList = new ArrayList<>();
             numCountList.add(currentColumn, numberCount);
             addNumCountList.add(currentColumn, addNumberCount);
-            if (loteryKind.equals("stastnych10")) {
+            if (loteryKind.equals("stastnych10")|| loteryKind.equals("keno")) {
                 WagerCreator.setWagerFeatures(numberCount, deposit, kingsGame);
                 depositList.add(currentColumn, deposit);
             }

@@ -2,6 +2,7 @@ package cz.sazka.tests.LotteryUtils;
 
 import com.google.common.collect.Lists;
 import cucumber.api.DataTable;
+import cz.sazka.tests.SessionStorage.SessionStorageReader;
 import cz.sazka.tests.Steps.ClickStep;
 import cz.sazka.tests.Steps.Hook;
 import cz.sazka.tests.Storage.WagerStorage;
@@ -21,6 +22,13 @@ import java.util.Map;
 public class WagerCreator {
     private static Logger log = LogManager.getRootLogger();
     private static WebDriver webDriver = Hook.getDriver();
+    private static String lastNum;
+    private static String beforeLastNum;
+    private static String[] lasTwoNums;
+    private static String lastNumKey;
+    private static String lastbeforeNumKey;
+    private static boolean missmatched = false;
+
 
 
     /**
@@ -44,9 +52,9 @@ public class WagerCreator {
      * @param lottery lottery name
      * @param data defines numbers, additional numbers and other valid parameters for particular lottery.
      */
-    public static void createWager(String lottery, DataTable data) {
+    public static void createWager(String lottery, DataTable data,String sance) {
         new ClickStep().click(Helpers.locatorMap("close"));
-        ElementHandler.getClasCssElement("col-md-4 want-chance").click();
+        setChance(lottery,sance);
         WagerCreator.cleanAllColumns();
         ArrayList<Integer> numList = new ArrayList<>();
         ArrayList<Integer> addNumList = new ArrayList<>();
@@ -140,6 +148,61 @@ public class WagerCreator {
 
 
     }
+    private static void setChance(String lotteryKind, String sance){
+        if (sance.equals("none")){
+            enableChance(false);
+        }
+        else {
+            enableChance(true);
+            WagerStorage.chanceEnabled(true);
+            String[] keys = sance.split(",");
+            lastNumKey = keys[1];
+            lastbeforeNumKey = keys[0];
+            lasTwoNums = new SessionStorageReader(webDriver).getLastTwoNums(lotteryKind);
+            pairChanceKeys(lastNumKey,lastbeforeNumKey,lotteryKind);
+
+
+            while ((!lasTwoNums[0].equals(lastNum) || !lasTwoNums[1].equals(beforeLastNum) || missmatched)){
+                new ClickStep().click("change-chance-number");
+                pairChanceKeys(lastNumKey,lastbeforeNumKey,lotteryKind);
+
+            }
+
+        }
+
+    }
+    private static void pairChanceKeys(String lastNumKey, String beforeLastNumKey,String lotteryKind){
+        lasTwoNums = new SessionStorageReader(webDriver).getLastTwoNums(lotteryKind);
+        lastNum = getChanceConf(lastNumKey,0,lasTwoNums);
+        beforeLastNum = getChanceConf(beforeLastNumKey,1,lasTwoNums);
+
+
+    }
+
+    private static String getChanceConf(String key, int index, String[] lastTwoNums){
+
+        String correctKey = "0";
+        if (!key.equals("0")){
+            correctKey = lastTwoNums[index];
+            if (lastTwoNums[index].equals("0")){
+                missmatched = true;
+            }
+            else {
+                missmatched = false;
+            }
+
+        }
+        return correctKey;
+    }
+
+    private static void enableChance(boolean enable){
+        boolean chanceActivated = ElementHandler.getIdCssElement("chance-numbers").isDisplayed();
+        WebElement element = ElementHandler.getClasCssElement("col-md-4 want-chance");
+        if (!enable ||!chanceActivated){
+            element.click();
+        }
+    }
+
 
     /**
      * Deletes every pre-filled column in opened wager.

@@ -112,4 +112,5 @@ class LotteryNumMatrix {
     private static boolean contains(final int[] array, final int key) {
         return Ints.contains(array, key);
     }
+
 }

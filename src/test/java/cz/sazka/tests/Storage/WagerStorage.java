@@ -10,6 +10,7 @@ public class WagerStorage {
     private static String lotteryKind;
     private static int drawCount;
     private static boolean addNumbers = false;
+    private static boolean chanceEnabled = false;
 
     private static ArrayList<ArrayList<Integer>> numberStorage = new ArrayList<>();
     private static ArrayList<ArrayList<Integer>> AddNumberStorage = new ArrayList<>();
@@ -146,6 +147,7 @@ public class WagerStorage {
 
     /**
      * Stores deposit list of deposit values for all columns.
+     *
      * @param depositList list of deposits
      */
     public static void storeDeposit(ArrayList<Integer> depositList) {
@@ -155,23 +157,31 @@ public class WagerStorage {
     /**
      * @return list of deposits for all columns.
      */
-    public static ArrayList<Integer> getDepositList(){
+    public static ArrayList<Integer> getDepositList() {
         return depositStorage;
     }
 
     /**
      * Store count of draws.
+     *
      * @param count number of draws
      */
-    public static void storeDrawCount (int count){
+    public static void storeDrawCount(int count) {
         drawCount = count;
     }
 
     /**
      * @return number of draws
      */
-    public static int getDrawCount(){
+    public static int getDrawCount() {
         return drawCount;
+    }
+
+    public static boolean chanceEnabled(boolean value) {
+        return chanceEnabled = value;
+    }
+    public static boolean isChanceEnabled(){
+        return chanceEnabled;
     }
 
 

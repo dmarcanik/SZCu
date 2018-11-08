@@ -104,10 +104,13 @@ public class LotteryNumGenerator {
      * @param lotteryKind lottery name
      * @return final price for desired lottery
      */
-    public static int getLotteryPrice(String lotteryKind) {
+    public static int getLotteryPrice(String lotteryKind, boolean chanceEnabled) {
         int finalPrice = 0;
+        int chancePrice = 0;
+        if (chanceEnabled){
+            chancePrice = LotteryInfo.getLotteryChancePrice(lotteryKind);
+        }
         ArrayList<Integer> depositList = WagerStorage.getDepositList();
-        int chancePrice = LotteryInfo.getLotteryChancePrice(lotteryKind);
         int columnCount = WagerStorage.getColumnCount();
         int drawCount = 1;
         switch (lotteryKind) {

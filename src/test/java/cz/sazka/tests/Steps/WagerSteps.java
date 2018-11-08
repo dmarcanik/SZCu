@@ -25,7 +25,8 @@ public class WagerSteps {
     /**
      * Clean all pre-filled columns in currently opened wager.
      * Calls generateWager with predefined and variable params for this particular lottery.
-     * @param columnCount number of columns.
+     *
+     * @param columnCount   number of columns.
      * @param winningNumbrs number of winning numbers, that should be generated.
      */
     @And(("^I generate \"([^\"]*)\" column sportka wager with \"([^\"]*)\" winning numbers$"))
@@ -35,12 +36,14 @@ public class WagerSteps {
         WagerStorage.storeDrawCount(1);
 
     }
+
     /**
      * Clean all pre-filled columns in currently opened wager.
      * Calls generateWager with predefined and variable params for this particular lottery.
-     * @param columnCount number of columns.
+     *
+     * @param columnCount   number of columns.
      * @param winningNumbrs number of winning numbers, that should be generated.
-     * @param addFeature keyword which defines which aditional numbers should be generated.
+     * @param addFeature    keyword which defines which aditional numbers should be generated.
      */
     @And(("^I generate \"([^\"]*)\" column eurojackpot wager with \"([^\"]*)\" winning numbers and extra numbers set to \"(win|lose|none)\"$"))
     public void iCreateEurojackpotWager(int columnCount, int winningNumbrs, String addFeature) {
@@ -49,12 +52,14 @@ public class WagerSteps {
         WagerGenerator.generateWager(columnCount, 5, winningNumbrs, "eurojackpot", 2, addFeature, 0, false);
         WagerStorage.storeDrawCount(1);
     }
+
     /**
      * Clean all pre-filled columns in currently opened wager.
      * Calls generateWager with predefined and variable params for this particular lottery.
-     * @param columnCount number of columns.
+     *
+     * @param columnCount   number of columns.
      * @param winningNumbrs number of winning numbers, that should be generated.
-     * @param addFeature keyword which defines which aditional numbers should be generated.
+     * @param addFeature    keyword which defines which aditional numbers should be generated.
      */
     @And(("^I generate \"([^\"]*)\" column euromilliony wager with \"([^\"]*)\" winning numbers and extra number set to \"(win|lose|none)\"$"))
     public void iCreateEuroMilionyWager(int columnCount, int winningNumbrs, String addFeature) {
@@ -63,14 +68,16 @@ public class WagerSteps {
         WagerGenerator.generateWager(columnCount, 7, winningNumbrs, "euromilliony", 1, addFeature, 0, false);
         WagerStorage.storeDrawCount(1);
     }
+
     /**
      * Clean all pre-filled columns in currently opened wager.
      * Calls generateWager with predefined and variable params for this particular lottery.
-     * @param columnCount number of columns.
-     * @param numberCount how many numbers should be in column.
+     *
+     * @param columnCount   number of columns.
+     * @param numberCount   how many numbers should be in column.
      * @param winningNumbrs number of winning numbers, that should be generated for every column.
-     * @param deposit value of deposit in each column.
-     * @param kralovskaHra keyword which defines if should be kralovska hra activated or not in each column.
+     * @param deposit       value of deposit in each column.
+     * @param kralovskaHra  keyword which defines if should be kralovska hra activated or not in each column.
      */
     @And(("^I generate \"([^\"]*)\" column stastnych 10 wager with \"([^\"]*)\" numbers, \"([^\"]*)\" winning and vklad set to \"([^\"]*)\" královska hra \"(ano|ne)\"$"))
     public void iCreateStastnych10Wager(int columnCount, int numberCount, int winningNumbrs, int deposit, String kralovskaHra) {
@@ -83,6 +90,13 @@ public class WagerSteps {
         WagerStorage.storeDrawCount(1);
     }
 
+    @And(("^I generate \"([^\"]*)\" column Keno wager with \"([^\"]*)\" numbers, \"([^\"]*)\" winning and vklad set to \"([^\"]*)\"$"))
+    public void icreateKenoWager(int columnCount, int numberCount, int winningNumbrs, int deposit) {
+        WagerCreator.cleanAllColumns();
+        WagerGenerator.generateWager(columnCount, numberCount, winningNumbrs, "keno", 0, "none", deposit, false);
+        WagerStorage.storeDrawCount(1);
+    }
+
     /**
      * Clean all pre-filled columns in currently opened wager.
      * Wait until wager is saved.
@@ -90,17 +104,17 @@ public class WagerSteps {
     @Then("^wager is saved with correct price$")
     public void wagerIsSaved() throws Throwable {
         String currentLotery = WagerStorage.getLotteryKind();
-        int priceForWager = LotteryNumGenerator.getLotteryPrice(currentLotery);
+        int priceForWager = LotteryNumGenerator.getLotteryPrice(currentLotery, WagerStorage.isChanceEnabled());
         String priceForWagerString = String.valueOf(priceForWager) + " Kč";
         PreconditionsSteps.waitForPresence(ElementHandler.getIdBy(Helpers.locatorMap("wagerSaved")));
         String realPriceString = ElementHandler.getIdCssElement(Helpers.locatorMap("wagerSaved")).getText();
-        Assert.assertEquals(priceForWagerString,realPriceString);
+        Assert.assertEquals(priceForWagerString, realPriceString);
 
     }
 
     /**
-     *Navigates to Moje sazky of currently logged user.
-     *Waits until currently active bets are displayed.
+     * Navigates to Moje sazky of currently logged user.
+     * Waits until currently active bets are displayed.
      * Calls checkgenerated wagers.
      */
     @Then("^wager is correctly displayed in Moje sázky$")
@@ -112,55 +126,65 @@ public class WagerSteps {
 
     /**
      * Creates wager according data table defined in keywords.
-     * @param draw keyword of draw which should be selected during draw creation.
+     *
+     * @param draw      keyword of draw which should be selected during draw creation.
      * @param dataTable defines numbers, additional numbers and other valid parameters for particular lottery.
      */
-    @And("^I create sportka wager with draw set to \"(streda|nedele|streda,nedele|patek)\"$")
-    public void iCreateSportkaWager(String draw, DataTable dataTable){
-        WagerCreator.createWager("sportka",dataTable);
+    @And("^I create sportka wager with draw set to \"(streda|nedele|streda,nedele|patek)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$")
+    public void iCreateSportkaWager(String draw, String sance, DataTable dataTable) {
+        WagerCreator.createWager("sportka", dataTable, sance);
         WagerCreator.selectDrawDate(draw, "sportka");
 
     }
+
     /**
      * Creates wager according data table defined in keywords.
-     * @param draw keyword of draw which should be selected during draw creation.
+     *
+     * @param draw      keyword of draw which should be selected during draw creation.
      * @param dataTable defines numbers, additional numbers and other valid parameters for particular lottery.
      */
-    @And("^I create Eurojackpot wager with draw set to \"(patek)\"$")
-    public void iCreateEurojackpotWager(String draw, DataTable dataTable){
-        WagerCreator.createWager("eurojackpot",dataTable);
+    @And("^I create Eurojackpot wager with draw set to \"(patek)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$")
+    public void iCreateEurojackpotWager(String draw, String sance, DataTable dataTable) {
+        WagerCreator.createWager("eurojackpot", dataTable, sance);
         WagerCreator.selectDrawDate(draw, "eurojackpot");
 
     }
+
     /**
      * Creates wager according data table defined in keywords.
-     * @param draw keyword of draw which should be selected during draw creation.
+     *
+     * @param draw      keyword of draw which should be selected during draw creation.
      * @param dataTable defines numbers, additional numbers and other valid parameters for particular lottery.
      */
-    @And("^I create Euromiliony wager with draw set to \"(sobota|utery)\"$")
-    public void iCreateEuroMilionyWager(String draw, DataTable dataTable){
-        WagerCreator.createWager("euromilliony",dataTable);
+    @And("^I create Euromiliony wager with draw set to \"(sobota|utery)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$")
+    public void iCreateEuroMilionyWager(String draw, String sance, DataTable dataTable) {
+        WagerCreator.createWager("euromilliony", dataTable, sance);
         WagerCreator.selectDrawDate(draw, "euromiliony");
 
     }
+
     /**
      * Creates wager according data table defined in keywords.
-     * @param draw keyword of draw which should be selected during draw creation.
+     *
+     * @param draw      keyword of draw which should be selected during draw creation.
      * @param dataTable defines numbers, additional numbers and other valid parameters for particular lottery.
      */
-    @And("^I create Stastnych 10 wager with draw set to \"(poledne|vecer|poledne,vecer)\"$")
-    public void iCreateStastnych10Wager(String draw, DataTable dataTable){
-        WagerCreator.createWager("stastnych10",dataTable);
+    @And("^I create Stastnych 10 wager with draw set to \"(poledne|vecer|poledne,vecer)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$")
+    public void iCreateStastnych10Wager(String draw, String sance, DataTable dataTable) {
+        WagerCreator.createWager("stastnych10", dataTable, sance);
         WagerCreator.selectDrawDate(draw, "stastnych10");
 
 
-    }/**
+    }
+
+    /**
      * Creates wager according data table defined in keywords.
+     *
      * @param dataTable defines numbers, additional numbers and other valid parameters for particular lottery.
      */
     @And("^I create Keno wager$")
-    public void iCreateKenoWager( DataTable dataTable){
-        WagerCreator.createWager("keno",dataTable);
+    public void iCreateKenoWager(DataTable dataTable) {
+        WagerCreator.createWager("keno", dataTable, "none");
         WagerStorage.storeDrawCount(1);
 
 
