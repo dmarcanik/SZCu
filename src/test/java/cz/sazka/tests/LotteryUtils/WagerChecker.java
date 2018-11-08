@@ -42,7 +42,7 @@ public class WagerChecker {
                 }
                 log.info("Numbers in " + rowNum + " .row match currently waged numbers in  " + rowNum + ". row");
 
-                if (WagerStorage.addNumbbersEnabled()) {
+                if (new  WagerStorage().addNumbbersEnabled()) {
                     List<WebElement> currentRowAddNumElems = ElementHandler.getElementArray("[class=\"additional-numbers\"]");
                     List<WebElement> addNumElems = currentRowAddNumElems.get(rowNum - 1).findElements(By.cssSelector("td > span"));
                     int i = 0;

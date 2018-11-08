@@ -48,7 +48,7 @@ public class WagerSteps {
     @And(("^I generate \"([^\"]*)\" column eurojackpot wager with \"([^\"]*)\" winning numbers and extra numbers set to \"(win|lose|none)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$"))
     public void iCreateEurojackpotWager(int columnCount, int winningNumbrs, String addFeature, String chance) {
         WagerCreator.cleanAllColumns();
-        WagerStorage.enableAddNumbers();
+        new WagerStorage().enableAddNumbers();
         WagerGenerator.generateWager(columnCount, 5, winningNumbrs, "eurojackpot", 2, addFeature, 0, false, chance);
         WagerStorage.storeDrawCount(1);
     }
@@ -64,7 +64,7 @@ public class WagerSteps {
     @And(("^I generate \"([^\"]*)\" column euromilliony wager with \"([^\"]*)\" winning numbers and extra number set to \"(win|lose|none)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$"))
     public void iCreateEuroMilionyWager(int columnCount, int winningNumbrs, String addFeature, String chance) {
         WagerCreator.cleanAllColumns();
-        WagerStorage.enableAddNumbers();
+        new WagerStorage().enableAddNumbers();
         WagerGenerator.generateWager(columnCount, 7, winningNumbrs, "euromilliony", 1, addFeature, 0, false, chance);
         WagerStorage.storeDrawCount(1);
     }
@@ -104,7 +104,7 @@ public class WagerSteps {
     @Then("^wager is saved with correct price$")
     public void wagerIsSaved() throws Throwable {
         String currentLotery = WagerStorage.getLotteryKind();
-        int priceForWager = LotteryNumGenerator.getLotteryPrice(currentLotery, WagerStorage.isChanceEnabled());
+        int priceForWager = LotteryNumGenerator.getLotteryPrice(currentLotery,WagerStorage.isChanceEnabled());
         String priceForWagerString = String.valueOf(priceForWager) + " Kč";
         PreconditionsSteps.waitForPresence(ElementHandler.getIdBy(Helpers.locatorMap("wagerSaved")));
         String realPriceString = ElementHandler.getIdCssElement(Helpers.locatorMap("wagerSaved")).getText();

@@ -30,12 +30,12 @@ public class WagerCreator {
     private static boolean missmatched = false;
 
 
-
     /**
      * Set features bellow in opened wager according delivered params.
+     *
      * @param numberCount count of numbers in current column.
-     * @param deposit value of deposit in current column.
-     * @param kingsGame keyword which defines if should be kralovska hra activated or not in each column.
+     * @param deposit     value of deposit in current column.
+     * @param kingsGame   keyword which defines if should be kralovska hra activated or not in each column.
      */
     static void setWagerFeatures(int numberCount, int deposit, boolean kingsGame) {
         String numCountString = String.valueOf(numberCount);
@@ -49,12 +49,16 @@ public class WagerCreator {
 
     /**
      * Creates wager for desired lottery from datatable passed from keyword.
+     *
      * @param lottery lottery name
-     * @param data defines numbers, additional numbers and other valid parameters for particular lottery.
+     * @param data    defines numbers, additional numbers and other valid parameters for particular lottery.
      */
-    public static void createWager(String lottery, DataTable data,String sance) {
+    public static void createWager(String lottery, DataTable data, String sance) {
         new ClickStep().click(Helpers.locatorMap("close"));
-        setChance(lottery,sance);
+        if (!lottery.equals("keno")) {
+            setChance(lottery, sance);
+        }
+
         WagerCreator.cleanAllColumns();
         ArrayList<Integer> numList = new ArrayList<>();
         ArrayList<Integer> addNumList = new ArrayList<>();
@@ -68,16 +72,27 @@ public class WagerCreator {
             String numbers = columnData.get("numbers");
             String[] splittedNumbers = numbers.split(",");
             if (columnData.get("vklad") != null) {
-                boolean kingsGame = false;
+                boolean kingsGame;
                 int deposit = Integer.parseInt(columnData.get("vklad"));
-                if(columnData.get("kralovskahra")!=null){
+                if (columnData.get("kralovskahra") != null) {
                     kingsGame = columnData.get("kralovskahra").contains("ano");
+                    if (kingsGame) {
+                        setWagerFeatures(splittedNumbers.length, deposit, true);
+                        depositList.add(currentColumn, deposit * 2);
+
+                    } else {
+                        setWagerFeatures(splittedNumbers.length, deposit, false);
+                        depositList.add(currentColumn, deposit);
+                    }
+
+                } else {
+                    setWagerFeatures(splittedNumbers.length, deposit, false);
+                    depositList.add(currentColumn, deposit);
                 }
-                setWagerFeatures(splittedNumbers.length, deposit, kingsGame);
-                depositList.add(currentColumn, deposit);
-            }
-            else {
-                depositList.add(currentColumn,LotteryInfo.getLotteryColumnPrice(lottery));
+
+
+            } else {
+                depositList.add(currentColumn, LotteryInfo.getLotteryColumnPrice(lottery));
             }
             int currentNumber = 0;
             for (String splittedNumber : splittedNumbers) {
@@ -123,7 +138,8 @@ public class WagerCreator {
     /**
      * Checks which draw dates are selected and unselect them all.
      * Select desired draw dates according params:
-     * @param draws draw name.
+     *
+     * @param draws   draw name.
      * @param lottery lottery name.
      */
     public static void selectDrawDate(String draws, String lottery) {
@@ -148,46 +164,47 @@ public class WagerCreator {
 
 
     }
-    public static void setChance(String lotteryKind, String sance){
-        if (sance.equals("none")){
+
+    public static void setChance(String lotteryKind, String sance) {
+        if (sance.equals("none")) {
             enableChance(false);
-        }
-        else {
+            WagerStorage.chanceEnabled(false);
+        } else {
             enableChance(true);
             WagerStorage.chanceEnabled(true);
             String[] keys = sance.split(",");
             lastNumKey = keys[1];
             lastbeforeNumKey = keys[0];
             lasTwoNums = new SessionStorageReader(webDriver).getLastTwoNums(lotteryKind);
-            pairChanceKeys(lastNumKey,lastbeforeNumKey,lotteryKind);
+            pairChanceKeys(lastNumKey, lastbeforeNumKey, lotteryKind);
 
 
-            while ((!lasTwoNums[0].equals(lastNum) || !lasTwoNums[1].equals(beforeLastNum) || missmatched)){
+            while ((!lasTwoNums[0].equals(lastNum) || !lasTwoNums[1].equals(beforeLastNum) || missmatched)) {
                 new ClickStep().click("change-chance-number");
-                pairChanceKeys(lastNumKey,lastbeforeNumKey,lotteryKind);
+                pairChanceKeys(lastNumKey, lastbeforeNumKey, lotteryKind);
 
             }
 
         }
 
     }
-    private static void pairChanceKeys(String lastNumKey, String beforeLastNumKey,String lotteryKind){
+
+    private static void pairChanceKeys(String lastNumKey, String beforeLastNumKey, String lotteryKind) {
         lasTwoNums = new SessionStorageReader(webDriver).getLastTwoNums(lotteryKind);
-        lastNum = getChanceConf(lastNumKey,0,lasTwoNums);
-        beforeLastNum = getChanceConf(beforeLastNumKey,1,lasTwoNums);
+        lastNum = getChanceConf(lastNumKey, 0, lasTwoNums);
+        beforeLastNum = getChanceConf(beforeLastNumKey, 1, lasTwoNums);
 
 
     }
 
-    private static String getChanceConf(String key, int index, String[] lastTwoNums){
+    private static String getChanceConf(String key, int index, String[] lastTwoNums) {
 
         String correctKey = "0";
-        if (!key.equals("0")){
+        if (!key.equals("0")) {
             correctKey = lastTwoNums[index];
-            if (lastTwoNums[index].equals("0")){
+            if (lastTwoNums[index].equals("0")) {
                 missmatched = true;
-            }
-            else {
+            } else {
                 missmatched = false;
             }
 
@@ -195,10 +212,10 @@ public class WagerCreator {
         return correctKey;
     }
 
-    private static void enableChance(boolean enable){
+    private static void enableChance(boolean enable) {
         boolean chanceActivated = ElementHandler.getIdCssElement("chance-numbers").isDisplayed();
         WebElement element = ElementHandler.getClasCssElement("col-md-4 want-chance");
-        if (!enable ||!chanceActivated){
+        if (!enable || !chanceActivated) {
             element.click();
         }
     }
