@@ -20,7 +20,7 @@ public class WagerChecker {
     private static Logger log = LogManager.getRootLogger();
 
     /**
-     * Parsing data from last performed bet according data saved in WagerStorage.class and check if those data are in currently active bets.
+     * Parsing data from last performed wager according data saved in WagerStorage.class and check if those data are in currently active wagers.
      */
     public static void checkGeneratedWagers() {
         try {
@@ -42,7 +42,7 @@ public class WagerChecker {
                 }
                 log.info("Numbers in " + rowNum + " .row match currently waged numbers in  " + rowNum + ". row");
 
-                if (new  WagerStorage().addNumbbersEnabled()) {
+                if (WagerStorage.addNumbbersEnabled()) {
                     List<WebElement> currentRowAddNumElems = ElementHandler.getElementArray("[class=\"additional-numbers\"]");
                     List<WebElement> addNumElems = currentRowAddNumElems.get(rowNum - 1).findElements(By.cssSelector("td > span"));
                     int i = 0;

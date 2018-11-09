@@ -165,7 +165,12 @@ public class WagerCreator {
 
     }
 
-    public static void setChance(String lotteryKind, String sance) {
+    /**
+     * Set šance for particular lottery
+     * @param lotteryKind lottery name
+     * @param sance value of sance, which should be set.
+     */
+    static void setChance(String lotteryKind, String sance) {
         if (sance.equals("none")) {
             enableChance(false);
             WagerStorage.chanceEnabled(false);
@@ -189,29 +194,40 @@ public class WagerCreator {
 
     }
 
-    private static void pairChanceKeys(String lastNumKey, String beforeLastNumKey, String lotteryKind) {
+    /**
+     * Reads last two numbers from Session storage
+     * @param lastNumKey key for last number.
+     * @param penultimateNumKey key for penultimate number.
+     * @param lotteryKind name of lottery.
+     */
+    private static void pairChanceKeys(String lastNumKey, String penultimateNumKey, String lotteryKind) {
         lasTwoNums = new SessionStorageReader(webDriver).getLastTwoNums(lotteryKind);
         lastNum = getChanceConf(lastNumKey, 0, lasTwoNums);
-        beforeLastNum = getChanceConf(beforeLastNumKey, 1, lasTwoNums);
+        beforeLastNum = getChanceConf(penultimateNumKey, 1, lasTwoNums);
 
 
     }
 
+    /**
+     * @param key desired key
+     * @param index position of desired number
+     * @param lastTwoNums last two numbers
+     * @return number according to key, if key is X 0 is never returned.
+     */
     private static String getChanceConf(String key, int index, String[] lastTwoNums) {
 
         String correctKey = "0";
         if (!key.equals("0")) {
             correctKey = lastTwoNums[index];
-            if (lastTwoNums[index].equals("0")) {
-                missmatched = true;
-            } else {
-                missmatched = false;
-            }
-
+            missmatched = lastTwoNums[index].equals("0");
         }
         return correctKey;
     }
 
+    /**
+     * Activates or deactivates šance.
+     * @param enable desired value
+     */
     private static void enableChance(boolean enable) {
         boolean chanceActivated = ElementHandler.getIdCssElement("chance-numbers").isDisplayed();
         WebElement element = ElementHandler.getClasCssElement("col-md-4 want-chance");

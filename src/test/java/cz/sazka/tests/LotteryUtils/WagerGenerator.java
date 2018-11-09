@@ -21,15 +21,16 @@ public class WagerGenerator {
 
     /**
      * Automatically generates wager according delivered parameteres. This method is usable for all currently implemeted lotteries.
-     * @param columnCount number of columns in particular ber.
-     * @param numberCount count of numbers for each column.
+     *
+     * @param columnCount        number of columns in particular ber.
+     * @param numberCount        count of numbers for each column.
      * @param winningNumberCount count of winning numbers for each column.
-     * @param loteryKind name of lottery.
-     * @param addNumberCount number of additional numbers.
-     * @param addFeature param which defines if additional numbers should be set to win or lose.
-     * @param deposit value of deposit.
-     * @param kingsGame if kralovska hra should be enabled or not.
-     * During wager creation are saved waged data.
+     * @param loteryKind         name of lottery.
+     * @param addNumberCount     number of additional numbers.
+     * @param addFeature         param which defines if additional numbers should be set to win or lose.
+     * @param deposit            value of deposit.
+     * @param kingsGame          if kralovska hra should be enabled or not.
+     *                           During wager creation are saved waged data.
      */
 
     public static void generateWager(int columnCount, int numberCount, int winningNumberCount, String loteryKind,
@@ -44,7 +45,7 @@ public class WagerGenerator {
 
             throw new InvalidParameterException(error);
         }
-        WagerCreator.setChance(loteryKind,chance);
+        WagerCreator.setChance(loteryKind, chance);
         ArrayList<Integer> addNumCountList = new ArrayList<>();
         ArrayList<Integer> numCountList = new ArrayList<>();
         ArrayList<Integer> depositList = new ArrayList<>();
@@ -57,12 +58,17 @@ public class WagerGenerator {
             ArrayList<Integer> addNumList = new ArrayList<>();
             numCountList.add(currentColumn, numberCount);
             addNumCountList.add(currentColumn, addNumberCount);
-            if (loteryKind.equals("stastnych10")|| loteryKind.equals("keno")) {
+            if (loteryKind.equals("stastnych10") || loteryKind.equals("keno")) {
                 WagerCreator.setWagerFeatures(numberCount, deposit, kingsGame);
-                depositList.add(currentColumn, deposit);
-            }
-            else {
-                depositList.add(currentColumn,LotteryInfo.getLotteryColumnPrice(loteryKind));
+                if (kingsGame) {
+                    depositList.add(currentColumn, deposit * 2);
+
+                } else {
+                    depositList.add(currentColumn, deposit);
+                }
+
+            } else {
+                depositList.add(currentColumn, LotteryInfo.getLotteryColumnPrice(loteryKind));
             }
             for (int currentNumber = 0; currentNumber < numberCount; currentNumber++) {
 
