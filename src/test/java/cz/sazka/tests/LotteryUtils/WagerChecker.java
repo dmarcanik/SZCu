@@ -45,13 +45,12 @@ public class WagerChecker {
                 if (WagerStorage.addNumbbersEnabled()) {
                     List<WebElement> currentRowAddNumElems = ElementHandler.getElementArray("[class=\"additional-numbers\"]");
                     List<WebElement> addNumElems = currentRowAddNumElems.get(rowNum - 1).findElements(By.cssSelector("td > span"));
-                    int i = 0;
                     for (WebElement addnumElem : addNumElems) {
-                        Assert.assertTrue(WagerStorage.getAddNumberStorage(i).contains(stringToInt(addnumElem.getText())));
+                        Assert.assertTrue(WagerStorage.getAddNumberStorage(rowNum-1).contains(stringToInt(addnumElem.getText())));
 
-                        i++;
 
                     }
+
                     log.info("Additional numbers in " + rowNum + " .row match currently waged additional numbers in  " + rowNum + ". row");
                 }
 
