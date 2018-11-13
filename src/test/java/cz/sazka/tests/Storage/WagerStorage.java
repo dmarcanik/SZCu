@@ -5,17 +5,14 @@ import java.util.ArrayList;
 
 public class WagerStorage {
     private static int columnCount;
-    private static int numberCount;
-    private static int addNumberCount;
     private static String lotteryKind;
     private static int drawCount;
     private static boolean addNumbers = false;
     private static boolean chanceEnabled = false;
-
+    private static int durationCount;
     private static ArrayList<ArrayList<Integer>> numberStorage = new ArrayList<>();
     private static ArrayList<ArrayList<Integer>> AddNumberStorage = new ArrayList<>();
     private static ArrayList<Integer> numCountList = new ArrayList<>();
-    private static ArrayList<Integer> addNumCountList = new ArrayList<>();
     private static ArrayList<Integer> depositStorage = new ArrayList<>();
 
 
@@ -48,14 +45,6 @@ public class WagerStorage {
         columnCount = count;
     }
 
-    /**
-     * Saves count of numbers in current wager.
-     *
-     * @param count count of numbers.
-     */
-    public static void storenumberCount(int count) {
-        numberCount = count;
-    }
 
     /**
      * Saves how many numbers are in each column.
@@ -75,19 +64,13 @@ public class WagerStorage {
     }
 
     /**
-     * Saves how many additional numbers are in each column.
-     *
-     * @param list list of aaditional numbers.
-     */
-    public static void storeAddNumCountList(ArrayList<Integer> list) {
-        addNumCountList = list;
-    }
-
-    /**
      * Enables additional numbers for lottery (saying that in this lottery are additional numbers)
      */
     public static void enableAddNumbers() {
         addNumbers = true;
+    }
+    public static void disableAddNumbers() {
+        addNumbers = false;
     }
 
     /**
@@ -97,14 +80,6 @@ public class WagerStorage {
         return addNumbers;
     }
 
-    /**
-     * Saves count of additional numbers.
-     *
-     * @param count additional number count.
-     */
-    public static void storeAddNumberCount(int count) {
-        addNumberCount = count;
-    }
 
     /**
      * Saves lottery name in current wager.
@@ -182,6 +157,13 @@ public class WagerStorage {
     }
     public static boolean isChanceEnabled(){
         return chanceEnabled;
+    }
+
+    public static void setDurationCount(int count) {
+        durationCount = count;
+    }
+    public static int getDurationCount(){
+        return durationCount;
     }
 
 

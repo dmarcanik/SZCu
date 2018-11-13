@@ -3,10 +3,7 @@ package cz.sazka.tests.Steps;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-import cz.sazka.tests.LotteryUtils.LotteryNumGenerator;
-import cz.sazka.tests.LotteryUtils.WagerChecker;
-import cz.sazka.tests.LotteryUtils.WagerCreator;
-import cz.sazka.tests.LotteryUtils.WagerGenerator;
+import cz.sazka.tests.LotteryUtils.*;
 import cz.sazka.tests.Storage.WagerStorage;
 import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
@@ -31,9 +28,11 @@ public class WagerSteps {
      */
     @And(("^I generate \"([^\"]*)\" column sportka wager with \"([^\"]*)\" winning numbers and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$"))
     public void iCreateSportkaWager(int columnCount, int winningNumbrs, String chance) {
-        WagerCreator.cleanAllColumns();
+        WagerFeatures.cleanAllColumns();
         WagerGenerator.generateWager(columnCount, 6, winningNumbrs, "sportka", 0, "none", 0, false, chance);
         WagerStorage.storeDrawCount(1);
+        WagerStorage.disableAddNumbers();
+
 
     }
 
@@ -47,8 +46,8 @@ public class WagerSteps {
      */
     @And(("^I generate \"([^\"]*)\" column eurojackpot wager with \"([^\"]*)\" winning numbers and extra numbers set to \"(win|lose|none)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$"))
     public void iCreateEurojackpotWager(int columnCount, int winningNumbrs, String addFeature, String chance) {
-        WagerCreator.cleanAllColumns();
-        new WagerStorage().enableAddNumbers();
+        WagerFeatures.cleanAllColumns();
+        WagerStorage.enableAddNumbers();
         WagerGenerator.generateWager(columnCount, 5, winningNumbrs, "eurojackpot", 2, addFeature, 0, false, chance);
         WagerStorage.storeDrawCount(1);
     }
@@ -63,8 +62,8 @@ public class WagerSteps {
      */
     @And(("^I generate \"([^\"]*)\" column euromilliony wager with \"([^\"]*)\" winning numbers and extra number set to \"(win|lose|none)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$"))
     public void iCreateEuroMilionyWager(int columnCount, int winningNumbrs, String addFeature, String chance) {
-        WagerCreator.cleanAllColumns();
-        new WagerStorage().enableAddNumbers();
+        WagerFeatures.cleanAllColumns();
+        WagerStorage.enableAddNumbers();
         WagerGenerator.generateWager(columnCount, 7, winningNumbrs, "euromilliony", 1, addFeature, 0, false, chance);
         WagerStorage.storeDrawCount(1);
     }
@@ -81,20 +80,22 @@ public class WagerSteps {
      */
     @And(("^I generate \"([^\"]*)\" column stastnych 10 wager with \"([^\"]*)\" numbers, \"([^\"]*)\" winning and vklad set to \"([^\"]*)\" královska hra \"(ano|ne)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$"))
     public void iCreateStastnych10Wager(int columnCount, int numberCount, int winningNumbrs, int deposit, String kralovskaHra, String chance) {
-        WagerCreator.cleanAllColumns();
+        WagerFeatures.cleanAllColumns();
         boolean kingsGame = false;
         if (kralovskaHra.equals("ano")) {
             kingsGame = true;
         }
         WagerGenerator.generateWager(columnCount, numberCount, winningNumbrs, "stastnych10", 0, "none", deposit, kingsGame, chance);
         WagerStorage.storeDrawCount(1);
+        WagerStorage.disableAddNumbers();
     }
 
     @And(("^I generate \"([^\"]*)\" column Keno wager with \"([^\"]*)\" numbers, \"([^\"]*)\" winning and vklad set to \"([^\"]*)\"$"))
     public void icreateKenoWager(int columnCount, int numberCount, int winningNumbrs, int deposit) {
-        WagerCreator.cleanAllColumns();
+        WagerFeatures.cleanAllColumns();
         WagerGenerator.generateWager(columnCount, numberCount, winningNumbrs, "keno", 0, "none", deposit, false, "none");
         WagerStorage.storeDrawCount(1);
+        WagerStorage.disableAddNumbers();
     }
 
     /**
@@ -102,14 +103,19 @@ public class WagerSteps {
      * Wait until wager is saved.
      */
     @Then("^wager is saved with correct price$")
-    public void wagerIsSaved() throws Throwable {
+    public static void wagerIsSaved() throws Throwable {
         String currentLotery = WagerStorage.getLotteryKind();
         int priceForWager = LotteryNumGenerator.getLotteryPrice(currentLotery,WagerStorage.isChanceEnabled());
-        String priceForWagerString = String.valueOf(priceForWager) + " Kč";
         PreconditionsSteps.waitForPresence(ElementHandler.getIdBy(Helpers.locatorMap("wagerSaved")));
         String realPriceString = ElementHandler.getIdCssElement(Helpers.locatorMap("wagerSaved")).getText();
-        Assert.assertEquals(priceForWagerString, realPriceString);
+        realPriceString = realPriceString.replaceAll("\\D+","");
+        int truePrice = Integer.valueOf(realPriceString);
+        System.out.println(truePrice);
+        Assert.assertEquals(priceForWager, truePrice);
+    }
 
+    public static void main(String[] args) throws Throwable {
+        wagerIsSaved();
     }
 
     /**
@@ -133,7 +139,8 @@ public class WagerSteps {
     @And("^I create sportka wager with draw set to \"(streda|nedele|streda,nedele|patek)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$")
     public void iCreateSportkaWager(String draw, String sance, DataTable dataTable) {
         WagerCreator.createWager("sportka", dataTable, sance);
-        WagerCreator.selectDrawDate(draw, "sportka");
+        WagerFeatures.selectDrawDate(draw, "sportka");
+        WagerFeatures.setDuration("24","sportka");
 
     }
 
@@ -146,8 +153,8 @@ public class WagerSteps {
     @And("^I create Eurojackpot wager with draw set to \"(patek)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$")
     public void iCreateEurojackpotWager(String draw, String sance, DataTable dataTable) {
         WagerCreator.createWager("eurojackpot", dataTable, sance);
-        WagerCreator.selectDrawDate(draw, "eurojackpot");
-
+        WagerFeatures.selectDrawDate(draw, "eurojackpot");
+        WagerFeatures.setDuration("6","sportka");
     }
 
     /**
@@ -159,7 +166,7 @@ public class WagerSteps {
     @And("^I create Euromiliony wager with draw set to \"(sobota|utery)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$")
     public void iCreateEuroMilionyWager(String draw, String sance, DataTable dataTable) {
         WagerCreator.createWager("euromilliony", dataTable, sance);
-        WagerCreator.selectDrawDate(draw, "euromiliony");
+        WagerFeatures.selectDrawDate(draw, "euromiliony");
 
     }
 
@@ -172,7 +179,8 @@ public class WagerSteps {
     @And("^I create Stastnych 10 wager with draw set to \"(poledne|vecer|poledne,vecer)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\"$")
     public void iCreateStastnych10Wager(String draw, String sance, DataTable dataTable) {
         WagerCreator.createWager("stastnych10", dataTable, sance);
-        WagerCreator.selectDrawDate(draw, "stastnych10");
+        WagerFeatures.selectDrawDate(draw, "stastnych10");
+        WagerFeatures.setDuration("96","stastnych10");
 
 
     }
@@ -186,6 +194,7 @@ public class WagerSteps {
     public void iCreateKenoWager(DataTable dataTable) {
         WagerCreator.createWager("keno", dataTable, "none");
         WagerStorage.storeDrawCount(1);
+
 
 
     }

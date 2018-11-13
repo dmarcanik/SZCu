@@ -88,10 +88,10 @@ class LotteryNumMatrix {
      * @param prices            array of prices for each column
      * @param columnCount       number of columns.
      * @param chance            price for chance.
-     * @param subscriptionCount how many draws will be bet.
+     * @param durationCount how many draws will be bet.
      * @return price for whole wager.
      */
-    static int countColumnPrice(ArrayList<Integer> prices, int columnCount, int chance, int subscriptionCount) {
+    static int countColumnPrice(ArrayList<Integer> prices, int columnCount, int chance, int durationCount) {
         int priceWithColumns = 0;
         for (int i = 0; i < columnCount; i++) {
             priceWithColumns = priceWithColumns + prices.get(i);
@@ -99,7 +99,7 @@ class LotteryNumMatrix {
         int drawCount = WagerStorage.getDrawCount();
         int priceWithChance = priceWithColumns + chance;
         int priceWithDraws = priceWithChance * drawCount;
-        return priceWithDraws * subscriptionCount;
+        return (priceWithDraws * durationCount)/drawCount;
     }
 
     /**

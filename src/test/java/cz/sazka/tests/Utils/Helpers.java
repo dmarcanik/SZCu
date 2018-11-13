@@ -13,21 +13,25 @@ import java.util.List;
 public class Helpers {
     private static Logger log = LogManager.getRootLogger();
 
-     static String getIdCss(String path) {
+    static String getIdCss(String path) {
         return "[id=\"" + path + "\"]";
     }
 
-     static String getForCss(String path) {
+    static String getForCss(String path) {
         return "[for=\"" + path + "\"]";
     }
 
-     static String getClassCss(String target) {
+    static String getClassCss(String target) {
         return "[class=\"" + target + "\"]";
     }
 
     public static String getClassCssContains(String path) {
         String oldcss = "[class~=\"{}\"]";
         return oldcss.replace("{}", path);
+    }
+
+     static String getIdCssContains(String path) {
+        return "[id~=\"" + path + "\"]";
     }
 
     public static String getDataColumnIndex() {
@@ -38,27 +42,27 @@ public class Helpers {
         return "[data-test=\"" + target + "\"]";
     }
 
-    public static String getLoaderCss() {
+    static String getLoaderCss() {
         return "[class*=\"loader active\"]";
     }
 
 
-    public static String getConsentPageCss() {
+    static String getConsentPageCss() {
         return "[class=\"consents-bar active layout-bottom\"]";
     }
 
-    public static List<String> GetLoadingCsss() {
+    static List<String> GetLoadingCsss() {
         ArrayList<String> result = new ArrayList<>();
         result.add("[class~=\"authenticated\"]");
         result.add("[class~=\"unauthenticated\"]");
         return result;
     }
 
-    public static String getLoggedInCss() {
+    static String getLoggedInCss() {
         return "[class~=\"authenticated\"]";
     }
 
-    public static String getLoggedOutCss() {
+    static String getLoggedOutCss() {
         return "[class~=\"unauthenticated\"]";
     }
 

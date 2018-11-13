@@ -34,8 +34,8 @@ public class WagerChecker {
                 WebElement currentRow = dialogWager.findElement(By.cssSelector("[id=\"row-" + rowNum + "\"]"));
                 List<WebElement> numElems = currentRow.findElements(By.cssSelector("td > span"));
 
-                for (int i = 0; i != WagerStorage.getNumCountListValue(rowNum - 1); i++) {
-                    WebElement elem = numElems.get(i);
+                for (int currentNumber = 0; currentNumber != WagerStorage.getNumCountListValue(rowNum - 1); currentNumber++) {
+                    WebElement elem = numElems.get(currentNumber);
                     Assert.assertTrue(WagerStorage.getNumberStorage(rowNum - 1).contains(stringToInt(elem.getText())));
 
 

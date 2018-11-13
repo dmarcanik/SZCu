@@ -45,8 +45,7 @@ public class WagerGenerator {
 
             throw new InvalidParameterException(error);
         }
-        WagerCreator.setChance(loteryKind, chance);
-        ArrayList<Integer> addNumCountList = new ArrayList<>();
+        WagerFeatures.setChance(loteryKind, chance);
         ArrayList<Integer> numCountList = new ArrayList<>();
         ArrayList<Integer> depositList = new ArrayList<>();
 
@@ -57,9 +56,8 @@ public class WagerGenerator {
             ArrayList<Integer> numList = new ArrayList<>();
             ArrayList<Integer> addNumList = new ArrayList<>();
             numCountList.add(currentColumn, numberCount);
-            addNumCountList.add(currentColumn, addNumberCount);
             if (loteryKind.equals("stastnych10") || loteryKind.equals("keno")) {
-                WagerCreator.setWagerFeatures(numberCount, deposit, kingsGame);
+                WagerFeatures.setColumnFeatures(numberCount, deposit, kingsGame);
                 if (kingsGame) {
                     depositList.add(currentColumn, deposit * 2);
 
@@ -115,10 +113,7 @@ public class WagerGenerator {
 
         }
         WagerStorage.storeNumCountList(numCountList);
-        WagerStorage.storeAddNumCountList(addNumCountList);
         WagerStorage.storeColumnCount(columnCount);
-        WagerStorage.storeAddNumberCount(addNumberCount);
-        WagerStorage.storenumberCount(numberCount);
         WagerStorage.storeLotteryKind(loteryKind);
         WagerStorage.storeDeposit(depositList);
 

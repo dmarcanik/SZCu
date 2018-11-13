@@ -112,21 +112,21 @@ public class LotteryNumGenerator {
         }
         ArrayList<Integer> depositList = WagerStorage.getDepositList();
         int columnCount = WagerStorage.getColumnCount();
-        int drawCount = 1;
+        int durationcount = WagerStorage.getDurationCount();
         switch (lotteryKind) {
             case "sportka":
-                finalPrice = LotteryNumMatrix.countColumnPrice(depositList, columnCount, chancePrice, drawCount);
+                finalPrice = LotteryNumMatrix.countColumnPrice(depositList, columnCount, chancePrice, durationcount);
                 break;
             case "eurojackpot":
-                finalPrice = LotteryNumMatrix.countColumnPrice(depositList, columnCount, chancePrice, drawCount);
+                finalPrice = LotteryNumMatrix.countColumnPrice(depositList, columnCount, chancePrice, durationcount);
                 break;
             case "euromilliony":
-                finalPrice = LotteryNumMatrix.countColumnPrice(depositList, columnCount, chancePrice, drawCount);
+                finalPrice = LotteryNumMatrix.countColumnPrice(depositList, columnCount, chancePrice, durationcount);
                 break;
             case "stastnych10":
-                finalPrice = LotteryNumMatrix.countColumnPrice(depositList, columnCount, chancePrice, drawCount);
+                finalPrice = LotteryNumMatrix.countColumnPrice(depositList, columnCount, chancePrice, durationcount);
                 break;
-            case "keno" : finalPrice = LotteryNumMatrix.countColumnPrice(depositList,columnCount,chancePrice,drawCount);
+            case "keno" : finalPrice = LotteryNumMatrix.countColumnPrice(depositList,columnCount,chancePrice,1);
         }
         Assert.assertNotEquals(0, finalPrice);
         return finalPrice;
