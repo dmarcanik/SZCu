@@ -16,15 +16,15 @@ import org.openqa.selenium.WebDriver;
 public class WagerSteps {
 
     private static Logger log = LogManager.getRootLogger();
-    private static WebDriver webDriver = Hook.getDriver();
-
 
     /**
      * Clean all pre-filled columns in currently opened wager.
      * Calls generateWager with predefined and variable params for this particular lottery.
-     *
      * @param columnCount   number of columns.
      * @param winningNumbrs number of winning numbers, that should be generated.
+     * @param draw which day of draw should be selected.
+     * @param chance chance configuration.
+     * @param duration for how many times should be wager activated.
      */
     @And(("^I generate \"([^\"]*)\" column sportka wager with \"([^\"]*)\" winning numbers and Šance set to " +
             "\"(Z,Y|X,Z|Z,0|none)\" with draw set to \"(streda|nedele|streda,nedele|patek)\", předpladné set to \"([^\"]*)\"$"))
@@ -50,6 +50,9 @@ public class WagerSteps {
      * @param columnCount   number of columns.
      * @param winningNumbrs number of winning numbers, that should be generated.
      * @param addFeature    keyword which defines which aditional numbers should be generated.
+     * @param draw which day of draw should be selected.
+     * @param chance chance configuration.
+     * @param duration for how many times should be wager activated.
      */
     @And(("^I generate \"([^\"]*)\" column eurojackpot wager with \"([^\"]*)\" winning numbers and extra numbers set to " +
             "\"(win|lose|none)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\" with with draw set to \"(patek)\", předpladné set to \"([^\"]*)\"$"))
@@ -73,6 +76,9 @@ public class WagerSteps {
      * @param columnCount   number of columns.
      * @param winningNumbrs number of winning numbers, that should be generated.
      * @param addFeature    keyword which defines which aditional numbers should be generated.
+     * @param draw which day of draw should be selected.
+     * @param chance chance configuration.
+     * @param duration for how many times should be wager activated.
      */
     @And(("^I generate \"([^\"]*)\" column euromilliony wager with \"([^\"]*)\" winning numbers and extra number set to " +
             "\"(win|lose|none)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\" with draw set to \"(sobota|utery)\", předpladné set to \"([^\"]*)\"$"))
@@ -98,6 +104,9 @@ public class WagerSteps {
      * @param winningNumbrs number of winning numbers, that should be generated for every column.
      * @param deposit       value of deposit in each column.
      * @param kralovskaHra  keyword which defines if should be kralovska hra activated or not in each column.
+     * @param draw which day of draw should be selected.
+     * @param chance chance configuration.
+     * @param duration for how many times should be wager activated.
      */
     @And(("^I generate \"([^\"]*)\" column stastnych 10 wager with \"([^\"]*)\" numbers, \"([^\"]*)\" winning and vklad " +
             "set to \"([^\"]*)\" královska hra \"(ano|ne)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\" with draw set to \"(poledne|vecer|poledne,vecer)\", předpladné set to \"([^\"]*)\"$"))
@@ -143,10 +152,6 @@ public class WagerSteps {
         Assert.assertEquals(priceForWager, truePrice);
     }
 
-    public static void main(String[] args) throws Throwable {
-        wagerIsSaved();
-    }
-
     /**
      * Navigates to Moje sazky of currently logged user.
      * Waits until currently active bets are displayed.
@@ -164,6 +169,9 @@ public class WagerSteps {
      *
      * @param draw      keyword of draw which should be selected during draw creation.
      * @param dataTable defines numbers, additional numbers and other valid parameters for particular lottery.
+     * @param draw which day of draw should be selected.
+     * @param duration for how many times should be wager activated.
+     * @param chance chance configuration.
      */
     @And("^I create sportka wager with draw set to \"(streda|nedele|streda,nedele|patek)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
     public void iCreateSportkaWager(String draw, String sance,String duration, DataTable dataTable) {
@@ -184,6 +192,8 @@ public class WagerSteps {
      *
      * @param draw      keyword of draw which should be selected during draw creation.
      * @param dataTable defines numbers, additional numbers and other valid parameters for particular lottery.
+     * @param duration for how many times should be wager activated.
+     * @param chance chance configuration.
      */
     @And("^I create Eurojackpot wager with draw set to \"(patek)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
     public void iCreateEurojackpotWager(String draw, String sance,String duration, DataTable dataTable) {
@@ -202,6 +212,8 @@ public class WagerSteps {
      *
      * @param draw      keyword of draw which should be selected during draw creation.
      * @param dataTable defines numbers, additional numbers and other valid parameters for particular lottery.
+     * @param duration for how many times should be wager activated.
+     * @param chance chance configuration.
      */
     @And("^I create Euromiliony wager with draw set to \"(sobota|utery)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
     public void iCreateEuroMilionyWager(String draw, String sance,String duration, DataTable dataTable) {
@@ -221,6 +233,8 @@ public class WagerSteps {
      *
      * @param draw      keyword of draw which should be selected during draw creation.
      * @param dataTable defines numbers, additional numbers and other valid parameters for particular lottery.
+     * @param duration for how many times should be wager activated.
+     * @param chance chance configuration.
      */
     @And("^I create Stastnych 10 wager with draw set to \"(poledne|vecer|poledne,vecer)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
     public void iCreateStastnych10Wager(String draw, String sance,String duration, DataTable dataTable) {
