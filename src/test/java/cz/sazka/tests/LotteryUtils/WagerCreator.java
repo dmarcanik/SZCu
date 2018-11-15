@@ -8,6 +8,7 @@ import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -24,7 +25,8 @@ public class WagerCreator {
      * @param data    defines numbers, additional numbers and other valid parameters for particular lottery.
      */
     public static void createWager(String lottery, DataTable data, String sance) {
-        new ClickStep().click(Helpers.locatorMap("close"));
+        String closeButton = Helpers.locatorMap("close");
+        new ClickStep().click(closeButton);
         if (!lottery.equals("keno")) {
             WagerFeatures.setChance(lottery, sance);
         }
@@ -36,8 +38,8 @@ public class WagerCreator {
         ArrayList<Integer> depositList = new ArrayList<>();
         int currentColumn = 0;
         for (Map<String, String> columnData : data.asMaps(String.class, String.class)) {
-
-            new ClickStep().click(Helpers.locatorMap("add"));
+            String addButton = Helpers.locatorMap("add");
+            new ClickStep().click(addButton);
             String numbers = columnData.get("numbers");
             String[] splittedNumbers = numbers.split(",");
             if (columnData.get("vklad") != null) {
@@ -68,8 +70,7 @@ public class WagerCreator {
                 int num = Integer.parseInt(splittedNumber);
                 numList.add(currentNumber, num);
                 log.info("waging " + lottery + "  number " + num);
-                ElementHandler.waitElementLoadedEl(ElementHandler.getDialogColumnEl(num));
-                ElementHandler.getDialogColumnEl(num).click();
+                ElementHandler.clickCmd(ElementHandler.getDialogColumnEl(num));
                 currentNumber++;
 
             }
@@ -84,14 +85,13 @@ public class WagerCreator {
                     int addNum = Integer.parseInt(splittedAddNum);
                     addNumList.add(currentAddNumber, addNum);
                     log.info("waging " + lottery + " additional number " + addNum);
-                    ElementHandler.waitElementLoadedEl(ElementHandler.getAdditionalColumnEl(addNum));
-                    ElementHandler.getAdditionalColumnEl(addNum).click();
+                    ElementHandler.clickCmd(ElementHandler.getAdditionalColumnEl(addNum));
 
                 }
 
             }
-
-            new ClickStep().click(Helpers.locatorMap("save"));
+            String saveButton = Helpers.locatorMap("save");
+            new ClickStep().click(saveButton);
             WagerStorage.storeNumbers(currentColumn, numList);
             WagerStorage.storeAddNumbers(currentColumn, addNumList);
             WagerStorage.storeNumCountList(numCountList);

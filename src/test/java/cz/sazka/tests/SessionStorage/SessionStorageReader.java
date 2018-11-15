@@ -31,7 +31,7 @@ public class SessionStorageReader {
      * @param lotteryKind lottery name
      * @return reversed list of values saved under AddonNumbers parameter
      */
-    private List<Object> getReversedStorageArray(String lotteryKind) {
+    private List<Object> getReversedAddonNumbers(String lotteryKind) {
         if (lotteryKind.equals("euromilliony")){
             lotteryKind = "euromiliony";
         }
@@ -45,7 +45,7 @@ public class SessionStorageReader {
      * @return last two numbers from Session storage, saved under AddonNumbers parameter.
      */
     public String[] getLastTwoNums(String lotteryKind) {
-        List<Object> list = getReversedStorageArray(lotteryKind);
+        List<Object> list = getReversedAddonNumbers(lotteryKind);
         String[] lastwoNums = new String[2];
         for (int i = 0; i < 2; i++) {
             lastwoNums[i] = list.get(i).toString();

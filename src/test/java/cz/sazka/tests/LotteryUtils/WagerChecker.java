@@ -24,34 +24,38 @@ public class WagerChecker {
      */
     public static void checkGeneratedWagers() {
         try {
-            ElementHandler.waitElementLoadedBy(By.cssSelector(Helpers.getDataTest(WagerStorage.getLotteryKind())));
-            List<WebElement> wagerElems = ElementHandler.getElementArray(Helpers.getDataTest(WagerStorage.getLotteryKind()));
+            String desiredLotteryBets = Helpers.getDataTest(WagerStorage.getLotteryKind());
+            ElementHandler.waitElementLoadedBy(By.cssSelector(desiredLotteryBets));
+            List<WebElement> wagerElems = ElementHandler.getElementArray(desiredLotteryBets);
             ElementHandler.waitPageToBeLoaded();
-            ElementHandler.clickCmd(wagerElems.get(0).findElement(By.cssSelector("[class=\"" + WagerStorage.getLotteryKind() + " table-cell game\"]")));
-            ElementHandler.waitElementLoadedBy(By.cssSelector("[id=\"dialog-wager\"]"));
+            WebElement lastBet = wagerElems.get(0).findElement(By.cssSelector("[class=\"" + WagerStorage.getLotteryKind() + " table-cell game\"]"));
+            ElementHandler.clickCmd(lastBet);
+            ElementHandler.waitElementLoadedBy(ElementHandler.getIdBy("dialog-wager"));
             WebElement dialogWager = ElementHandler.getIdCssElement("dialog-wager");
-            for (int rowNum = 1; rowNum <= WagerStorage.getColumnCount(); rowNum++) {
-                WebElement currentRow = dialogWager.findElement(By.cssSelector("[id=\"row-" + rowNum + "\"]"));
-                List<WebElement> numElems = currentRow.findElements(By.cssSelector("td > span"));
+            for (int columnNum = 1; columnNum <= WagerStorage.getColumnCount(); columnNum++) {
+                WebElement currentColumn = dialogWager.findElement(By.cssSelector("[id=\"row-" + columnNum + "\"]"));
+                List<WebElement> numbersInColumn = currentColumn.findElements(By.cssSelector("td > span"));
 
-                for (int currentNumber = 0; currentNumber != WagerStorage.getNumCountListValue(rowNum - 1); currentNumber++) {
-                    WebElement elem = numElems.get(currentNumber);
-                    Assert.assertTrue(WagerStorage.getNumberStorage(rowNum - 1).contains(stringToInt(elem.getText())));
+                for (int currentNumber = 0; currentNumber != WagerStorage.getNumCountListValue(columnNum - 1); currentNumber++) {
+                    WebElement elem = numbersInColumn.get(currentNumber);
+                    boolean savedNumberInWager = WagerStorage.getNumberStorage(columnNum - 1).contains(stringToInt(elem.getText()));
+                    Assert.assertTrue(savedNumberInWager);
 
 
                 }
-                log.info("Numbers in " + rowNum + " .row match currently waged numbers in  " + rowNum + ". row");
+                log.info("Numbers in " + columnNum + " .row match currently waged numbers in  " + columnNum + ". row");
 
                 if (WagerStorage.addNumbbersEnabled()) {
                     List<WebElement> currentRowAddNumElems = ElementHandler.getElementArray("[class=\"additional-numbers\"]");
-                    List<WebElement> addNumElems = currentRowAddNumElems.get(rowNum - 1).findElements(By.cssSelector("td > span"));
-                    for (WebElement addnumElem : addNumElems) {
-                        Assert.assertTrue(WagerStorage.getAddNumberStorage(rowNum-1).contains(stringToInt(addnumElem.getText())));
+                    List<WebElement> addNumsInColumn = currentRowAddNumElems.get(columnNum - 1).findElements(By.cssSelector("td > span"));
+                    for (WebElement addnumElem : addNumsInColumn) {
+                        boolean savedAddNumberInWager = WagerStorage.getAddNumberStorage(columnNum-1).contains(stringToInt(addnumElem.getText()));
+                        Assert.assertTrue(savedAddNumberInWager);
 
 
                     }
 
-                    log.info("Additional numbers in " + rowNum + " .row match currently waged additional numbers in  " + rowNum + ". row");
+                    log.info("Additional numbers in " + columnNum + " .row match currently waged additional numbers in  " + columnNum + ". row");
                 }
 
             }

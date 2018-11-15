@@ -76,6 +76,12 @@ public class WagerFeatures {
 
 
     }
+
+    /**
+     * Set duration according to settings
+     * @param durationCount for how many times should be wager activated.
+     * @param lottery lottery name.
+     */
     public static void setDuration(String durationCount, String lottery){
         WagerStorage.setDurationCount(Integer.parseInt(durationCount));
         if (lottery.equals("Keno")){
@@ -96,10 +102,10 @@ public class WagerFeatures {
     static void setChance(String lotteryKind, String sance) {
         if (sance.equals("none")) {
             enableChance(false);
-            WagerStorage.chanceEnabled(false);
+            WagerStorage.enableChance(false);
         } else {
             enableChance(true);
-            WagerStorage.chanceEnabled(true);
+            WagerStorage.enableChance(true);
             String[] keys = sance.split(",");
             lastNumKey = keys[1];
             lastbeforeNumKey = keys[0];
@@ -153,9 +159,8 @@ public class WagerFeatures {
      */
     private static void enableChance(boolean enable) {
         boolean chanceActivated = ElementHandler.getIdCssElement("chance-numbers").isDisplayed();
-        WebElement element = ElementHandler.getClasCssElement("col-md-4 want-chance");
         if (!enable || !chanceActivated) {
-            element.click();
+            ElementHandler.clickCmd(ElementHandler.getClasCssElement("col-md-4 want-chance"));
         }
     }
 
@@ -174,8 +179,9 @@ public class WagerFeatures {
         for (WebElement element : Lists.reverse(ElementHandler.getElementArray(Helpers.getDataColumnIndex()))) {
             if (element.getAttribute("class").contains("active")) {
                 element.click();
-                ElementHandler.waitElementLoaded(Helpers.locatorMap("delete"));
-                ElementHandler.clickCmd(ElementHandler.getCssElement(Helpers.locatorMap("delete")));
+                String delete = Helpers.locatorMap("delete");
+                ElementHandler.waitElementLoaded(delete);
+                ElementHandler.clickCmd(ElementHandler.getCssElement(delete));
             }
 
         }

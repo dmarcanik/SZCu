@@ -189,7 +189,7 @@ public class LotteryInfo {
     /**
      * @return what hour is now.
      */
-    static int getHour() {
+    private static int getHour() {
         LocalTime localTime = LocalTime.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh");
         String timeS = localTime.format(dateTimeFormatter);
@@ -199,7 +199,8 @@ public class LotteryInfo {
     /**
      * @return what day is today.
      */
-    static int getCalendarDay() {
+
+    private static int getCalendarDay() {
         Calendar calendar = Calendar.getInstance();
         return calendar.get(Calendar.DAY_OF_WEEK);
     }

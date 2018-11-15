@@ -152,16 +152,30 @@ public class WagerStorage {
         return drawCount;
     }
 
-    public static boolean chanceEnabled(boolean value) {
-        return chanceEnabled = value;
+    /**
+     * @param value desired chance value.
+     */
+    public static void enableChance(boolean value) {
+        chanceEnabled = value;
     }
+
+    /**
+     * @return if chance is enabled or not.
+     */
     public static boolean isChanceEnabled(){
         return chanceEnabled;
     }
 
+    /**
+     * @param count stores duration of current wager.
+     */
     public static void setDurationCount(int count) {
         durationCount = count;
     }
+
+    /**
+     * @return number of dureation currently stored
+     */
     public static int getDurationCount(){
         return durationCount;
     }
