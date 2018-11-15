@@ -35,6 +35,9 @@ public class WagerSteps {
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"sportka");
         }
+        else {
+            WagerStorage.setDurationCount(1);
+        }
         WagerStorage.disableAddNumbers();
 
 
@@ -58,6 +61,9 @@ public class WagerSteps {
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"eurojackpot");
         }
+        else {
+            WagerStorage.setDurationCount(1);
+        }
     }
 
     /**
@@ -77,6 +83,9 @@ public class WagerSteps {
         WagerFeatures.selectDrawDate(draw, "euromilliony");
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"euromilliony");
+        }
+        else {
+            WagerStorage.setDurationCount(1);
         }
     }
 
@@ -102,6 +111,9 @@ public class WagerSteps {
         WagerFeatures.selectDrawDate(draw, "stastnych10");
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"euromilliony");
+        }
+        else {
+            WagerStorage.setDurationCount(1);
         }
         WagerStorage.disableAddNumbers();
     }
@@ -160,6 +172,9 @@ public class WagerSteps {
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"sportka");
         }
+        else {
+            WagerStorage.setDurationCount(1);
+        }
 
 
     }
@@ -177,6 +192,9 @@ public class WagerSteps {
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"eurojackpot");
         }
+        else {
+            WagerStorage.setDurationCount(1);
+        }
     }
 
     /**
@@ -191,6 +209,9 @@ public class WagerSteps {
         WagerFeatures.selectDrawDate(draw, "euromiliony");
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"euromiliony");
+        }
+        else {
+            WagerStorage.setDurationCount(1);
         }
 
     }
@@ -207,6 +228,9 @@ public class WagerSteps {
         WagerFeatures.selectDrawDate(draw, "stastnych10");
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"stastnych10");
+        }
+        else {
+            WagerStorage.setDurationCount(1);
         }
 
 
