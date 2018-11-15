@@ -27,7 +27,7 @@ public class WagerSteps {
      * @param duration for how many times should be wager activated.
      */
     @And(("^I generate \"([^\"]*)\" column sportka wager with \"([^\"]*)\" winning numbers and Šance set to " +
-            "\"(X,X|0,0|X,0|0,X|none)\" with draw set to \"(streda|nedele|streda,nedele|patek)\", předpladné set to \"([^\"]*)\"$"))
+            "\"(Z,Y|X,Z|Z,0|none)\" with draw set to \"(streda|nedele|streda,nedele|patek)\", předpladné set to \"([^\"]*)\"$"))
     public void iCreateSportkaWager(int columnCount, int winningNumbrs, String chance, String draw, String duration) {
         WagerFeatures.cleanAllColumns();
         WagerGenerator.generateWager(columnCount, 6, winningNumbrs, "sportka", 0, "none", 0, false, chance);
@@ -52,7 +52,7 @@ public class WagerSteps {
      * @param duration for how many times should be wager activated.
      */
     @And(("^I generate \"([^\"]*)\" column eurojackpot wager with \"([^\"]*)\" winning numbers and extra numbers set to " +
-            "\"(win|lose|none)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\" with with draw set to \"(patek)\", předpladné set to \"([^\"]*)\"$"))
+            "\"(win|lose|none)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\" with with draw set to \"(patek)\", předpladné set to \"([^\"]*)\"$"))
     public void iCreateEurojackpotWager(int columnCount, int winningNumbrs, String addFeature, String chance, String draw, String duration) {
         WagerFeatures.cleanAllColumns();
         WagerStorage.enableAddNumbers();
@@ -75,7 +75,7 @@ public class WagerSteps {
      * @param duration for how many times should be wager activated.
      */
     @And(("^I generate \"([^\"]*)\" column euromilliony wager with \"([^\"]*)\" winning numbers and extra number set to " +
-            "\"(win|lose|none)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\" with draw set to \"(sobota|utery)\", předpladné set to \"([^\"]*)\"$"))
+            "\"(win|lose|none)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\" with draw set to \"(sobota|utery)\", předpladné set to \"([^\"]*)\"$"))
     public void iCreateEuroMilionyWager(int columnCount, int winningNumbrs, String addFeature, String chance, String draw, String duration) {
         WagerFeatures.cleanAllColumns();
         WagerStorage.enableAddNumbers();
@@ -100,7 +100,7 @@ public class WagerSteps {
      * @param duration for how many times should be wager activated.
      */
     @And(("^I generate \"([^\"]*)\" column stastnych 10 wager with \"([^\"]*)\" numbers, \"([^\"]*)\" winning and vklad " +
-            "set to \"([^\"]*)\" královska hra \"(ano|ne)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\" with draw set to \"(poledne|vecer|poledne,vecer)\", předpladné set to \"([^\"]*)\"$"))
+            "set to \"([^\"]*)\" královska hra \"(ano|ne)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\" with draw set to \"(poledne|vecer|poledne,vecer)\", předpladné set to \"([^\"]*)\"$"))
     public void iCreateStastnych10Wager(int columnCount, int numberCount, int winningNumbrs, int deposit, String kralovskaHra, String chance, String draw, String duration) {
         WagerFeatures.cleanAllColumns();
         boolean kingsGame = false;
@@ -161,7 +161,7 @@ public class WagerSteps {
      * @param duration for how many times should be wager activated.
      * @param chance chance configuration.
      */
-    @And("^I create sportka wager with draw set to \"(streda|nedele|streda,nedele|patek)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\", předpladné set to \"([^\"]*)\"$")
+    @And("^I create sportka wager with draw set to \"(streda|nedele|streda,nedele|patek)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
     public void iCreateSportkaWager(String draw, String sance,String duration, DataTable dataTable) {
         WagerCreator.createWager("sportka", dataTable, sance);
         WagerFeatures.selectDrawDate(draw, "sportka");
@@ -180,7 +180,7 @@ public class WagerSteps {
      * @param duration for how many times should be wager activated.
      * @param chance chance configuration.
      */
-    @And("^I create Eurojackpot wager with draw set to \"(patek)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\", předpladné set to \"([^\"]*)\"$")
+    @And("^I create Eurojackpot wager with draw set to \"(patek)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
     public void iCreateEurojackpotWager(String draw, String sance,String duration, DataTable dataTable) {
         WagerCreator.createWager("eurojackpot", dataTable, sance);
         WagerFeatures.selectDrawDate(draw, "eurojackpot");
@@ -197,7 +197,7 @@ public class WagerSteps {
      * @param duration for how many times should be wager activated.
      * @param chance chance configuration.
      */
-    @And("^I create Euromiliony wager with draw set to \"(sobota|utery)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\", předpladné set to \"([^\"]*)\"$")
+    @And("^I create Euromiliony wager with draw set to \"(sobota|utery)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
     public void iCreateEuroMilionyWager(String draw, String sance,String duration, DataTable dataTable) {
         WagerCreator.createWager("euromilliony", dataTable, sance);
         WagerFeatures.selectDrawDate(draw, "euromiliony");
@@ -215,7 +215,7 @@ public class WagerSteps {
      * @param duration for how many times should be wager activated.
      * @param chance chance configuration.
      */
-    @And("^I create Stastnych 10 wager with draw set to \"(poledne|vecer|poledne,vecer)\" and Šance set to \"(X,X|0,0|X,0|0,X|none)\", předpladné set to \"([^\"]*)\"$")
+    @And("^I create Stastnych 10 wager with draw set to \"(poledne|vecer|poledne,vecer)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
     public void iCreateStastnych10Wager(String draw, String sance,String duration, DataTable dataTable) {
         WagerCreator.createWager("stastnych10", dataTable, sance);
         WagerFeatures.selectDrawDate(draw, "stastnych10");
