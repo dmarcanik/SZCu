@@ -28,7 +28,6 @@ public class WagerFeatures {
     private static boolean missmatched = false;
 
 
-
     /**
      * Set features bellow in opened wager according delivered params.
      *
@@ -76,22 +75,24 @@ public class WagerFeatures {
 
 
     }
-    public static void setDuration(String durationCount, String lottery){
-        WagerStorage.setDurationCount(Integer.parseInt(durationCount));
-        if (lottery.equals("Keno")){
-            new ClickStep().clickComboBox("p_lt_ctl10_pageplaceholder_p_lt_ctl03_wKO_ddlDurationSelectBoxItArrow",durationCount);
 
-        }else {
+    public static void setDuration(String durationCount, String lottery) {
+        WagerStorage.setDurationCount(Integer.parseInt(durationCount));
+        if (lottery.equals("Keno")) {
+            new ClickStep().clickComboBox("p_lt_ctl10_pageplaceholder_p_lt_ctl03_wKO_ddlDurationSelectBoxItArrow", durationCount);
+
+        } else {
             ElementHandler.clickCmd(ElementHandler.getCssElement("#duration-option > li:nth-child(2)"));
-            new ClickStep().clickComboBox("durationSelectSelectBoxItArrow",durationCount);
+            new ClickStep().clickComboBox("durationSelectSelectBoxItArrow", durationCount);
         }
 
     }
 
     /**
      * Set šance for particular lottery
+     *
      * @param lotteryKind lottery name
-     * @param sance value of sance, which should be set.
+     * @param sance       value of sance, which should be set.
      */
     static void setChance(String lotteryKind, String sance) {
         if (sance.equals("none")) {
@@ -119,9 +120,10 @@ public class WagerFeatures {
 
     /**
      * Reads last two numbers from Session storage
-     * @param lastNumKey key for last number.
+     *
+     * @param lastNumKey        key for last number.
      * @param penultimateNumKey key for penultimate number.
-     * @param lotteryKind name of lottery.
+     * @param lotteryKind       name of lottery.
      */
     private static void pairChanceKeys(String lastNumKey, String penultimateNumKey, String lotteryKind) {
         lasTwoNums = new SessionStorageReader(webDriver).getLastTwoNums(lotteryKind);
@@ -132,8 +134,8 @@ public class WagerFeatures {
     }
 
     /**
-     * @param key desired key
-     * @param index position of desired number
+     * @param key         desired key
+     * @param index       position of desired number
      * @param lastTwoNums last two numbers
      * @return number according to key, if key is X 0 is never returned.
      */
@@ -142,13 +144,16 @@ public class WagerFeatures {
         String correctKey = "0";
         if (!key.equals("0")) {
             correctKey = lastTwoNums[index];
-            missmatched = lastTwoNums[index].equals("0");
+            missmatched = lastTwoNums[index].equals("0") || lastTwoNums[index].equals("1");
+
+
         }
         return correctKey;
     }
 
     /**
      * Activates or deactivates šance.
+     *
      * @param enable desired value
      */
     private static void enableChance(boolean enable) {

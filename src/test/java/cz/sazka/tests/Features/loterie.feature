@@ -5,10 +5,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "1" column sportka wager with "0" winning numbers
+    And I generate "<string>" column sportka wager with "<string>" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 1 columns 1 winning
@@ -16,10 +16,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "1" column sportka wager with "1" winning numbers
+    And I generate "1" column sportka wager with "1" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 1 columns 2 winning
@@ -27,10 +27,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "1" column sportka wager with "2" winning numbers
+    And I generate "1" column sportka wager with "2" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 1 columns 3 winning
@@ -38,10 +38,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "1" column sportka wager with "3" winning numbers
+    And I generate "1" column sportka wager with "3" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 1 columns 4 winning
@@ -49,10 +49,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "1" column sportka wager with "4" winning numbers
+    And I generate "1" column sportka wager with "4" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 1 columns 5 winning
@@ -60,10 +60,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "1" column sportka wager with "5" winning numbers
+    And I generate "1" column sportka wager with "5" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 1 columns 6 winning
@@ -71,10 +71,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "1" column sportka wager with "6" winning numbers
+    And I generate "1" column sportka wager with "6" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 2 columns 0 winning
@@ -82,10 +82,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "2" column sportka wager with "0" winning numbers
+    And I generate "2" column sportka wager with "0" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 2 columns 1 winning
@@ -93,10 +93,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "2" column sportka wager with "1" winning numbers
+    And I generate "2" column sportka wager with "1" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 2 columns 2 winning
@@ -104,10 +104,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "2" column sportka wager with "2" winning numbers
+    And I generate "2" column sportka wager with "2" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 2 columns 3 winning
@@ -115,10 +115,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "2" column sportka wager with "3" winning numbers
+    And I generate "2" column sportka wager with "3" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 2 columns 4 winning
@@ -126,10 +126,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "2" column sportka wager with "4" winning numbers
+    And I generate "2" column sportka wager with "4" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 2 columns 5 winning
@@ -137,10 +137,10 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "2" column sportka wager with "5" winning numbers
+    And I generate "2" column sportka wager with "5" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
   Scenario: Do Sportka wager 2 columns 6 winning
@@ -148,8 +148,8 @@ Feature: Loterie
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I click on button "btn-game-manual"
-    And I generate "2" column sportka wager with "6" winning numbers
+    And I generate "2" column sportka wager with "6" winning numbers and Šance set to "X,X" with draw set to "streda", předpladné set to "1"
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
-    Then wager is saved
+    Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
