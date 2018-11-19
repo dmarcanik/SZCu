@@ -174,8 +174,8 @@ public class WagerSteps {
      * @param chance chance configuration.
      */
     @And("^I create sportka wager with draw set to \"(streda|nedele|streda,nedele|patek)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
-    public void iCreateSportkaWager(String draw, String sance,String duration, DataTable dataTable) {
-        WagerCreator.createWager("sportka", dataTable, sance);
+    public void iCreateSportkaWager(String draw, String chance,String duration, DataTable dataTable) {
+        WagerCreator.createWager("sportka", dataTable, chance);
         WagerFeatures.selectDrawDate(draw, "sportka");
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"sportka");
@@ -196,8 +196,8 @@ public class WagerSteps {
      * @param chance chance configuration.
      */
     @And("^I create Eurojackpot wager with draw set to \"(patek)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
-    public void iCreateEurojackpotWager(String draw, String sance,String duration, DataTable dataTable) {
-        WagerCreator.createWager("eurojackpot", dataTable, sance);
+    public void iCreateEurojackpotWager(String draw, String chance,String duration, DataTable dataTable) {
+        WagerCreator.createWager("eurojackpot", dataTable, chance);
         WagerFeatures.selectDrawDate(draw, "eurojackpot");
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"eurojackpot");
@@ -216,8 +216,8 @@ public class WagerSteps {
      * @param chance chance configuration.
      */
     @And("^I create Euromiliony wager with draw set to \"(sobota|utery)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
-    public void iCreateEuroMilionyWager(String draw, String sance,String duration, DataTable dataTable) {
-        WagerCreator.createWager("euromilliony", dataTable, sance);
+    public void iCreateEuroMilionyWager(String draw, String chance,String duration, DataTable dataTable) {
+        WagerCreator.createWager("euromilliony", dataTable, chance);
         WagerFeatures.selectDrawDate(draw, "euromiliony");
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"euromiliony");
@@ -237,8 +237,8 @@ public class WagerSteps {
      * @param chance chance configuration.
      */
     @And("^I create Stastnych 10 wager with draw set to \"(poledne|vecer|poledne,vecer)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
-    public void iCreateStastnych10Wager(String draw, String sance,String duration, DataTable dataTable) {
-        WagerCreator.createWager("stastnych10", dataTable, sance);
+    public void iCreateStastnych10Wager(String draw, String chance,String duration, DataTable dataTable) {
+        WagerCreator.createWager("stastnych10", dataTable, chance);
         WagerFeatures.selectDrawDate(draw, "stastnych10");
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"stastnych10");
