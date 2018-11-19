@@ -24,13 +24,7 @@ public class WagerChecker {
      */
     public static void checkGeneratedWagers() {
         try {
-            String desiredLotteryBets = Helpers.getDataTest(WagerStorage.getLotteryKind());
-            ElementHandler.waitElementLoadedBy(By.cssSelector(desiredLotteryBets));
-            List<WebElement> wagerElems = ElementHandler.getElementArray(desiredLotteryBets);
-            ElementHandler.waitPageToBeLoaded();
-            WebElement lastBet = wagerElems.get(0).findElement(By.cssSelector("[class=\"" + WagerStorage.getLotteryKind() + " table-cell game\"]"));
-            ElementHandler.clickCmd(lastBet);
-            ElementHandler.waitElementLoadedBy(ElementHandler.getIdBy("dialog-wager"));
+            openLastBet(WagerStorage.getLotteryKind());
             WebElement dialogWager = ElementHandler.getIdCssElement("dialog-wager");
             for (int columnNum = 1; columnNum <= WagerStorage.getColumnCount(); columnNum++) {
                 WebElement currentColumn = dialogWager.findElement(By.cssSelector("[id=\"row-" + columnNum + "\"]"));
@@ -49,7 +43,7 @@ public class WagerChecker {
                     List<WebElement> currentRowAddNumElems = ElementHandler.getElementArray("[class=\"additional-numbers\"]");
                     List<WebElement> addNumsInColumn = currentRowAddNumElems.get(columnNum - 1).findElements(By.cssSelector("td > span"));
                     for (WebElement addnumElem : addNumsInColumn) {
-                        boolean savedAddNumberInWager = WagerStorage.getAddNumberStorage(columnNum-1).contains(stringToInt(addnumElem.getText()));
+                        boolean savedAddNumberInWager = WagerStorage.getAddNumberStorage(columnNum - 1).contains(stringToInt(addnumElem.getText()));
                         Assert.assertTrue(savedAddNumberInWager);
 
 
@@ -66,6 +60,38 @@ public class WagerChecker {
         }
 
 
+    }
+
+    private static void openLastBet(String lotteryKind) {
+        String desiredLotteryBets = Helpers.getDataTest(lotteryKind);
+        ElementHandler.waitElementLoadedBy(By.cssSelector(desiredLotteryBets));
+        List<WebElement> wagerElems = ElementHandler.getElementArray(desiredLotteryBets);
+        ElementHandler.waitPageToBeLoaded();
+        WebElement lastBet = wagerElems.get(0).findElement(By.cssSelector("[class=\"" +lotteryKind + " table-cell game\"]"));
+        ElementHandler.clickCmd(lastBet);
+        ElementHandler.waitElementLoadedBy(ElementHandler.getIdBy("dialog-wager"));
+    }
+
+    public static void checkQuickWager(String lotteryKind, int columns, boolean chance, boolean kingsGame, int price) {
+        openLastBet(lotteryKind);
+        List<WebElement> allrows = ElementHandler.getIdCssElement("dialog-wager").findElements(ElementHandler.getIdContainsBy("row"));
+        int columnsInWager = allrows.size();
+        Assert.assertEquals(columns, columnsInWager);
+        boolean chanceInWager = ElementHandler.getClasCssElement("addon-game-name").isEnabled();
+        Assert.assertEquals(chance,chanceInWager);
+        kingsGameInWager(kingsGame);
+        
+
+    }
+    
+    private static void kingsGameInWager(boolean kingsGameActivated){
+        if (kingsGameActivated){
+            List<WebElement> kingsgames = ElementHandler.getIdCssElement("dialog-wager").findElements(ElementHandler.getclassCssBy("w-6"));
+            for (WebElement kingsgame:kingsgames) {
+                Assert.assertEquals(kingsgame.getText(),"Královská hra");
+
+            }
+        }
     }
 
     private static int stringToInt(String target) {

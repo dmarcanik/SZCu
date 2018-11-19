@@ -173,7 +173,7 @@ public class ElementHandler {
     public static WebElement getIdCssElementContains(String target){
         return webDriver.findElement(getIdContainsBy(target));
     }
-    private static By getIdContainsBy(String target){
+    public static By getIdContainsBy(String target){
         return By.cssSelector(Helpers.getIdCssContains(target));
 
     }

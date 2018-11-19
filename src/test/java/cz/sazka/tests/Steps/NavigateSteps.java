@@ -36,6 +36,12 @@ public class NavigateSteps {
             throw e;
         }
     }
+    @When("^I Navigate to Moje sázky$")
+    public static void navigateToMojeSazky() throws Throwable {
+        new ClickStep().click(Helpers.locatorMap("myWagers"));
+        ElementHandler.waitElementLoaded(Helpers.locatorMap("wagerList"));
+    }
+
 
 
 }

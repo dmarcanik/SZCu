@@ -2,6 +2,7 @@ package cz.sazka.tests.LotteryUtils;
 
 import com.google.common.collect.Lists;
 import cz.sazka.tests.SessionStorage.SessionStorageReader;
+import cz.sazka.tests.SessionStorage.WagerInfoReader;
 import cz.sazka.tests.Steps.ClickStep;
 import cz.sazka.tests.Steps.Hook;
 import cz.sazka.tests.Storage.WagerStorage;
@@ -109,7 +110,7 @@ public class WagerFeatures {
             String[] keys = sance.split(",");
             lastNumKey = keys[1];
             lastbeforeNumKey = keys[0];
-            lasTwoNums = new SessionStorageReader(webDriver).getLastTwoNums(lotteryKind);
+            lasTwoNums = new WagerInfoReader().getLastTwoNums(lotteryKind);
             pairChanceKeys(lastNumKey, lastbeforeNumKey, lotteryKind);
 
 
@@ -130,7 +131,7 @@ public class WagerFeatures {
      * @param lotteryKind name of lottery.
      */
     private static void pairChanceKeys(String lastNumKey, String penultimateNumKey, String lotteryKind) {
-        lasTwoNums = new SessionStorageReader(webDriver).getLastTwoNums(lotteryKind);
+        lasTwoNums = new WagerInfoReader().getLastTwoNums(lotteryKind);
         lastNum = getChanceConf(lastNumKey, 0, lasTwoNums);
         beforeLastNum = getChanceConf(penultimateNumKey, 1, lasTwoNums);
 

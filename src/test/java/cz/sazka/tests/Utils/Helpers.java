@@ -31,7 +31,7 @@ public class Helpers {
     }
 
      static String getIdCssContains(String path) {
-        return "[id~=\"" + path + "\"]";
+        return "[id*=\"" + path + "\"]";
     }
 
     public static String getDataColumnIndex() {
