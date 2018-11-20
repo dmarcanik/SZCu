@@ -89,14 +89,14 @@ Feature: Sportka_Manual
       | numbers           |
       | 32,5,6,7,8,9      |
       | 10,20,11,12,13,14 |
-      | 1,10,21,21,22,23  |
+      | 1,10,21,20,22,23  |
       | 1,10,18,20,19,21  |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
-  Scenario: Sportka - TC09
+  Scenario: Sportka - TC08
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
@@ -134,25 +134,6 @@ Feature: Sportka_Manual
     Then wager is saved with correct price
     Then wager is correctly displayed in Moje sázky
 
-  Scenario: Sportka - TC09
-    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "sportka"
-    And I click on button "online-bet"
-    And I click on button "btn-game-manual"
-    And I create sportka wager with draw set to "streda" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        |
-      | 3,4,5,6,7,8    |
-      | 3,4,5,6,7,8    |
-      | 3,4,5,6,7,8    |
-      | 3,4,5,6,7,8    |
-      | 1,4,5,6,7,8    |
-      | 1,10,4,5,6,7   |
-      | 1,10,18,4,5,6  |
-      | 1,10,18,32,4,5 |
-    And I click on button "btn-game-send"
-    And I click on button "btn-confirm-yes"
-    Then wager is saved with correct price
-    Then wager is correctly displayed in Moje sázky
 
   Scenario: Sportka - TC11
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
