@@ -8,10 +8,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WagerChecker {
@@ -19,16 +21,36 @@ public class WagerChecker {
     private static WebDriver webDriver = Hook.getDriver();
     private static Logger log = LogManager.getRootLogger();
 
+
+    private static List<WebElement> joinedList(WebElement dialogWager,List<WebElement> firstLine, int columnNum ) {
+        List<WebElement> joinedList = new ArrayList<>(100);
+        joinedList.addAll(firstLine);
+        String secondColumnNum = String.valueOf(columnNum *2 );
+        try {
+            List<WebElement> primaryNums = dialogWager.findElement(By.cssSelector("tr.primary-numbers:nth-child("+secondColumnNum+ ")")).findElements(By.cssSelector("td > span"));
+            joinedList.addAll(primaryNums);
+        }catch (NoSuchElementException ignored){
+
+        }
+
+        return joinedList;
+
+    }
+
     /**
      * Parsing data from last performed wager according data saved in WagerStorage.class and check if those data are in currently active wagers.
      */
     public static void checkGeneratedWagers() {
         try {
-            openLastBet(WagerStorage.getLotteryKind());
+            String lotteryKind = WagerStorage.getLotteryKind();
+            openLastBet(lotteryKind);
             WebElement dialogWager = ElementHandler.getIdCssElement("dialog-wager");
             for (int columnNum = 1; columnNum <= WagerStorage.getColumnCount(); columnNum++) {
                 WebElement currentColumn = dialogWager.findElement(By.cssSelector("[id=\"row-" + columnNum + "\"]"));
                 List<WebElement> numbersInColumn = currentColumn.findElements(By.cssSelector("td > span"));
+                if(lotteryKind.equals("keno")||lotteryKind.equals("stastnych10") && WagerStorage.getNumCountListValue(columnNum-1)>6){
+                   numbersInColumn = joinedList(dialogWager,numbersInColumn, columnNum);
+                }
 
                 for (int currentNumber = 0; currentNumber != WagerStorage.getNumCountListValue(columnNum - 1); currentNumber++) {
                     WebElement elem = numbersInColumn.get(currentNumber);
@@ -67,7 +89,7 @@ public class WagerChecker {
         ElementHandler.waitElementLoadedBy(By.cssSelector(desiredLotteryBets));
         List<WebElement> wagerElems = ElementHandler.getElementArray(desiredLotteryBets);
         ElementHandler.waitPageToBeLoaded();
-        WebElement lastBet = wagerElems.get(0).findElement(By.cssSelector("[class=\"" +lotteryKind + " table-cell game\"]"));
+        WebElement lastBet = wagerElems.get(0).findElement(By.cssSelector("[class=\"" + lotteryKind + " table-cell game\"]"));
         ElementHandler.clickCmd(lastBet);
         ElementHandler.waitElementLoadedBy(ElementHandler.getIdBy("dialog-wager"));
     }
@@ -78,17 +100,17 @@ public class WagerChecker {
         int columnsInWager = allrows.size();
         Assert.assertEquals(columns, columnsInWager);
         boolean chanceInWager = ElementHandler.getClasCssElement("addon-game-name").isEnabled();
-        Assert.assertEquals(chance,chanceInWager);
+        Assert.assertEquals(chance, chanceInWager);
         kingsGameInWager(kingsGame);
-        
+
 
     }
-    
-    private static void kingsGameInWager(boolean kingsGameActivated){
-        if (kingsGameActivated){
+
+    private static void kingsGameInWager(boolean kingsGameActivated) {
+        if (kingsGameActivated) {
             List<WebElement> kingsgames = ElementHandler.getIdCssElement("dialog-wager").findElements(ElementHandler.getclassCssBy("w-6"));
-            for (WebElement kingsgame:kingsgames) {
-                Assert.assertEquals(kingsgame.getText(),"Královská hra");
+            for (WebElement kingsgame : kingsgames) {
+                Assert.assertEquals(kingsgame.getText(), "Královská hra");
 
             }
         }
