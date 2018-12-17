@@ -1,7 +1,6 @@
 package cz.sazka.tests.LotteryUtils;
 
 import com.google.common.collect.Lists;
-import cz.sazka.tests.SessionStorage.SessionStorageReader;
 import cz.sazka.tests.SessionStorage.WagerInfoReader;
 import cz.sazka.tests.Steps.ClickStep;
 import cz.sazka.tests.Steps.Hook;
@@ -90,7 +89,7 @@ public class WagerFeatures {
 
         }else {
             ElementHandler.clickCmd(ElementHandler.getCssElement("#duration-option > li:nth-child(2)"));
-            new ClickStep().clickComboBox("durationSelectSelectBoxItArrow",durationCount);
+            new ClickStep().clickComboBox("durationSelectSelectBoxIt",durationCount);
         }
 
     }
@@ -161,7 +160,7 @@ public class WagerFeatures {
     private static void enableChance(boolean enable) {
         boolean chanceActivated = ElementHandler.getIdCssElement("chance-numbers").isDisplayed();
         if (!enable || !chanceActivated) {
-            ElementHandler.clickCmd(ElementHandler.getClasCssElement("col-md-4 want-chance"));
+            ElementHandler.clickOn(ElementHandler.getForCssBy("check-include-chance"));
         }
     }
 
@@ -171,13 +170,13 @@ public class WagerFeatures {
      */
     public static void cleanAllColumns() {
 
-        if (ElementHandler.getElementArray(Helpers.getDataColumnIndex()).size() == 0) {
+        if (ElementHandler.getElementArray(Helpers.getAllColumns()).size() == 0) {
             String error = "game-columns not found";
             log.error(error);
 
             throw new InvalidParameterException(error);
         }
-        for (WebElement element : Lists.reverse(ElementHandler.getElementArray(Helpers.getDataColumnIndex()))) {
+        for (WebElement element : Lists.reverse(ElementHandler.getElementArray(Helpers.getAllColumns()))) {
             if (element.getAttribute("class").contains("active")) {
                 element.click();
                 String delete = Helpers.locatorMap("delete");

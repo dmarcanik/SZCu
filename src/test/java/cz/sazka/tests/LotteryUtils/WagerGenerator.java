@@ -6,7 +6,6 @@ import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebElement;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class WagerGenerator {
         if (ElementHandler.getIdCssElement(close).isDisplayed()) {
             new ClickStep().click(close);
         }
-        if (ElementHandler.getElementArray(Helpers.getDataColumnIndex()).size() == 0) {
+        if (ElementHandler.getElementArray(Helpers.getAllColumns()).size() == 0) {
             String error = "game-columns not found";
             log.error(error);
 

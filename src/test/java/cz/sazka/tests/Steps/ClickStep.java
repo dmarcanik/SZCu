@@ -7,16 +7,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 
 
 public class ClickStep {
 
     private static Logger log = LogManager.getRootLogger();
-    private static WebDriver webDriver = Hook.getDriver();
 
     /**
      * Waiting to id element to be clickable
@@ -29,9 +26,8 @@ public class ClickStep {
         try {
 
             log.info("Clicking on button " + target);
-            ElementHandler.webDriverWait().until(ExpectedConditions.elementToBeClickable(ElementHandler.getIdBy(target)));
-            WebElement element = ElementHandler.findCmd(target);
-            ElementHandler.clickCmd(element);
+            By targetBy = ElementHandler.getIdBy(target);
+            ElementHandler.clickOn(targetBy);
             log.info(target + " button clicked");
 
         } catch (NoSuchElementException e) {
@@ -40,6 +36,8 @@ public class ClickStep {
         }
 
     }
+
+
 
     /**
      * Waiting to id element to be clickable
@@ -51,8 +49,9 @@ public class ClickStep {
     public void clickCheckbox(String target) {
         try {
             log.info("Clicking on checkbox " + target);
-            ElementHandler.waitElementLoadedBy(ElementHandler.getForCssBy(target));
-            WebElement element = ElementHandler.getForCssElement(target);
+            By targetBy = ElementHandler.getForCssBy(target);
+            ElementHandler.waitElementLoadedBy(targetBy);
+            WebElement element = ElementHandler.getElement(targetBy);
 
             if (!element.isSelected()) {
                 element.click();

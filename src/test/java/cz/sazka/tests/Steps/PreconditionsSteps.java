@@ -1,19 +1,16 @@
 package cz.sazka.tests.Steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cz.sazka.tests.DataProviders.ConfigFileReader;
+import cz.sazka.tests.Utils.ActiveElementChecker;
 import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
-import gherkin.lexer.El;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.w3c.dom.html.HTMLBRElement;
 
 public class PreconditionsSteps {
 
@@ -21,6 +18,7 @@ public class PreconditionsSteps {
 
     private static WebDriver webDriver = Hook.getDriver();
     private static ConfigFileReader configFileReader;
+    private static By consentBy = ElementHandler.getBy(Helpers.getConsentPageCss());
 
     /**
      *Checks whether user is loogged in is, then logs him out and then login user added in keywords.
@@ -30,7 +28,8 @@ public class PreconditionsSteps {
         configFileReader = new ConfigFileReader();
         webDriver.navigate().to(configFileReader.getUrl());
         ElementHandler.waitPageToBeLoaded();
-        if (ElementHandler.userLoggedIn()) {
+        By userLogin = ElementHandler.getBy(Helpers.getLoggedInCss());
+        if (ActiveElementChecker.isActive(userLogin)) {
             logoutUser();
         }
         loginUser(username, password);
@@ -38,16 +37,6 @@ public class PreconditionsSteps {
     }
 
 
-    /**
-     * Finds the input element by name attribute and send the value to it
-     *
-     * @param name  Input name
-     * @param value Value to send
-     */
-    private void writeToInput(String name, String value) throws InterruptedException {
-        ElementHandler.getIdCssElement(name).clear();
-        ElementHandler.getIdCssElement(name).sendKeys(value);
-    }
 
     public static void waitForPresence(By by) {
         ElementHandler.webDriverWait().until(ExpectedConditions.elementToBeClickable(by));
@@ -57,15 +46,12 @@ public class PreconditionsSteps {
     @And("^Login user \"([^\"]*)\" with password \"([^\"]*)\" $")
     public void loginUser(String username, String password) throws Throwable {
         ElementHandler.waitPageToBeLoaded();
-        waitForPresence(ElementHandler.getIdBy(Helpers.locatorMap("login")));
         new ClickStep().click(Helpers.locatorMap("login"));
-        waitForPresence(ElementHandler.getIdBy(Helpers.locatorMap("user")));
-        new ClickStep().click(Helpers.locatorMap("user"));
-        writeToInput(Helpers.locatorMap("user"), username);
-        writeToInput(Helpers.locatorMap("password"), password);
+        new WriteSteps().writeToInput(Helpers.locatorMap("user"), username);
+        new WriteSteps().writeToInput(Helpers.locatorMap("password"), password);
         new ClickStep().click(Helpers.locatorMap("submit"));
         ElementHandler.waitToBeLoggedIn();
-        if (ElementHandler.consentPresented()) {
+        if (ActiveElementChecker.isActive(consentBy)) {
             ElementHandler.acceptConsent();
         }
 
@@ -76,18 +62,17 @@ public class PreconditionsSteps {
     public void logoutUser() throws Throwable {
         int count = 1;
         ElementHandler.waitPageToBeLoaded();
-        waitForPresence(ElementHandler.getIdBy(Helpers.locatorMap("myProfile")));
+        By logout = ElementHandler.getBy(Helpers.getClassCssContains(Helpers.locatorMap("logout")));
+        By ok = ElementHandler.getBy(Helpers.getClassCssContains(Helpers.locatorMap("ok")));
         new ClickStep().click(Helpers.locatorMap("myProfile"));
-        while (!(ElementHandler.isLoggoutActive())&& count< 3) {
+        while (!(ActiveElementChecker.isActive(logout))&& count< 3) {
             System.out.println("myProfile not active retrying attempt " + count);
             new ClickStep().click(Helpers.locatorMap("myProfile"));
             count++;
             Thread.sleep(2000);
         }
-        waitForPresence(ElementHandler.getclassCssBy(Helpers.locatorMap("logout")));
-        ElementHandler.getClasCssElement(Helpers.locatorMap("logout")).click();
-        waitForPresence(ElementHandler.getclassCssBy(Helpers.locatorMap("ok")));
-        ElementHandler.getClasCssElement(Helpers.locatorMap("ok")).click();
+        ElementHandler.clickOn(logout);
+        ElementHandler.clickOn(ok);
         ElementHandler.waitToBeLoggedOut();
     }
 
@@ -99,7 +84,7 @@ public class PreconditionsSteps {
         configFileReader = new ConfigFileReader();
         webDriver.navigate().to(configFileReader.getUrl());
         ElementHandler.waitPageToBeLoaded();
-        if (ElementHandler.consentPresented()) {
+        if (ActiveElementChecker.isActive(consentBy)) {
             ElementHandler.acceptConsent();
         }
     }

@@ -2,6 +2,7 @@ package cz.sazka.tests.LotteryUtils;
 
 import cz.sazka.tests.Steps.Hook;
 import cz.sazka.tests.Storage.WagerStorage;
+import cz.sazka.tests.Utils.ActiveElementChecker;
 import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
@@ -22,14 +23,13 @@ public class WagerChecker {
     private static Logger log = LogManager.getRootLogger();
 
 
-    private static List<WebElement> joinedList(WebElement dialogWager,List<WebElement> firstLine, int columnNum ) {
-        List<WebElement> joinedList = new ArrayList<>(100);
-        joinedList.addAll(firstLine);
-        String secondColumnNum = String.valueOf(columnNum *2 );
+    private static List<WebElement> joinedList(WebElement dialogWager, List<WebElement> firstLine, int columnNum) {
+        List<WebElement> joinedList = new ArrayList<>(firstLine);
+        String secondColumnNum = String.valueOf(columnNum * 2);
         try {
-            List<WebElement> primaryNums = dialogWager.findElement(By.cssSelector("tr.primary-numbers:nth-child("+secondColumnNum+ ")")).findElements(By.cssSelector("td > span"));
+            List<WebElement> primaryNums = dialogWager.findElement(By.cssSelector("tr.primary-numbers:nth-child(" + secondColumnNum + ")")).findElements(By.cssSelector("td > span"));
             joinedList.addAll(primaryNums);
-        }catch (NoSuchElementException ignored){
+        } catch (NoSuchElementException ignored) {
 
         }
 
@@ -47,12 +47,12 @@ public class WagerChecker {
             WebElement dialogWager = ElementHandler.getIdCssElement("dialog-wager");
             for (int columnNum = 1; columnNum <= WagerStorage.getColumnCount(); columnNum++) {
                 WebElement currentColumn = dialogWager.findElement(By.cssSelector("[id=\"row-" + columnNum + "\"]"));
-                List<WebElement> numbersInColumn = currentColumn.findElements(By.cssSelector("td > span"));
-                if(lotteryKind.equals("keno")||lotteryKind.equals("stastnych10") && WagerStorage.getNumCountListValue(columnNum-1)>6){
-                   numbersInColumn = joinedList(dialogWager,numbersInColumn, columnNum);
+                List<WebElement> numbersInColumn = currentColumn.findElements(By.cssSelector("div > span"));
+                if (lotteryKind.equals("keno") || lotteryKind.equals("stastnych10") && WagerStorage.getNumCountListValue(columnNum - 1) > 6) {
+                    numbersInColumn = joinedList(dialogWager, numbersInColumn, columnNum);
                 }
 
-                for (int currentNumber = 0; currentNumber != WagerStorage.getNumCountListValue(columnNum - 1); currentNumber++) {
+                for (int currentNumber = 1; currentNumber != WagerStorage.getNumCountListValue(columnNum - 1); currentNumber++) {
                     WebElement elem = numbersInColumn.get(currentNumber);
                     boolean savedNumberInWager = WagerStorage.getNumberStorage(columnNum - 1).contains(stringToInt(elem.getText()));
                     Assert.assertTrue(savedNumberInWager);
@@ -85,11 +85,11 @@ public class WagerChecker {
     }
 
     private static void openLastBet(String lotteryKind) {
-        String desiredLotteryBets = Helpers.getDataTest(lotteryKind);
-        ElementHandler.waitElementLoadedBy(By.cssSelector(desiredLotteryBets));
-        List<WebElement> wagerElems = ElementHandler.getElementArray(desiredLotteryBets);
+        By desiredLotteryBets = ElementHandler.getBy(Helpers.getDataTest(lotteryKind));
+        ElementHandler.waitElementLoadedBy(desiredLotteryBets);
+        List<WebElement> wagerElems = ElementHandler.getElementArrayBy(desiredLotteryBets);
         ElementHandler.waitPageToBeLoaded();
-        WebElement lastBet = wagerElems.get(0).findElement(By.cssSelector("[class=\"" + lotteryKind + " table-cell game\"]"));
+        WebElement lastBet = wagerElems.get(0).findElement(ElementHandler.getBy(Helpers.getDataTest("columns")));
         ElementHandler.clickCmd(lastBet);
         ElementHandler.waitElementLoadedBy(ElementHandler.getIdBy("dialog-wager"));
     }
@@ -99,7 +99,7 @@ public class WagerChecker {
         List<WebElement> allrows = ElementHandler.getIdCssElement("dialog-wager").findElements(ElementHandler.getIdContainsBy("row"));
         int columnsInWager = allrows.size();
         Assert.assertEquals(columns, columnsInWager);
-        boolean chanceInWager = ElementHandler.getClasCssElement("addon-game-name").isEnabled();
+        boolean chanceInWager = ActiveElementChecker.isActive(ElementHandler.getclassCssBy("addon-game-name"));
         Assert.assertEquals(chance, chanceInWager);
         kingsGameInWager(kingsGame);
 

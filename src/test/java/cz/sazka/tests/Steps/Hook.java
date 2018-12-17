@@ -24,7 +24,7 @@ public class Hook {
     private static Logger log = LogManager.getRootLogger();
     private static WebDriver webdriver;
     private static ConfigFileReader configFileReader;
-    private static boolean dev = false;
+    private static boolean dev = true;
 
 
     public static WebDriver getDriver() {

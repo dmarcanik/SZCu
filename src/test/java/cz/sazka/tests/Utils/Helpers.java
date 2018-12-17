@@ -17,8 +17,16 @@ public class Helpers {
         return "[id=\"" + path + "\"]";
     }
 
+    static String getIdCssContains(String path) {
+        return "[id*=\"" + path + "\"]";
+    }
+
     static String getForCss(String path) {
         return "[for=\"" + path + "\"]";
+    }
+
+    static String getForCssContains(String path) {
+        return "[for*=\"" + path + "\"]";
     }
 
     static String getClassCss(String target) {
@@ -26,20 +34,37 @@ public class Helpers {
     }
 
     public static String getClassCssContains(String path) {
-        String oldcss = "[class~=\"{}\"]";
+        String oldcss = "[class*=\"{}\"]";
         return oldcss.replace("{}", path);
     }
 
-     static String getIdCssContains(String path) {
-        return "[id*=\"" + path + "\"]";
+
+    public static String getColumn(String number) {
+        return "[data-columnindex=\"" + number + "\"]";
     }
 
-    public static String getDataColumnIndex() {
+    public static String getColumnContains(String number) {
+        return "[data-columnindex*=\"" + number + "\"]";
+
+    }
+
+    public static String getMergedCssOr(String css1, String css2) {
+        return css1 + "," + css2;
+    }
+    public static String getMergedCssAnd(String css1, String css2) {
+        return css1 +  css2;
+    }
+
+
+    public static String getAllColumns() {
         return "[data-columnindex]";
     }
 
     public static String getDataTest(String target) {
         return "[data-test=\"" + target + "\"]";
+    }
+    public static String getDataTestContains(String target) {
+        return "[data-test*=\"" + target + "\"]";
     }
 
     static String getLoaderCss() {
@@ -47,7 +72,7 @@ public class Helpers {
     }
 
 
-    static String getConsentPageCss() {
+    public static String getConsentPageCss() {
         return "[class=\"consents-bar active layout-bottom\"]";
     }
 
@@ -58,12 +83,20 @@ public class Helpers {
         return result;
     }
 
-    static String getLoggedInCss() {
+    public static String getLoggedInCss() {
         return "[class~=\"authenticated\"]";
     }
 
-    static String getLoggedOutCss() {
+    public static String getLoggedOutCss() {
         return "[class~=\"unauthenticated\"]";
+    }
+
+    static List<String> getObstacles(){
+        ArrayList<String> result = new ArrayList<>();
+        result.add("[class*=\"loader active\"]");
+        result.add("[id=\"alertModal\"]");
+
+        return result;
     }
 
 
@@ -73,11 +106,11 @@ public class Helpers {
         hashtable.put("user", "user");
         hashtable.put("password", "password");
         hashtable.put("submit", "submit");
-        hashtable.put("myProfile", "myProfile");
+        hashtable.put("myProfile", "userName");
         hashtable.put("logout", "btn-logout");
-        hashtable.put("ok", "ng-scope mwc-col-xs-12");
+        hashtable.put("ok", "buttons");
         hashtable.put("myWagers", "myWagers");
-        hashtable.put("wagerList", "wagerList");
+        hashtable.put("wagerList", "wager-list");
         hashtable.put("loadingScreen", "loadingScreen");
         hashtable.put("columnBox", "dialog-column-checkboxes");
         hashtable.put("columnBoxAdd", "dialog-column-checkboxes-additional");

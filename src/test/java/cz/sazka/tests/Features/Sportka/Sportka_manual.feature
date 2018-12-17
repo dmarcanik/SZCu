@@ -4,7 +4,6 @@ Feature: Sportka_Manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create sportka wager with draw set to "streda" and Šance set to "none", předpladné set to "1"
       | numbers          |
       | 1,10,19,21,31,33 |
@@ -18,7 +17,6 @@ Feature: Sportka_Manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create sportka wager with draw set to "nedele" and Šance set to "Z,0", předpladné set to "1"
       | numbers          |
       | 8,29,31,39,41,42 |
@@ -31,7 +29,6 @@ Feature: Sportka_Manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create sportka wager with draw set to "streda,nedele" and Šance set to "Z,Y", předpladné set to "2"
       | numbers           |
       | 10,20,30,19,21,22 |
@@ -44,7 +41,6 @@ Feature: Sportka_Manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create sportka wager with draw set to "streda" and Šance set to "none", předpladné set to "2"
       | numbers          |
       | 1,18,20,30,32,48 |
@@ -57,7 +53,6 @@ Feature: Sportka_Manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create sportka wager with draw set to "streda,nedele" and Šance set to "Z,0", předpladné set to "3"
       | numbers       |
       | 1,18,32,5,6,7 |
@@ -70,7 +65,6 @@ Feature: Sportka_Manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create sportka wager with draw set to "nedele" and Šance set to "Z,Y", předpladné set to "1"
       | numbers         |
       | 2,10,28,20,5,6  |
@@ -84,7 +78,6 @@ Feature: Sportka_Manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create sportka wager with draw set to "streda" and Šance set to "none", předpladné set to "1"
       | numbers           |
       | 32,5,6,7,8,9      |
@@ -100,7 +93,6 @@ Feature: Sportka_Manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create sportka wager with draw set to "nedele" and Šance set to "Z,0", předpladné set to "1"
       | numbers          |
       | 3,4,5,6,7,9      |
@@ -118,7 +110,6 @@ Feature: Sportka_Manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create sportka wager with draw set to "streda" and Šance set to "Z,Y", předpladné set to "1"
       | numbers        |
       | 3,4,5,6,7,8    |
@@ -139,7 +130,6 @@ Feature: Sportka_Manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create sportka wager with draw set to "nedele" and Šance set to "Z,0", předpladné set to "1"
       | numbers             |
       | 2,10,28,20,30,38,49 |
@@ -161,10 +151,9 @@ Feature: Sportka_Manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create sportka wager with draw set to "nedele" and Šance set to "Z,Y", předpladné set to "1"
       | numbers        |
-      | 2,10,28,20,30,38,49 |
+      | 2,10,28,20,30,38 |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -174,7 +163,6 @@ Feature: Sportka_Manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create sportka wager with draw set to "patek" and Šance set to "none", předpladné set to "1"
       | numbers        |
       | 2,3,4,5,6,7|
