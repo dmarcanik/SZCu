@@ -5,6 +5,7 @@ import cz.sazka.tests.SessionStorage.WagerInfoReader;
 import cz.sazka.tests.Steps.ClickStep;
 import cz.sazka.tests.Steps.Hook;
 import cz.sazka.tests.Storage.WagerStorage;
+import cz.sazka.tests.Utils.ActiveElementChecker;
 import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
@@ -26,6 +27,8 @@ public class WagerFeatures {
     private static String lastNumKey;
     private static String lastbeforeNumKey;
     private static boolean missmatched = false;
+    private static By closeButton = ElementHandler.getIdBy(Helpers.locatorMap("close"));
+    private static By deleteButton = ElementHandler.getIdBy(Helpers.locatorMap("delete"));
 
 
 
@@ -169,19 +172,19 @@ public class WagerFeatures {
      * Deletes every pre-filled column in opened wager.
      */
     public static void cleanAllColumns() {
-
         if (ElementHandler.getElementArray(Helpers.getAllColumns()).size() == 0) {
             String error = "game-columns not found";
             log.error(error);
 
             throw new InvalidParameterException(error);
         }
+        if (ActiveElementChecker.isActive(closeButton)){
+            ElementHandler.clickOn(closeButton);
+        }
         for (WebElement element : Lists.reverse(ElementHandler.getElementArray(Helpers.getAllColumns()))) {
             if (element.getAttribute("class").contains("active")) {
                 element.click();
-                String delete = Helpers.locatorMap("delete");
-                ElementHandler.waitElementLoaded(delete);
-                ElementHandler.clickCmd(ElementHandler.getCssElement(delete));
+                ElementHandler.clickOn(deleteButton);
             }
 
         }

@@ -2,20 +2,46 @@ package cz.sazka.tests.LotteryUtils;
 
 import cucumber.api.DataTable;
 import cz.sazka.tests.Steps.ClickStep;
+import cz.sazka.tests.Steps.GenerateWagerSteps;
 import cz.sazka.tests.Storage.WagerStorage;
 import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebElement;
+import org.w3c.dom.html.HTMLBRElement;
 
-import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Map;
 
 public class WagerCreator {
     private static Logger log = LogManager.getRootLogger();
+    private static String prvniHraciPole = Helpers.getDataColumn("0");
+    private static String druheHraciPole = Helpers.getDataColumn("1");
+    private static String pocetCisel = Helpers.getClassCssContains("keno-wager-count");
+    private static String cisla = Helpers.getClassCssContains("keno-ticket");
+    private static String vklad = Helpers.getClassCssContains("keno-bet-amount");
+
+    public static void createKenoWager(DataTable data, int numberCount) {
+        for (Map<String, String> columnData : data.asMaps(String.class, String.class)) {
+            String numbers = columnData.get("numbers");
+            String[] splittedNumbers = numbers.split(",");
+            int deposit = Integer.parseInt(columnData.get("vklad"));
+            String numCountString = String.valueOf(numberCount);
+            String depositString = String.valueOf(deposit);
+            if (columnData.size() < 1) {
+                String pocetCiselZPole = Helpers.getMergedCssChild(prvniHraciPole, pocetCisel);
+                String cislo = ">label>[value=\"" + numCountString + "\"]";
+                By aktualniCislo = ElementHandler.getBy(Helpers.getMergedCssChild(pocetCiselZPole,cislo));
+                ElementHandler.clickOn(aktualniCislo);
+            }
+
+        }
 
 
+    }
 
 
     /**
@@ -25,13 +51,10 @@ public class WagerCreator {
      * @param data    defines numbers, additional numbers and other valid parameters for particular lottery.
      */
     public static void createWager(String lottery, DataTable data, String sance) {
-        String closeButton = Helpers.locatorMap("close");
-        new ClickStep().click(closeButton);
+        WagerFeatures.cleanAllColumns();
         if (!lottery.equals("keno")) {
             WagerFeatures.setChance(lottery, sance);
         }
-
-        WagerFeatures.cleanAllColumns();
         ArrayList<Integer> numList = new ArrayList<>();
         ArrayList<Integer> addNumList = new ArrayList<>();
         ArrayList<Integer> numCountList = new ArrayList<>();
@@ -101,4 +124,6 @@ public class WagerCreator {
         }
         WagerStorage.storeColumnCount(currentColumn);
     }
+
+
 }

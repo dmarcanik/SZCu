@@ -8,23 +8,15 @@ import javax.smartcardio.ATR;
 public class ActiveElementChecker {
 
 
-    public static void waitUntillIsnotActive(){
-        boolean obstacle;
-
-
-
-    }
-
     public static boolean isActive(By by){
-
+        boolean result;
         try {
-            ElementHandler.getElement(by);
-            return true;
+            result =  ElementHandler.getElement(by).isDisplayed();
+
         }catch (NoSuchElementException ignored){
-            return false;
+            result = false;
         }
-
-
+        return result;
 
     }
 

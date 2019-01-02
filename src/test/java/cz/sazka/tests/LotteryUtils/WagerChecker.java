@@ -21,6 +21,7 @@ public class WagerChecker {
 
     private static WebDriver webDriver = Hook.getDriver();
     private static Logger log = LogManager.getRootLogger();
+    private static String numbersInColumnString = Helpers.getMergedCssChild(Helpers.getClassCss("primary-numbers num-row"), Helpers.getClassCss("n"));
 
 
     private static List<WebElement> joinedList(WebElement dialogWager, List<WebElement> firstLine, int columnNum) {
@@ -47,7 +48,7 @@ public class WagerChecker {
             WebElement dialogWager = ElementHandler.getIdCssElement("dialog-wager");
             for (int columnNum = 1; columnNum <= WagerStorage.getColumnCount(); columnNum++) {
                 WebElement currentColumn = dialogWager.findElement(By.cssSelector("[id=\"row-" + columnNum + "\"]"));
-                List<WebElement> numbersInColumn = currentColumn.findElements(By.cssSelector("div > span"));
+                List<WebElement> numbersInColumn = currentColumn.findElements(By.cssSelector(numbersInColumnString));
                 if (lotteryKind.equals("keno") || lotteryKind.equals("stastnych10") && WagerStorage.getNumCountListValue(columnNum - 1) > 6) {
                     numbersInColumn = joinedList(dialogWager, numbersInColumn, columnNum);
                 }

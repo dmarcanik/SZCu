@@ -29,7 +29,7 @@ public class Helpers {
         return "[for*=\"" + path + "\"]";
     }
 
-    static String getClassCss(String target) {
+    public static String getClassCss(String target) {
         return "[class=\"" + target + "\"]";
     }
 
@@ -51,8 +51,13 @@ public class Helpers {
     public static String getMergedCssOr(String css1, String css2) {
         return css1 + "," + css2;
     }
+
+    public static String getMergedCssChild(String parent, String child) {
+        return parent + ">" + child;
+    }
+
     public static String getMergedCssAnd(String css1, String css2) {
-        return css1 +  css2;
+        return css1 + css2;
     }
 
 
@@ -63,6 +68,11 @@ public class Helpers {
     public static String getDataTest(String target) {
         return "[data-test=\"" + target + "\"]";
     }
+
+    public static String getDataColumn(String target) {
+        return "[data-column=\"" + target + "\"]";
+    }
+
     public static String getDataTestContains(String target) {
         return "[data-test*=\"" + target + "\"]";
     }
@@ -91,10 +101,13 @@ public class Helpers {
         return "[class~=\"unauthenticated\"]";
     }
 
-    static List<String> getObstacles(){
+    static List<String> getObstacles() {
         ArrayList<String> result = new ArrayList<>();
         result.add("[class*=\"loader active\"]");
         result.add("[id=\"alertModal\"]");
+        result.add("[id=\"dialog-confirm\"]");
+        result.add("[class=\"additional-info\"]");
+        result.add("[class=\"modal fade modal-grey modal-confirm-online-bet show\"]");
 
         return result;
     }

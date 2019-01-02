@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WagerInfoReader {
+    private static String[] lastwoNums = new String[2];
+
 
     /**
      * @param lotteryKind lottery name
@@ -91,7 +93,6 @@ public class WagerInfoReader {
      */
     public String[] getLastTwoNums(String lotteryKind) {
         List<Object> list = getReversedJsonObjArray(getAddonNumbers(lotteryKind));
-        String[] lastwoNums = new String[2];
         for (int i = 0; i < 2; i++) {
             lastwoNums[i] = list.get(i).toString();
         }
