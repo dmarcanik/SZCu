@@ -5,8 +5,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 1 | 10   | ne           |
+      | numbers | vklad | kralovskahra |
+      | 1       | 10    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -17,8 +17,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 5 | 40   | ne           |
+      | numbers | vklad | kralovskahra |
+      | 5       | 40    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -29,8 +29,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 2,6 | 50   | ne           |
+      | numbers | vklad | kralovskahra |
+      | 2,6     | 50    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -41,8 +41,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 5 | 20   | ne           |
+      | numbers | vklad | kralovskahra |
+      | 5       | 20    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -53,8 +53,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 2 | 40   | ne           |
+      | numbers | vklad | kralovskahra |
+      | 2       | 40    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -65,8 +65,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 2,6 | 50   | ne           |
+      | numbers | vklad | kralovskahra |
+      | 2,6     | 50    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -77,8 +77,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 5 | 20   | ne           |
+      | numbers | vklad | kralovskahra |
+      | 5       | 20    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -89,8 +89,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 2 | 40   | ne           |
+      | numbers | vklad | kralovskahra |
+      | 2       | 40    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -101,8 +101,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 4,5 | 60   | ne           |
+      | numbers | vklad | kralovskahra |
+      | 4,5     | 60    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -113,8 +113,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 3,4 | 80   | ne           |
+      | numbers | vklad | kralovskahra |
+      | 3,4     | 80    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -125,8 +125,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 3,5,6 | 100   | ne           |
+      | numbers | vklad | kralovskahra |
+      | 3,5,6   | 100   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -137,8 +137,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 4,9,10 | 120   | ne           |
+      | numbers | vklad | kralovskahra |
+      | 4,9,10  | 120   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -149,7 +149,7 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
+      | numbers     | vklad | kralovskahra |
       | 11,12,13,19 | 140   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
@@ -161,7 +161,7 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
+      | numbers     | vklad | kralovskahra |
       | 20,21,29,30 | 160   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
@@ -197,8 +197,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 9,10,11,19,20| 20   | ne           |
+      | numbers       | vklad | kralovskahra |
+      | 9,10,11,19,20 | 20    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -209,8 +209,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 31,32,33,34,35,36 | 40   | ne           |
+      | numbers           | vklad | kralovskahra |
+      | 31,32,33,34,35,36 | 40    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -221,8 +221,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 2,3,12,13,22,23 | 60   | ne           |
+      | numbers         | vklad | kralovskahra |
+      | 2,3,12,13,22,23 | 60    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -233,8 +233,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 4,40,49,50,51,52 | 80   | ne           |
+      | numbers          | vklad | kralovskahra |
+      | 4,40,49,50,51,52 | 80    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -245,7 +245,7 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
+      | numbers           | vklad | kralovskahra |
       | 29,39,49,59,69,79 | 100   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
@@ -257,7 +257,7 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
+      | numbers              | vklad | kralovskahra |
       | 60,61,62,63,64,65,66 | 120   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
@@ -269,8 +269,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 1,21,22,23,24,29,30| 140   | ne           |
+      | numbers             | vklad | kralovskahra |
+      | 1,21,22,23,24,29,30 | 140   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -281,8 +281,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 7,8,59,60,69,70,79| 160   | ne           |
+      | numbers            | vklad | kralovskahra |
+      | 7,8,59,60,69,70,79 | 160   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -293,7 +293,7 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
+      | numbers              | vklad | kralovskahra |
       | 10,20,30,40,50,60,70 | 180   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
@@ -305,7 +305,7 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
+      | numbers                | vklad | kralovskahra |
       | 1,11,12,13,17,18,25,26 | 200   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
@@ -317,8 +317,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 1,2,3,71,72,73,74,75| 20   | ne           |
+      | numbers              | vklad | kralovskahra |
+      | 1,2,3,71,72,73,74,75 | 20    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -329,8 +329,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 19,20,22,24,26,29,30,39 | 40   | ne           |
+      | numbers                 | vklad | kralovskahra |
+      | 19,20,22,24,26,29,30,39 | 40    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -341,8 +341,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 4,19,30,40,49,60,69,73 | 60   | ne           |
+      | numbers                | vklad | kralovskahra |
+      | 4,19,30,40,49,60,69,73 | 60    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -353,8 +353,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 68,71,72,73,74,75,76,77,78| 80   | ne           |
+      | numbers                    | vklad | kralovskahra |
+      | 68,71,72,73,74,75,76,77,78 | 80    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -365,7 +365,7 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
+      | numbers                    | vklad | kralovskahra |
       | 29,30,31,32,33,34,35,36,37 | 100   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
@@ -377,7 +377,7 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
+      | numbers                | vklad | kralovskahra |
       | 2,3,4,9,72,73,74,75,76 | 120   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
@@ -389,8 +389,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 2,3,20,23,26,29,30,33,36,39| 140   | ne           |
+      | numbers                     | vklad | kralovskahra |
+      | 2,3,20,23,26,29,30,33,36,39 | 140   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -401,7 +401,7 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
+      | numbers                  | vklad | kralovskahra |
       | 1,2,30,39,60,63,69,70,79 | 160   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
@@ -413,8 +413,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 8,18,28,38,48,53,54,58,68,78| 180   | ne           |
+      | numbers                      | vklad | kralovskahra |
+      | 8,18,28,38,48,53,54,58,68,78 | 180   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -425,8 +425,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 59,60,61,62,63,74,75,76,77,78| 200   | ne           |
+      | numbers                       | vklad | kralovskahra |
+      | 59,60,61,62,63,74,75,76,77,78 | 200   | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -437,8 +437,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 19,20,21,22,33,34,45,46,49,50 | 20   | ne           |
+      | numbers                       | vklad | kralovskahra |
+      | 19,20,21,22,33,34,45,46,49,50 | 20    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -449,8 +449,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 5,6,7,8,29,30,39,40,49,50 | 40   | ne           |
+      | numbers                   | vklad | kralovskahra |
+      | 5,6,7,8,29,30,39,40,49,50 | 40    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -461,8 +461,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 1,10,20,30,40,50,60,70,71,72| 60   | ne           |
+      | numbers                      | vklad | kralovskahra |
+      | 1,10,20,30,40,50,60,70,71,72 | 60    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -473,8 +473,8 @@ Feature: Š10 Královská_Ne_večer manual
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "1"
-      | numbers        | vklad | kralovskahra |
-      | 2,3,4,9,10,19,20,29,30,39 | 80   | ne           |
+      | numbers                   | vklad | kralovskahra |
+      | 2,3,4,9,10,19,20,29,30,39 | 80    | ne           |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
