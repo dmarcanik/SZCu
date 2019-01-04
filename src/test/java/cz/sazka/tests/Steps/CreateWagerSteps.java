@@ -22,7 +22,7 @@ public class CreateWagerSteps {
      */
     @And("^I create sportka wager with draw set to \"(streda|nedele|streda,nedele|patek)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
     public void iCreateSportkaWager(String draw, String chance,String duration, DataTable dataTable) {
-        WagerCreator.createWager("sportka", dataTable, chance);
+        WagerCreator.createBigLotteryWager("sportka", dataTable, chance);
         WagerFeatures.selectDrawDate(draw, "sportka");
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"sportka");
@@ -44,7 +44,7 @@ public class CreateWagerSteps {
      */
     @And("^I create Eurojackpot wager with draw set to \"(patek)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
     public void iCreateEurojackpotWager(String draw, String chance,String duration, DataTable dataTable) {
-        WagerCreator.createWager("eurojackpot", dataTable, chance);
+        WagerCreator.createBigLotteryWager("eurojackpot", dataTable, chance);
         WagerFeatures.selectDrawDate(draw, "eurojackpot");
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"eurojackpot");
@@ -64,7 +64,7 @@ public class CreateWagerSteps {
      */
     @And("^I create Euromiliony wager with draw set to \"(sobota|utery)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
     public void iCreateEuroMilionyWager(String draw, String chance,String duration, DataTable dataTable) {
-        WagerCreator.createWager("euromilliony", dataTable, chance);
+        WagerCreator.createBigLotteryWager("euromilliony", dataTable, chance);
         WagerFeatures.selectDrawDate(draw, "euromiliony");
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"euromiliony");
@@ -85,7 +85,7 @@ public class CreateWagerSteps {
      */
     @And("^I create Stastnych 10 wager with draw set to \"(poledne|vecer|poledne,vecer)\" and Šance set to \"(Z,Y|X,Z|Z,0|none)\", předpladné set to \"([^\"]*)\"$")
     public void iCreateStastnych10Wager(String draw, String chance,String duration, DataTable dataTable) {
-        WagerCreator.createWager("stastnych10", dataTable, chance);
+        WagerCreator.createBigLotteryWager("stastnych10", dataTable, chance);
         WagerFeatures.selectDrawDate(draw, "stastnych10");
         if (!duration.equals("1")){
             WagerFeatures.setDuration(duration,"stastnych10");
@@ -104,7 +104,7 @@ public class CreateWagerSteps {
      */
     @And("^I create Keno wager$")
     public void iCreateKenoWager(DataTable dataTable) {
-        WagerCreator.createWager("keno", dataTable, "none");
+        WagerCreator.createKenoWager( dataTable);
         WagerStorage.storeDrawCount(1);
 
 

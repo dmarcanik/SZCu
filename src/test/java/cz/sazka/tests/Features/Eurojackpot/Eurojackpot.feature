@@ -4,7 +4,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "none", předpladné set to "1"
       | numbers   | additional |
       | 1,2,3,4,5 | 1,2        |
@@ -17,7 +16,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "Z,0", předpladné set to "1"
       | numbers      | additional |
       | 1,10,11,12,3 | 1,3        |
@@ -30,7 +28,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "Z,Y", předpladné set to "1"
       | numbers        | additional |
       | 10,20,30,49,50 | 1,10       |
@@ -43,7 +40,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "none", předpladné set to "2"
       | numbers     | additional |
       | 2,3,4,5,6   | 3,4        |
@@ -57,7 +53,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "Z,0", předpladné set to "1"
       | numbers       | additional |
       | 1,10,20,30,50 | 6,7        |
@@ -71,7 +66,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "Z,Y", předpladné set to "2"
       | numbers        | additional |
       | 1,10,20,30,31  | 1,10       |
@@ -86,7 +80,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "none", předpladné set to "1"
       | numbers        | additional |
       | 1,10,20,30,50  | 1,10       |
@@ -102,7 +95,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "none", předpladné set to "1"
       | numbers        | additional |
       | 41,42,43,44,45 | 8,9        |
@@ -120,7 +112,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "Z,Y", předpladné set to "1"
       | numbers        | additional |
       | 10,20,30,31,32 | 1,10       |
@@ -133,7 +124,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "none", předpladné set to "1"
       | numbers        | additional |
       | 2,3,20,22,23 | 1,10       |
@@ -146,7 +136,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "Z,0", předpladné set to "1"
       | numbers        | additional |
       | 1,10,20,50,16| 1,8       |
@@ -159,7 +148,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "Z,Y", předpladné set to "1"
       | numbers        | additional |
       | 1,10,20,30,50 | 1,6       |
@@ -172,7 +160,6 @@ Feature: Eurojackpot manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "eurojackpot"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Eurojackpot wager with draw set to "patek" and Šance set to "none", předpladné set to "1"
       | numbers        | additional |
       | 1,10,30,50,17| 2,3       |

@@ -80,6 +80,12 @@ public class Helpers {
     static String getLoaderCss() {
         return "[class*=\"loader active\"]";
     }
+    static String getNumberCSS(String target){
+        return "[id=\"dialog-checkbox-"+target+"\"]+span";
+    }
+    static String getAddNumberCSS(String target){
+        return "[id=\"dialog-additional-checkbox-"+target+"\"]+span";
+    }
 
 
     public static String getConsentPageCss() {

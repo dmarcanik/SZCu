@@ -4,7 +4,6 @@ Feature: Euromiliony_manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Euromiliony wager with draw set to "utery" and Šance set to "none", předpladné set to "5"
       | numbers       | additional |
       | 2,3,4,5,6,7,8 | 1          |
@@ -17,7 +16,6 @@ Feature: Euromiliony_manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Euromiliony wager with draw set to "sobota" and Šance set to "Z,0", předpladné set to "1"
       | numbers       | additional |
       | 2,3,4,5,6,7,8 | 1          |
@@ -31,7 +29,6 @@ Feature: Euromiliony_manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Euromiliony wager with draw set to "utery" and Šance set to "Z,Y", předpladné set to "1"
       | numbers             | additional |
       | 1,10,18,20,21,22,23 | 1          |
@@ -44,7 +41,6 @@ Feature: Euromiliony_manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Euromiliony wager with draw set to "utery" and Šance set to "none", předpladné set to "2"
       | numbers             | additional |
       | 1,15,19,20,25,26,27 | 1          |
@@ -57,7 +53,6 @@ Feature: Euromiliony_manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Euromiliony wager with draw set to "utery" and Šance set to "Z,0", předpladné set to "1"
       | numbers             | additional |
       | 1,10,18,20,28,30,35 | 1          |
@@ -71,7 +66,6 @@ Feature: Euromiliony_manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Euromiliony wager with draw set to "sobota" and Šance set to "Z,Y", předpladné set to "1"
       | numbers          | additional |
       | 25,29,35,2,3,4,6 | 1          |
@@ -84,7 +78,6 @@ Feature: Euromiliony_manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Euromiliony wager with draw set to "utery" and Šance set to "none", předpladné set to "2"
       | numbers              | additional |
       | 21,22,23,24,26,27,31 | 2          |
@@ -98,7 +91,6 @@ Feature: Euromiliony_manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Euromiliony wager with draw set to "sobota" and Šance set to "Z,0", předpladné set to "1"
       | numbers              | additional |
       | 1,5,19,20,25,29      | 1          |
@@ -113,7 +105,6 @@ Feature: Euromiliony_manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Euromiliony wager with draw set to "utery" and Šance set to "Z,Y", předpladné set to "1"
       | numbers              | additional |
       | 10,18,28,30,35,11,12 | 2          |
@@ -130,7 +121,6 @@ Feature: Euromiliony_manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Euromiliony wager with draw set to "sobota" and Šance set to "none", předpladné set to "1"
       | numbers              | additional |
       | 1,5,19,20,21,22,23 | 2          |
@@ -143,7 +133,6 @@ Feature: Euromiliony_manual
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
     When I Navigate to section "loterie"and game "euromiliony"
     And I click on button "online-bet"
-    And I click on button "btn-game-manual"
     And I create Euromiliony wager with draw set to "utery" and Šance set to "Z,0", předpladné set to "1"
       | numbers              | additional |
       | 1,10,18,20,28,30,35      | 1          |

@@ -14,35 +14,39 @@ import org.openqa.selenium.WebElement;
 import org.w3c.dom.html.HTMLBRElement;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class WagerCreator {
     private static Logger log = LogManager.getRootLogger();
-    private static String prvniHraciPole = Helpers.getDataColumn("0");
-    private static String druheHraciPole = Helpers.getDataColumn("1");
+    private static String hraciPole;
     private static String pocetCisel = Helpers.getClassCssContains("keno-wager-count");
     private static String cisla = Helpers.getClassCssContains("keno-ticket");
     private static String vklad = Helpers.getClassCssContains("keno-bet-amount");
+    private static String saveButton = Helpers.locatorMap("save");
+    private static String addButton = Helpers.locatorMap("add");
 
-    public static void createKenoWager(DataTable data, int numberCount) {
+    public static void createKenoWager(DataTable data) {
+        int gameField = 0;
         for (Map<String, String> columnData : data.asMaps(String.class, String.class)) {
-            String numbers = columnData.get("numbers");
-            String[] splittedNumbers = numbers.split(",");
-            int deposit = Integer.parseInt(columnData.get("vklad"));
-            String numCountString = String.valueOf(numberCount);
-            String depositString = String.valueOf(deposit);
-            if (columnData.size() < 1) {
-                String pocetCiselZPole = Helpers.getMergedCssChild(prvniHraciPole, pocetCisel);
-                String cislo = ">label>[value=\"" + numCountString + "\"]";
-                By aktualniCislo = ElementHandler.getBy(Helpers.getMergedCssChild(pocetCiselZPole,cislo));
-                ElementHandler.clickOn(aktualniCislo);
-            }
+            selectNumberCount(gameField, columnData.get(""));
+            gameField++;
+
 
         }
 
 
     }
 
+    public static void selectNumberCount(int gameField, String value) {
+        hraciPole = Helpers.getDataColumn(Integer.toString(gameField));
+
+
+    }
+
+    public static String[] splitString(String values, String regex) {
+        return values.split(regex);
+    }
 
     /**
      * Creates wager for desired lottery from datatable passed from keyword.
@@ -50,7 +54,7 @@ public class WagerCreator {
      * @param lottery lottery name
      * @param data    defines numbers, additional numbers and other valid parameters for particular lottery.
      */
-    public static void createWager(String lottery, DataTable data, String sance) {
+    public static void createBigLotteryWager(String lottery, DataTable data, String sance) {
         WagerFeatures.cleanAllColumns();
         if (!lottery.equals("keno")) {
             WagerFeatures.setChance(lottery, sance);
@@ -61,10 +65,9 @@ public class WagerCreator {
         ArrayList<Integer> depositList = new ArrayList<>();
         int currentColumn = 0;
         for (Map<String, String> columnData : data.asMaps(String.class, String.class)) {
-            String addButton = Helpers.locatorMap("add");
+
             new ClickStep().click(addButton);
-            String numbers = columnData.get("numbers");
-            String[] splittedNumbers = numbers.split(",");
+            String[] splittedNumbers = splitString(columnData.get("numbers"), ",");
             if (columnData.get("vklad") != null) {
                 boolean kingsGame;
                 int deposit = Integer.parseInt(columnData.get("vklad"));
@@ -93,7 +96,7 @@ public class WagerCreator {
                 int num = Integer.parseInt(splittedNumber);
                 numList.add(currentNumber, num);
                 log.info("waging " + lottery + "  number " + num);
-                ElementHandler.clickCmd(ElementHandler.getDialogColumnEl(num));
+                ElementHandler.clickOn(ElementHandler.getColumnNumber(splittedNumber));
                 currentNumber++;
 
             }
@@ -101,19 +104,18 @@ public class WagerCreator {
 
 
             if (columnData.get("additional") != null) {
-                String additional = columnData.get("additional");
-                String[] splittedAdditional = additional.split(",");
+                String[] splittedAdditional = splitString(columnData.get("additional"), ",");
                 int currentAddNumber = 0;
                 for (String splittedAddNum : splittedAdditional) {
                     int addNum = Integer.parseInt(splittedAddNum);
                     addNumList.add(currentAddNumber, addNum);
                     log.info("waging " + lottery + " additional number " + addNum);
-                    ElementHandler.clickCmd(ElementHandler.getAdditionalColumnEl(addNum));
+                    ElementHandler.clickOn(ElementHandler.getAddColumnNumber(splittedAddNum));
 
                 }
 
             }
-            String saveButton = Helpers.locatorMap("save");
+
             new ClickStep().click(saveButton);
             WagerStorage.storeNumbers(currentColumn, numList);
             WagerStorage.storeAddNumbers(currentColumn, addNumList);

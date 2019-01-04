@@ -72,11 +72,11 @@ public class WagerGenerator {
 
                 if (currentNumber < winningNumberCount) {
                     int winNumber = LotteryNumGenerator.getLotteryWinNum(loteryKind, winningNumberCount);
-                    ElementHandler.clickCmd(ElementHandler.getDialogColumnEl(winNumber));
+                    ElementHandler.clickOn(ElementHandler.getColumnNumber(String.valueOf(winNumber)));
                     numList.add(currentNumber, winNumber);
                 } else {
                     int losNumber = LotteryNumGenerator.getLotteryLosNum(loteryKind, winningNumberCount, numberCount);
-                    ElementHandler.clickCmd(ElementHandler.getDialogColumnEl(losNumber));
+                    ElementHandler.clickOn(ElementHandler.getColumnNumber(String.valueOf(losNumber)));
                     numList.add(currentNumber, losNumber);
                 }
             }
@@ -84,7 +84,7 @@ public class WagerGenerator {
             if (extraWaged = addFeature.equals("win")) {
                 for (int currentAddNumber = 0; currentAddNumber < addNumberCount; currentAddNumber++) {
                     int winAddNumber = LotteryNumGenerator.getLotteryAddWinNum(loteryKind);
-                    ElementHandler.clickCmd(ElementHandler.getAdditionalColumnEl(winAddNumber));
+                    ElementHandler.clickOn(ElementHandler.getAddColumnNumber(String.valueOf(winAddNumber)));
                     addNumList.add(currentAddNumber, winAddNumber);
                 }
                 extraWaged = true;
@@ -93,7 +93,7 @@ public class WagerGenerator {
             } else if (extraWaged = addFeature.equals("lose")) {
                 for (int currentAddNumber = 0; currentAddNumber < addNumberCount; currentAddNumber++) {
                     int losAddNumber = LotteryNumGenerator.getLotteryAddLosNum(loteryKind);
-                    ElementHandler.clickCmd( ElementHandler.getAdditionalColumnEl(losAddNumber));
+                    ElementHandler.clickOn(ElementHandler.getAddColumnNumber(String.valueOf(losAddNumber)));
                     addNumList.add(currentAddNumber, losAddNumber);
                 }
                 extraWaged = true;

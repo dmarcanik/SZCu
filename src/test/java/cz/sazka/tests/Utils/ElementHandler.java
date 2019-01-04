@@ -172,18 +172,11 @@ public class ElementHandler {
         return webDriver.findElement(By.cssSelector(Helpers.getClassCss(target)));
     }
 
-    public static WebElement getDialogColumnEl(int number) {
-        return ElementHandler.getIdCssElement(Helpers.locatorMap("columnBox"))
-                .findElement(getBydialogColumn(number));
+    public static By getColumnNumber(String target){
+        return getBy(Helpers.getNumberCSS(target));
     }
-
-    private static By getBydialogColumn(int number) {
-        return getBy("label:nth-child(" + number + ") > span:nth-child(2)");
-    }
-
-    public static WebElement getAdditionalColumnEl(int number) {
-        return ElementHandler.getIdCssElement(Helpers.locatorMap("columnBoxAdd"))
-                .findElement(getBy("label:nth-child(" + number + ") > span:nth-child(2)"));
+    public static By getAddColumnNumber(String target){
+        return getBy(Helpers.getAddNumberCSS(target));
     }
 
     private static WebElement getConsentCssElement() {

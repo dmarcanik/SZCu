@@ -42,8 +42,8 @@ public class WagerFeatures {
     static void setColumnFeatures(int numberCount, int deposit, boolean kingsGame) {
         String numCountString = String.valueOf(numberCount);
         String depositString = String.valueOf(deposit);
-        new ClickStep().clickComboBox("drpInputsCountSelectBoxItArrow", numCountString);
-        new ClickStep().clickComboBox("drpDepositSelectBoxItArrow", depositString);
+        new ClickStep().clickComboBox("drpInputsCountSelectBoxIt", numCountString);
+        new ClickStep().clickComboBox("drpDepositSelectBoxIt", depositString);
         if (kingsGame) {
             new ClickStep().clickCheckbox("dialog-check-king-game");
         }
@@ -61,7 +61,7 @@ public class WagerFeatures {
         WebElement element = ElementHandler.getIdCssElement("date-picker-wrapper");
         List<WebElement> elementList = element.findElements(By.cssSelector("[for]"));
         for (WebElement button : elementList) {
-            if (!button.getCssValue("background-color").contains("rgb(255, 255, 255)")) {
+            if (!button.getCssValue("background-color").contains("rgba(0, 0, 0, 0)")) {
                 button.click();
             }
         }
