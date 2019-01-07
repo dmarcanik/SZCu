@@ -2,8 +2,8 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC131
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
-    And I click on button "btn-game-manual"
+    When I Navigate to section "loterie"and game "stastnych-10"
+    And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "2"
       | numbers       | vklad | kralovskahra |
       | 1,25,40,65,80 | 10    | ano          |
@@ -15,8 +15,8 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC132
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
-    And I click on button "btn-game-manual"
+    When I Navigate to section "loterie"and game "stastnych-10"
+    And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "2"
       | numbers                    | vklad | kralovskahra |
       | 1,15,79,70,20,2,3,61,32,33 | 30    | ne           |
@@ -28,8 +28,8 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC133
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
-    And I click on button "btn-game-manual"
+    When I Navigate to section "loterie"and game "stastnych-10"
+    And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "2"
       | numbers  | vklad | kralovskahra |
       | 76,78,41 | 100   | ne           |
@@ -42,8 +42,8 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC134
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
-    And I click on button "btn-game-manual"
+    When I Navigate to section "loterie"and game "stastnych-10"
+    And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "3"
       | numbers                 | vklad | kralovskahra |
       | 74,73,72,71,69,68,67,66 | 150   | ne           |
@@ -57,8 +57,8 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC135
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
-    And I click on button "btn-game-manual"
+    When I Navigate to section "loterie"and game "stastnych-10"
+    And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "7"
       | numbers                   | vklad | kralovskahra |
       | 1,79,70,69,60,59,50,11,78 | 200   | ne           |
@@ -69,8 +69,8 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC136
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
-    And I click on button "btn-game-manual"
+    When I Navigate to section "loterie"and game "stastnych-10"
+    And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,Y", předpladné set to "14"
       | numbers     | vklad | kralovskahra |
       | 45,40,35,30 | 70    | ano          |
@@ -81,8 +81,8 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC137
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
-    And I click on button "btn-game-manual"
+    When I Navigate to section "loterie"and game "stastnych-10"
+    And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "21"
       | numbers                      | vklad | kralovskahra |
       | 80,2,3,4,9,10,19,20,29,30    | 10    | ne           |
@@ -96,8 +96,8 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC138
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
-    And I click on button "btn-game-manual"
+    When I Navigate to section "loterie"and game "stastnych-10"
+    And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "48"
       | numbers     | vklad | kralovskahra |
       | 55,60,65,70 | 110   | ne           |
@@ -108,8 +108,8 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC139
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
-    And I click on button "btn-game-manual"
+    When I Navigate to section "loterie"and game "stastnych-10"
+    And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "48"
       | numbers    | vklad | kralovskahra |
       | 80,19,10,9 | 90    | ano          |
@@ -120,8 +120,8 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC140
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
-    And I click on button "btn-game-manual"
+    When I Navigate to section "loterie"and game "stastnych-10"
+    And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne,vecer" and Šance set to "none", předpladné set to "96"
       | numbers                       | vklad | kralovskahra |
       | 5,78,65,55,45,79,15,77,35,75  | 90    | ne           |

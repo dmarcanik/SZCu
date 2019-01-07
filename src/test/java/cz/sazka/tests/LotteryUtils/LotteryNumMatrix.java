@@ -93,7 +93,7 @@ class LotteryNumMatrix {
      */
     static int countColumnPrice(ArrayList<Integer> prices, int columnCount, int chance, int durationCount) {
         int priceWithColumns = 0;
-        for (int i = 0; i < columnCount; i++) {
+        for (int i = 0; i < prices.size(); i++) {
             priceWithColumns = priceWithColumns + prices.get(i);
         }
         int drawCount = WagerStorage.getDrawCount();

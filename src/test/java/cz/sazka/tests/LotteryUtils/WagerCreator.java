@@ -2,47 +2,64 @@ package cz.sazka.tests.LotteryUtils;
 
 import cucumber.api.DataTable;
 import cz.sazka.tests.Steps.ClickStep;
-import cz.sazka.tests.Steps.GenerateWagerSteps;
 import cz.sazka.tests.Storage.WagerStorage;
 import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebElement;
-import org.w3c.dom.html.HTMLBRElement;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class WagerCreator {
     private static Logger log = LogManager.getRootLogger();
     private static String hraciPole;
-    private static String pocetCisel = Helpers.getClassCssContains("keno-wager-count");
-    private static String cisla = Helpers.getClassCssContains("keno-ticket");
-    private static String vklad = Helpers.getClassCssContains("keno-bet-amount");
+    private static String pocetCisel;
     private static String saveButton = Helpers.locatorMap("save");
     private static String addButton = Helpers.locatorMap("add");
+    private static ArrayList<Integer> numList = new ArrayList<>();
+    private static ArrayList<Integer> addNumList = new ArrayList<>();
+    private static ArrayList<Integer> numCountList = new ArrayList<>();
+    private static ArrayList<Integer> depositList = new ArrayList<>();
 
     public static void createKenoWager(DataTable data) {
         int gameField = 0;
         for (Map<String, String> columnData : data.asMaps(String.class, String.class)) {
-            selectNumberCount(gameField, columnData.get(""));
+            String[] splittedNumbers = splitString(columnData.get("numbers"), ",");
+            int numberCount = splittedNumbers.length;
+            selectNumberCount(gameField, numberCount);
+            numCountList.add(gameField,numberCount);
+            int numCount = 0;
+            for (String number: splittedNumbers){
+                int desiredNumber = Integer.valueOf(number);
+                selectNumber(gameField,desiredNumber);
+                numList.add(numCount,desiredNumber);
+            }
+            int deposit = Integer.valueOf(columnData.get("vklad"));
+            selectDeposit(gameField,deposit);
+            depositList.add(gameField,deposit);
+
+            WagerStorage.storeNumbers(gameField,numList);
+            WagerStorage.storeDeposit(depositList);
+            WagerStorage.storeNumCountList(numCountList);
+            WagerStorage.storeLotteryKind("keno");
+            WagerStorage.storeColumnCount(gameField);
             gameField++;
-
-
         }
 
 
     }
 
-    public static void selectNumberCount(int gameField, String value) {
-        hraciPole = Helpers.getDataColumn(Integer.toString(gameField));
-
-
+    public static void selectNumberCount(int gameField, int value) {
+        ElementHandler.clickOn(ElementHandler.getKenoNumberCount(String.valueOf(gameField),String.valueOf(value)));
     }
+    public static void selectNumber(int gameField, int value) {
+        ElementHandler.clickOn(ElementHandler.getKenoNumbers(String.valueOf(gameField),String.valueOf(value)));
+    }
+    public static void selectDeposit(int gameField, int value) {
+        ElementHandler.clickOn(ElementHandler.getKenoDeposit(String.valueOf(gameField),String.valueOf(value)));
+    }
+
 
     public static String[] splitString(String values, String regex) {
         return values.split(regex);
@@ -59,10 +76,6 @@ public class WagerCreator {
         if (!lottery.equals("keno")) {
             WagerFeatures.setChance(lottery, sance);
         }
-        ArrayList<Integer> numList = new ArrayList<>();
-        ArrayList<Integer> addNumList = new ArrayList<>();
-        ArrayList<Integer> numCountList = new ArrayList<>();
-        ArrayList<Integer> depositList = new ArrayList<>();
         int currentColumn = 0;
         for (Map<String, String> columnData : data.asMaps(String.class, String.class)) {
 

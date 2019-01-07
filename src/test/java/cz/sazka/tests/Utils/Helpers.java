@@ -56,6 +56,10 @@ public class Helpers {
         return parent + ">" + child;
     }
 
+    public static String getMergedCssNext(String first, String second) {
+        return first + "+" + second;
+    }
+
     public static String getMergedCssAnd(String css1, String css2) {
         return css1 + css2;
     }
@@ -80,12 +84,19 @@ public class Helpers {
     static String getLoaderCss() {
         return "[class*=\"loader active\"]";
     }
-    static String getNumberCSS(String target){
-        return "[id=\"dialog-checkbox-"+target+"\"]+span";
+
+    static String getNumberCSS(String target) {
+        return "[id=\"dialog-checkbox-" + target + "\"]+span";
     }
-    static String getAddNumberCSS(String target){
-        return "[id=\"dialog-additional-checkbox-"+target+"\"]+span";
+
+    static String getAddNumberCSS(String target) {
+        return "[id=\"dialog-additional-checkbox-" + target + "\"]+span";
     }
+
+    public static String getNumberCountCSS(String target) {
+        return "[value=\"" + target + "\"]+span";
+    }
+
 
 
     public static String getConsentPageCss() {
