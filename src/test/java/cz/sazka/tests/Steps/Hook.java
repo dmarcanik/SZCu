@@ -29,7 +29,6 @@ public class Hook {
 
 
     public static WebDriver getDriver() {
-
         return webdriver;
     }
 

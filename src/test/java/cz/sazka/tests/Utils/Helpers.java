@@ -114,6 +114,7 @@ public class Helpers {
         result.add("[id=\"dialog-confirm\"]");
         result.add("[class=\"additional-info\"]");
         result.add("[class=\"modal fade modal-grey modal-confirm-online-bet show\"]");
+        result.add("[class=\"sazka-toast active\"]");
 
         return result;
     }

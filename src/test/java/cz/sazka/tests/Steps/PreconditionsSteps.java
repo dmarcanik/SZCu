@@ -19,6 +19,7 @@ public class PreconditionsSteps {
     private static WebDriver webDriver = Hook.getDriver();
     private static ConfigFileReader configFileReader;
     private static By consentBy = ElementHandler.getBy(Helpers.getConsentPageCss());
+    private static By toastBy = ElementHandler.getBy(Helpers.getClassCss("sazka-toast active"));
 
     /**
      *Checks whether user is loogged in is, then logs him out and then login user added in keywords.
@@ -51,9 +52,14 @@ public class PreconditionsSteps {
         new WriteSteps().writeToInput(Helpers.locatorMap("password"), password);
         new ClickStep().click(Helpers.locatorMap("submit"));
         ElementHandler.waitToBeLoggedIn();
+        if (ActiveElementChecker.isActive(toastBy)){
+            ElementHandler.clickOn(ElementHandler.getclassCssBy("sazka-toast__close"));
+
+        }
         if (ActiveElementChecker.isActive(consentBy)) {
             ElementHandler.acceptConsent();
         }
+
 
     }
 
