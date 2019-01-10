@@ -1,7 +1,11 @@
 Feature: Š10 Královská_Ano_poledne manual
 
   Scenario: S10 TC100
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "1"
@@ -13,7 +17,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC102
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "1"
@@ -25,7 +33,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC104
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,Y", předpladné set to "1"
@@ -37,7 +49,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC106
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "1"
@@ -49,7 +65,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC108
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "1"
@@ -61,7 +81,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC110
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,Y", předpladné set to "1"
@@ -73,7 +97,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC112
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "1"
@@ -85,7 +113,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC114
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "1"
@@ -97,7 +129,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC116
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,Y", předpladné set to "1"
@@ -109,7 +145,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC118
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "1"
@@ -121,7 +161,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC120
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "1"
@@ -133,7 +177,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC122
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,Y", předpladné set to "1"
@@ -145,7 +193,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC124
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "1"
@@ -157,7 +209,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC126
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "1"
@@ -169,7 +225,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC128
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,Y", předpladné set to "1"
@@ -181,7 +241,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC130
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "1"
@@ -193,7 +257,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC76
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "1"
@@ -205,7 +273,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC78
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "1"
@@ -217,7 +289,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC80
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,Y", předpladné set to "1"
@@ -229,7 +305,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC82
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "1"
@@ -241,7 +321,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC84
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "1"
@@ -253,7 +337,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC86
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,Y", předpladné set to "1"
@@ -265,7 +353,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC88
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "1"
@@ -277,7 +369,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC90
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "1"
@@ -289,7 +385,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC92
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,Y", předpladné set to "1"
@@ -301,7 +401,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC94
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "1"
@@ -313,7 +417,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC96
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "1"
@@ -325,7 +433,11 @@ Feature: Š10 Královská_Ano_poledne manual
     Then wager is correctly displayed in Moje sázky
 
   Scenario: S10 TC98
+<<<<<<< Updated upstream
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
+=======
+    Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
+>>>>>>> Stashed changes
     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,Y", předpladné set to "1"
