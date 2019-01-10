@@ -4,6 +4,7 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cz.sazka.tests.DataProviders.ConfigFileReader;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -24,11 +25,10 @@ public class Hook {
     private static Logger log = LogManager.getRootLogger();
     private static WebDriver webdriver;
     private static ConfigFileReader configFileReader;
-    private static boolean dev = true;
+    private static boolean dev = false;
 
 
     public static WebDriver getDriver() {
-
         return webdriver;
     }
 
@@ -64,7 +64,8 @@ public class Hook {
     @After
     public void tearDownTest(Scenario scenario) throws Throwable {
 
-/*
+        if (scenario.isFailed()){
+
             File scrFile = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);
 
             try {
@@ -79,9 +80,10 @@ public class Hook {
 
             }
 
-        } else {*/
+
+        } else {
         log.info("Test " + scenario.getName() + " PASSED");
-        //}
+        }
 
     }
 
