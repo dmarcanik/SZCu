@@ -13,7 +13,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC02
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -25,7 +25,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC03
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -37,7 +37,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC04
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -49,7 +49,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC05
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -61,7 +61,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC06
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -73,7 +73,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC07
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -85,7 +85,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC08
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -97,7 +97,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC09
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -109,7 +109,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC10
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -121,7 +121,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC11
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -133,7 +133,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC12
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -145,7 +145,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC13
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -157,7 +157,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC14
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -169,7 +169,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC15
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -181,7 +181,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC16
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -193,7 +193,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC17
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -205,7 +205,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC18
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -217,7 +217,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC19
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -229,7 +229,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC20
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -241,7 +241,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC21
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -253,7 +253,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC22
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -265,7 +265,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC23
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -277,7 +277,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC24
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -289,7 +289,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC25
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -301,7 +301,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC26
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -313,7 +313,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC27
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -325,7 +325,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC28
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -337,7 +337,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC29
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -349,7 +349,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC30
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -361,7 +361,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC31
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -373,7 +373,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC32
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -385,7 +385,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC33
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -397,7 +397,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC34
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -410,7 +410,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC35
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
@@ -423,7 +423,7 @@ Feature: Keno_manual
 
   Scenario: Keno TC36
     Given Im logged in as "marcanik@sazka.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "keno/vsadit-si-online"
+    When I Navigate to section "loterie"and game "keno"
     And I click on button "online-bet"
     And I create Keno wager
       | numbers      | vklad |
