@@ -2,7 +2,7 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC131
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
+    When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "2"
       | numbers       | vklad | kralovskahra |
@@ -15,7 +15,7 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC132
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
+     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "none", předpladné set to "2"
       | numbers                    | vklad | kralovskahra |
@@ -28,7 +28,7 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC133
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
+     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "Z,0", předpladné set to "2"
       | numbers  | vklad | kralovskahra |
@@ -42,7 +42,7 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC134
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
+     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "3"
       | numbers                 | vklad | kralovskahra |
@@ -57,7 +57,7 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC135
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
+     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "7"
       | numbers                   | vklad | kralovskahra |
@@ -69,7 +69,7 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC136
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
+     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,Y", předpladné set to "14"
       | numbers     | vklad | kralovskahra |
@@ -81,7 +81,7 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC137
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
+     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "21"
       | numbers                      | vklad | kralovskahra |
@@ -96,7 +96,7 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC138
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
+     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne" and Šance set to "Z,0", předpladné set to "48"
       | numbers     | vklad | kralovskahra |
@@ -108,7 +108,7 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC139
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
+     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "vecer" and Šance set to "none", předpladné set to "48"
       | numbers    | vklad | kralovskahra |
@@ -120,7 +120,7 @@ Feature: Š10_predplatné
 
   Scenario: S10 TC140
     Given Im logged in as "sazka200@seznam.cz" with password "Heslo123" and situated on Dashboard
-    When I Navigate to section "loterie"and game "stastnych-10/vsadit-si-online"
+     When I Navigate to section "loterie"and game "stastnych-10"
     And I click on button "online-bet"
     And I create Stastnych 10 wager with draw set to "poledne,vecer" and Šance set to "none", předpladné set to "96"
       | numbers                       | vklad | kralovskahra |
