@@ -92,7 +92,7 @@ public class Hook {
         configFileReader = new ConfigFileReader();
         String driver = configFileReader.getDriver();
         String os = configFileReader.getOS();
-        String driverPath;
+        String driverPath = "driver/geckodriver";
 
 
         switch (driver) {
@@ -100,7 +100,7 @@ public class Hook {
             case "firefox":
                 if (os.equals("mac")) {
                     driverPath = "driver/geckodriver";
-                } else {
+                } else if(os.equals("windows")) {
                     driverPath = "driver/geckodriver.exe";
                 }
                 System.setProperty("webdriver.gecko.driver", driverPath);
@@ -109,7 +109,7 @@ public class Hook {
             case "chrome":
                 if (os.equals("mac")) {
                     driverPath = "driver/chromedriver";
-                } else {
+                } else if(os.equals("windows")) {
                     driverPath = "driver/chromedriver.exe";
                 }
                 System.setProperty("webdriver.chrome.driver", driverPath);
