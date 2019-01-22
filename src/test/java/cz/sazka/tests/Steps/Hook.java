@@ -8,6 +8,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -82,15 +83,42 @@ public class Hook {
 
 
         } else {
-        log.info("Test " + scenario.getName() + " PASSED");
+            log.info("Test " + scenario.getName() + " PASSED");
         }
 
     }
 
     private void initBrowser() throws IOException {
         configFileReader = new ConfigFileReader();
-        System.setProperty("webdriver.gecko.driver", configFileReader.getDriverPath());
-        DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
+        String driver = configFileReader.getDriver();
+        String os = configFileReader.getOS();
+        String driverPath;
+
+
+        switch (driver) {
+
+            case "firefox":
+                if (os.equals("mac")) {
+                    driverPath = "driver/geckodriver";
+                } else {
+                    driverPath = "driver/geckodriver.exe";
+                }
+                System.setProperty("webdriver.gecko.driver", driverPath);
+                webdriver = new FirefoxDriver();
+                break;
+            case "chrome":
+                if (os.equals("mac")) {
+                    driverPath = "driver/chromedriver";
+                } else {
+                    driverPath = "driver/chromedriver.exe";
+                }
+                System.setProperty("webdriver.chrome.driver", driverPath);
+                webdriver = new ChromeDriver();
+                break;
+        }
+
+//        DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
+/*
 
         if (dev) {
             FirefoxOptions options = new FirefoxOptions();
@@ -101,8 +129,9 @@ public class Hook {
             webdriver = new FirefoxDriver(options);
         } else {
             webdriver = new FirefoxDriver();
+*/
 
-        }
+        //      }
 
         webdriver.manage().window().maximize();
         browseropened = true;

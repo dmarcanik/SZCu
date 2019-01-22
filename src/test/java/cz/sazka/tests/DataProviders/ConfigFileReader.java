@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
@@ -44,14 +45,26 @@ public class ConfigFileReader {
         }
     }
 
+
     /**
-     * @return driverpath to browser driver.
+     * @return selected browser driver.
      */
-    public String getDriverPath() {
-        String driverPath = properties.getProperty("driverpath");
-        if (driverPath != null) {
-            return driverPath;
+    public String getDriver() {
+        String driver = properties.getProperty("driver");
+        if (driver != null) {
+            return driver;
         } else throw new RuntimeException("ERROR: Driver not found in configuration file file may be empty");
+
+    }
+
+    /**
+     * @return selected OS.
+     */
+    public String getOS() {
+        String os = properties.getProperty("os");
+        if (os != null) {
+            return os;
+        } else throw new RuntimeException("ERROR: OS not found in configuration file file may be empty");
     }
 
     /**
