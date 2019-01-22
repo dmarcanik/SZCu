@@ -86,7 +86,6 @@ public class WagerChecker {
         By desiredLotteryBets = ElementHandler.getBy(Helpers.getDataTest(lotteryKind));
         ElementHandler.waitElementLoadedBy(desiredLotteryBets);
         List<WebElement> wagerElems = ElementHandler.getElementArrayBy(desiredLotteryBets);
-        ElementHandler.waitPageToBeLoaded();
         WebElement lastBet = wagerElems.get(0).findElement(ElementHandler.getBy(Helpers.getDataTest("columns")));
         ElementHandler.clickCmd(lastBet);
         ElementHandler.waitElementLoadedBy(ElementHandler.getIdBy("dialog-wager"));

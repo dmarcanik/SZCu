@@ -98,7 +98,7 @@ Feature: Sportka_Manual
       | 3,4,5,6,7,9      |
       | 8,28,21,22,23,24 |
       | 2,10,3,4,5,6     |
-      | 2,10,28,3,4,5   |
+      | 2,10,28,3,4,5    |
       | 2,10,28,20,30,3  |
       | 2,10,28,20,4,3   |
     And I click on button "btn-game-send"
@@ -131,17 +131,17 @@ Feature: Sportka_Manual
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I create sportka wager with draw set to "nedele" and Šance set to "Z,0", předpladné set to "1"
-      | numbers             |
-      | 2,10,28,20,30,38,49 |
-      | 3,4,5,6,7,9         |
-      | 3,4,5,6,7,9         |
-      | 3,4,5,6,7,9         |
-      | 3,4,5,6,7,9         |
-      | 3,4,5,6,7,9         |
-      | 3,4,5,6,7,9         |
-      | 3,4,5,6,7,9         |
-      | 3,4,5,6,7,9         |
-      | 3,4,5,6,7,9         |
+      | numbers          |
+      | 2,10,28,20,30,38 |
+      | 3,4,5,6,7,9      |
+      | 3,4,5,6,7,9      |
+      | 3,4,5,6,7,9      |
+      | 3,4,5,6,7,9      |
+      | 3,4,5,6,7,9      |
+      | 3,4,5,6,7,9      |
+      | 3,4,5,6,7,9      |
+      | 3,4,5,6,7,9      |
+      | 3,4,5,6,7,9      |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
@@ -152,7 +152,7 @@ Feature: Sportka_Manual
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I create sportka wager with draw set to "nedele" and Šance set to "Z,Y", předpladné set to "1"
-      | numbers        |
+      | numbers          |
       | 2,10,28,20,30,38 |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
@@ -164,8 +164,8 @@ Feature: Sportka_Manual
     When I Navigate to section "loterie"and game "sportka"
     And I click on button "online-bet"
     And I create sportka wager with draw set to "patek" and Šance set to "none", předpladné set to "1"
-      | numbers        |
-      | 2,3,4,5,6,7|
+      | numbers     |
+      | 2,3,4,5,6,7 |
     And I click on button "btn-game-send"
     And I click on button "btn-confirm-yes"
     Then wager is saved with correct price
