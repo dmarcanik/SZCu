@@ -35,6 +35,7 @@ public class CheckWagerSteps {
     public void wagerIsInMojeSazky() throws Throwable {
         NavigateSteps.navigateToMojeSazky();
         WagerChecker.checkGeneratedWagers();
+        WagerStorage.cleanStorage();
     }
 
     @Then("^Quick Sportka wager for \"(10 sloupcu|5 sloupcu|1 sloupec)\" is correctly saved in Moje sázky$")

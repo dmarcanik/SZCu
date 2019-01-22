@@ -93,6 +93,7 @@ public class WagerInfoReader {
      */
     public String[] getLastTwoNums(String lotteryKind) {
         List<Object> list = getReversedJsonObjArray(getAddonNumbers(lotteryKind));
+
         for (int i = 0; i < 2; i++) {
             lastwoNums[i] = list.get(i).toString();
         }

@@ -69,6 +69,7 @@ public class WagerStorage {
     public static void enableAddNumbers() {
         addNumbers = true;
     }
+
     public static void disableAddNumbers() {
         addNumbers = false;
     }
@@ -162,7 +163,7 @@ public class WagerStorage {
     /**
      * @return if chance is enabled or not.
      */
-    public static boolean isChanceEnabled(){
+    public static boolean isChanceEnabled() {
         return chanceEnabled;
     }
 
@@ -176,8 +177,15 @@ public class WagerStorage {
     /**
      * @return number of dureation currently stored
      */
-    public static int getDurationCount(){
+    public static int getDurationCount() {
         return durationCount;
+    }
+
+    public static void cleanStorage() {
+        numberStorage.clear();
+        AddNumberStorage.clear();
+        numCountList.clear();
+        depositStorage.clear();
     }
 
 

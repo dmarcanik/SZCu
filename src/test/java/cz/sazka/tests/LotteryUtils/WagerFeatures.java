@@ -31,7 +31,6 @@ public class WagerFeatures {
     private static By deleteButton = ElementHandler.getIdBy(Helpers.locatorMap("delete"));
 
 
-
     /**
      * Set features bellow in opened wager according delivered params.
      *
@@ -82,25 +81,27 @@ public class WagerFeatures {
 
     /**
      * Set duration according to settings
+     *
      * @param durationCount for how many times should be wager activated.
-     * @param lottery lottery name.
+     * @param lottery       lottery name.
      */
-    public static void setDuration(String durationCount, String lottery){
+    public static void setDuration(String durationCount, String lottery) {
         WagerStorage.setDurationCount(Integer.parseInt(durationCount));
-        if (lottery.equals("Keno")){
-            new ClickStep().clickComboBox("p_lt_ctl10_pageplaceholder_p_lt_ctl03_wKO_ddlDurationSelectBoxItArrow",durationCount);
+        if (lottery.equals("Keno")) {
+            new ClickStep().clickComboBox("p_lt_ctl10_pageplaceholder_p_lt_ctl03_wKO_ddlDurationSelectBoxItArrow", durationCount);
 
-        }else {
+        } else {
             ElementHandler.clickCmd(ElementHandler.getCssElement("#duration-option > li:nth-child(2)"));
-            new ClickStep().clickComboBox("durationSelectSelectBoxIt",durationCount);
+            new ClickStep().clickComboBox("durationSelectSelectBoxIt", durationCount);
         }
 
     }
 
     /**
      * Set šance for particular lottery
+     *
      * @param lotteryKind lottery name
-     * @param sance value of sance, which should be set.
+     * @param sance       value of sance, which should be set.
      */
     static void setChance(String lotteryKind, String sance) {
         if (sance.equals("none")) {
@@ -128,9 +129,10 @@ public class WagerFeatures {
 
     /**
      * Reads last two numbers from Session storage
-     * @param lastNumKey key for last number.
+     *
+     * @param lastNumKey        key for last number.
      * @param penultimateNumKey key for penultimate number.
-     * @param lotteryKind name of lottery.
+     * @param lotteryKind       name of lottery.
      */
     private static void pairChanceKeys(String lastNumKey, String penultimateNumKey, String lotteryKind) {
         lasTwoNums = new WagerInfoReader().getLastTwoNums(lotteryKind);
@@ -141,8 +143,8 @@ public class WagerFeatures {
     }
 
     /**
-     * @param key desired key
-     * @param index position of desired number
+     * @param key         desired key
+     * @param index       position of desired number
      * @param lastTwoNums last two numbers
      * @return number according to key, if key is X 0 is never returned.
      */
@@ -158,6 +160,7 @@ public class WagerFeatures {
 
     /**
      * Activates or deactivates šance.
+     *
      * @param enable desired value
      */
     private static void enableChance(boolean enable) {
@@ -178,16 +181,16 @@ public class WagerFeatures {
 
             throw new InvalidParameterException(error);
         }
-        if (ActiveElementChecker.isActive(closeButton)){
+        if (ActiveElementChecker.isActive(closeButton)) {
             ElementHandler.clickOn(closeButton);
         }
         for (WebElement element : Lists.reverse(ElementHandler.getElementArray(Helpers.getAllColumns()))) {
-            if (element.getAttribute("class").contains("active")) {
-                element.click();
+            if (element.getAttribute("class").contains("active")){
+                ElementHandler.clickCmd(element);
                 ElementHandler.clickOn(deleteButton);
             }
-
         }
 
     }
+
 }

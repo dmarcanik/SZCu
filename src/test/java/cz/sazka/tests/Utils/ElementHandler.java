@@ -172,11 +172,22 @@ public class ElementHandler {
         return webDriver.findElement(By.cssSelector(Helpers.getClassCss(target)));
     }
 
-    public static By getColumnNumber(String target){
+    public static By getColumnNumber(String target) {
         return getBy(Helpers.getNumberCSS(target));
     }
-    public static By getAddColumnNumber(String target){
+
+    public static By getAddColumnNumber(String target) {
         return getBy(Helpers.getAddNumberCSS(target));
+    }
+
+    public static By getKenoNumberCount(String gameField, String value) {
+        return getBy(Helpers.getMergedCssAnd(Helpers.getDataColumn(String.valueOf(gameField))+">[class*=\"wager-count\"]>label>",Helpers.getNumberCountCSS(value)));
+    }
+    public static By getKenoNumbers(String gameField, String value) {
+        return getBy(Helpers.getMergedCssAnd(Helpers.getDataColumn(String.valueOf(gameField))+">[class*=\"keno-ticket\"]>label>",Helpers.getNumberCountCSS(value)));
+    }
+    public static By getKenoDeposit(String gameField, String value) {
+        return getBy(Helpers.getMergedCssAnd(Helpers.getDataColumn(String.valueOf(gameField))+">[class*=\"keno-bet-amount\"]>label>",Helpers.getNumberCountCSS(value)));
     }
 
     private static WebElement getConsentCssElement() {
