@@ -11,8 +11,5 @@
         <module name="SZCu" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="CucumberProject" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
