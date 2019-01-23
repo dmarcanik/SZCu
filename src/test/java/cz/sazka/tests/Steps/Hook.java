@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 
@@ -97,7 +98,7 @@ public class Hook {
         String driverProperty = "";
 
 
-        
+
         switch (driver) {
             case "firefox":
                 driverProperty = "webdriver.gecko.driver";
@@ -107,6 +108,10 @@ public class Hook {
                 break;
             case "safari":
                 driverProperty = "webdriver.safari.driver";
+                break;
+            case "opera":
+                driverProperty = "webdriver.opera.driver";
+                break;
         }
 
         if (os.equals("mac")) {
@@ -118,6 +123,9 @@ public class Hook {
                 case "chrome":
                     driverPath = "driver/chromedriver";
                     break;
+                case "opera":
+                    driverPath = "driver/operadriver";
+                    break;
             }
 
         } else if(os.equals("windows")) {
@@ -127,6 +135,9 @@ public class Hook {
                     break;
                 case "chrome":
                     driverPath = "driver/chromedriver.exe";
+                    break;
+                case "opera":
+                    driverPath = "driver/operadriver.exe";
                     break;
             }
         }
@@ -142,6 +153,10 @@ public class Hook {
                 break;
             case "safari":
                 webdriver = new SafariDriver();
+                break;
+            case "opera":
+                webdriver = new OperaDriver();
+                break;
         }
 
 
