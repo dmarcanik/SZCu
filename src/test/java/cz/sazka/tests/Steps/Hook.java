@@ -13,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.safari.SafariDriver;
 
 import java.io.File;
 import java.io.IOException;
@@ -92,30 +93,58 @@ public class Hook {
         configFileReader = new ConfigFileReader();
         String driver = configFileReader.getDriver();
         String os = configFileReader.getOS();
-        String driverPath = "driver/geckodriver";
+        String driverPath = "";
+        String driverProperty = "";
 
+
+        
+        switch (driver) {
+            case "firefox":
+                driverProperty = "webdriver.gecko.driver";
+                break;
+            case "chrome":
+                driverProperty = "webdriver.chrome.driver";
+                break;
+            case "safari":
+                driverProperty = "webdriver.safari.driver";
+        }
+
+        if (os.equals("mac")) {
+
+            switch (driver) {
+                case "firefox":
+                    driverPath = "driver/geckodriver";
+                    break;
+                case "chrome":
+                    driverPath = "driver/chromedriver";
+                    break;
+            }
+
+        } else if(os.equals("windows")) {
+            switch (driver) {
+                case "firefox":
+                    driverPath = "driver/geckodriver.exe";
+                    break;
+                case "chrome":
+                    driverPath = "driver/chromedriver.exe";
+                    break;
+            }
+        }
+
+        System.setProperty(driverProperty, driverPath);
 
         switch (driver) {
-
             case "firefox":
-                if (os.equals("mac")) {
-                    driverPath = "driver/geckodriver";
-                } else if(os.equals("windows")) {
-                    driverPath = "driver/geckodriver.exe";
-                }
-                System.setProperty("webdriver.gecko.driver", driverPath);
                 webdriver = new FirefoxDriver();
                 break;
             case "chrome":
-                if (os.equals("mac")) {
-                    driverPath = "driver/chromedriver";
-                } else if(os.equals("windows")) {
-                    driverPath = "driver/chromedriver.exe";
-                }
-                System.setProperty("webdriver.chrome.driver", driverPath);
                 webdriver = new ChromeDriver();
                 break;
+            case "safari":
+                webdriver = new SafariDriver();
         }
+
+
 
 //        DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
 /*
