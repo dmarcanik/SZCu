@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
@@ -28,6 +27,7 @@ public class ConfigFileReader {
      */
     public ConfigFileReader() throws IOException {
         BufferedReader reader;
+
         try {
             reader = new BufferedReader(new FileReader(propertyFilePath));
             properties = new Properties();
