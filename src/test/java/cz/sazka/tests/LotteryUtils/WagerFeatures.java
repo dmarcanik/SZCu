@@ -29,7 +29,7 @@ public class WagerFeatures {
     private static boolean missmatched = false;
     private static By closeButton = ElementHandler.getIdBy(Helpers.locatorMap("close"));
     private static By deleteButton = ElementHandler.getIdBy(Helpers.locatorMap("delete"));
-    private static By drawDate = ElementHandler.getBy("[id=\"date-picker-wrapper\"][for]");
+    private static By drawDate = ElementHandler.getBy("[for*=\"datePicker\"]");
 
 
     /**
@@ -58,7 +58,7 @@ public class WagerFeatures {
      * @param lottery lottery name.
      */
     public static void selectDrawDate(String draws, String lottery) {
-        List<WebElement> elementList = webDriver.findElements(By.cssSelector("[id=\"date-picker-wrapper\"][for]"));
+        List<WebElement> elementList = webDriver.findElements(By.cssSelector("[for*=\"datePicker\"]"));
         for (WebElement button : elementList) {
             if (!button.getCssValue("background-color").contains("rgba(0, 0, 0, 0)")) {
                 ElementHandler.clickOn(drawDate);
