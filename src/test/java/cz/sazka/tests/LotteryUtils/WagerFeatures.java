@@ -29,6 +29,7 @@ public class WagerFeatures {
     private static boolean missmatched = false;
     private static By closeButton = ElementHandler.getIdBy(Helpers.locatorMap("close"));
     private static By deleteButton = ElementHandler.getIdBy(Helpers.locatorMap("delete"));
+    private static By drawDate = ElementHandler.getBy("[id=\"date-picker-wrapper\"][for]");
 
 
     /**
@@ -57,11 +58,10 @@ public class WagerFeatures {
      * @param lottery lottery name.
      */
     public static void selectDrawDate(String draws, String lottery) {
-        WebElement element = ElementHandler.getIdCssElement("date-picker-wrapper");
-        List<WebElement> elementList = element.findElements(By.cssSelector("[for]"));
+        List<WebElement> elementList = webDriver.findElements(By.cssSelector("[id=\"date-picker-wrapper\"][for]"));
         for (WebElement button : elementList) {
             if (!button.getCssValue("background-color").contains("rgba(0, 0, 0, 0)")) {
-                button.click();
+                ElementHandler.clickOn(drawDate);
             }
         }
         int[] drawNums = DrawInfo.getAllDrawNums(draws);
@@ -69,9 +69,9 @@ public class WagerFeatures {
         WagerStorage.storeDrawCount(drawCount);
         for (int drawNum : drawNums) {
             if (lottery.equals("stastnych10")) {
-                element.findElement(By.cssSelector("[data-hour=\"" + drawNum + "\"]")).click();
+                ElementHandler.clickOn(By.cssSelector("[data-hour=\"" + drawNum + "\"]"));
             } else {
-                element.findElement(By.cssSelector("[data-dayofweek=\"" + drawNum + "\"]")).click();
+                ElementHandler.clickOn(By.cssSelector("[data-dayofweek=\"" + drawNum + "\"]"));
             }
 
         }
