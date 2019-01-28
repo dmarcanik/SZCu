@@ -7,6 +7,7 @@ import cz.sazka.tests.Utils.ElementHandler;
 import cz.sazka.tests.Utils.Helpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -78,7 +79,6 @@ public class WagerCreator {
         }
         int currentColumn = 0;
         for (Map<String, String> columnData : data.asMaps(String.class, String.class)) {
-
             new ClickStep().click(addButton);
             String[] splittedNumbers = splitString(columnData.get("numbers"), ",");
             if (columnData.get("vklad") != null) {

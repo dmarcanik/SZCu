@@ -118,7 +118,7 @@ public class WagerFeatures {
 
 
             while ((!lasTwoNums[0].equals(lastNum) || !lasTwoNums[1].equals(beforeLastNum) || missmatched)) {
-                new ClickStep().click("change-chance-number");
+               new ClickStep().click("change-chance-number");
                 pairChanceKeys(lastNumKey, lastbeforeNumKey, lotteryKind);
 
             }
@@ -167,6 +167,7 @@ public class WagerFeatures {
         boolean chanceActivated = ElementHandler.getIdCssElement("chance-numbers").isDisplayed();
         if (!enable || !chanceActivated) {
             ElementHandler.clickOn(ElementHandler.getForCssBy("check-include-chance"));
+
         }
     }
 
@@ -185,7 +186,7 @@ public class WagerFeatures {
             ElementHandler.clickOn(closeButton);
         }
         for (WebElement element : Lists.reverse(ElementHandler.getElementArray(Helpers.getAllColumns()))) {
-            if (element.getAttribute("class").contains("active")){
+            if (element.getAttribute("class").contains("active")) {
                 ElementHandler.clickCmd(element);
                 ElementHandler.clickOn(deleteButton);
             }

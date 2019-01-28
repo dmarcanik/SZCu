@@ -1,6 +1,7 @@
 package cz.sazka.tests.Utils;
 
 import cz.sazka.tests.Steps.Hook;
+import gherkin.lexer.No;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.security.InvalidParameterException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class ElementHandler {
@@ -28,11 +30,16 @@ public class ElementHandler {
     }
 
     public static void clickOn(By by) {
-        webDriverWait().until(ExpectedConditions.elementToBeClickable(by));
-        waitForPageTobeLoaded();
-        waitUntilObstaclesAreGone();
-        WebElement element = getElement(by);
-        element.click();
+        try {
+            waitForPageTobeLoaded();
+            waitUntilObstaclesAreGone();
+            webDriverWait().until(ExpectedConditions.elementToBeClickable(by));
+            WebElement element = getElement(by);
+            element.click();
+        }catch (TimeoutException | NoSuchElementException e){
+            log.error(e);
+        }
+
     }
 
 

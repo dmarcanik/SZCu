@@ -33,7 +33,7 @@ public class WagerGenerator {
      */
 
     public static void generateWager(int columnCount, int numberCount, int winningNumberCount, String loteryKind,
-                                     int addNumberCount, String addFeature, int deposit, boolean kingsGame, String chance) {
+                                     int addNumberCount, String addFeature, int deposit, boolean kingsGame, String chance)  {
         String close = Helpers.locatorMap("close");
         if (ElementHandler.getIdCssElement(close).isDisplayed()) {
             new ClickStep().click(close);

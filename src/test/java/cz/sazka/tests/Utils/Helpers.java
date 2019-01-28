@@ -13,7 +13,7 @@ import java.util.List;
 public class Helpers {
     private static Logger log = LogManager.getRootLogger();
 
-    static String getIdCss(String path) {
+    public static String getIdCss(String path) {
         return "[id=\"" + path + "\"]";
     }
 
@@ -98,7 +98,6 @@ public class Helpers {
     }
 
 
-
     public static String getConsentPageCss() {
         return "[class=\"consents-bar active layout-bottom\"]";
     }
@@ -126,6 +125,7 @@ public class Helpers {
         result.add("[class=\"additional-info\"]");
         result.add("[class=\"modal fade modal-grey modal-confirm-online-bet show\"]");
         result.add("[class=\"sazka-toast active\"]");
+        result.add("[class=\"header-col\"]");
 
         return result;
     }
