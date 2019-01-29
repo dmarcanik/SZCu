@@ -38,6 +38,7 @@ public class ElementHandler {
             element.click();
         }catch (TimeoutException | NoSuchElementException e){
             log.error(e);
+            throw e;
         }
 
     }

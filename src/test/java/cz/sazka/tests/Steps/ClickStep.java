@@ -24,7 +24,11 @@ public class ClickStep {
     @And("^I click on button \"([^\"]*)\"$")
     public void click(String target) {
         try {
-
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             log.info("Clicking on button " + target);
             By targetBy = ElementHandler.getIdBy(target);
             ElementHandler.clickOn(targetBy);
